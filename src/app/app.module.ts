@@ -9,15 +9,28 @@ import { HeaderComponent } from './header/header.component';
 import { ContainerComponent } from './container/container.component';
 import { AddFicheComponent } from './add-fiche/add-fiche.component';
 import { DetailsFicheComponent } from './details-fiche/details-fiche.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
-  declarations: [AppComponent, FichesComponent, HeaderComponent, ContainerComponent, AddFicheComponent, DetailsFicheComponent],
+  declarations: [
+    AppComponent,
+    FichesComponent,
+    HeaderComponent,
+    ContainerComponent,
+    AddFicheComponent,
+    DetailsFicheComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

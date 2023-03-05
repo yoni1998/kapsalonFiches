@@ -3,9 +3,8 @@ const url = require("url");
 const path = require("path");
 
 let mainWindow;
-
+// electron
 function createWindow() {
-  console.log(__dirname);
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -17,15 +16,13 @@ function createWindow() {
   mainWindow.loadURL(
     url.format({
       pathname: path.join(__dirname, `/dist/kapsalon-fiches/index.html`),
+      protocol: "file:",
       slashes: true,
     })
   );
+
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
-
-  mainWindow.on("closed", function () {
-    mainWindow = null;
-  });
 }
 
 app.on("ready", createWindow);
