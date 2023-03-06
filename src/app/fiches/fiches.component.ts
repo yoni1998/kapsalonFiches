@@ -13,6 +13,7 @@ import { Subject } from 'rxjs';
 export class FichesComponent {
   destroy$$ = new Subject();
   fichesList: Fiche[] = [];
+  ficheId: string | undefined;
   selectedFiche: Fiche | undefined;
 
   constructor(
@@ -25,9 +26,18 @@ export class FichesComponent {
   getFiches(): void {
     this.ficheService
       .getAllFiches()
-      .pipe(takeUntil(this.destroy$$))
-      .subscribe((fiches) => {
-        this.fichesList = fiches;
+      .snapshotChanges()
+      .pipe(
+        tap((x) => console.log(x)),
+        map((changes) =>
+          changes.map((c) => ({
+            id: c.payload.doc.id,
+            ...c.payload.doc.data(),
+          }))
+        )
+      )
+      .subscribe((data) => {
+        this.fichesList = data;
       });
   }
 }

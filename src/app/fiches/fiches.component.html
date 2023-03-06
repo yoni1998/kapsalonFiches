@@ -1,8 +1,8 @@
-<p-orderList [value]="fichesList" controlsPosition="right" filterPlaceholder="Zoeken op naam van een klant" [dragdrop]="true" header="Fiches" filterBy="achternaam.stringValue">
+<p-orderList [value]="fichesList" controlsPosition="right" filterPlaceholder="Zoeken op naam van een klant"  header="Klantenfiches" filterBy="achternaam,voornaam">
     <ng-template let-fiche pTemplate="fiche">
-        <div>
-            <div style="font-size:18px;float:left;margin:15px 5px 0 0">{{fiche.achternaam.stringValue}} {{fiche.voornaam.stringValue}}</div>
-            <div style="font-size:18px;float:right;margin:0 5px 0 0"><p class="propertyNaam">Telefoonnummer:</p> {{fiche.telefoonNummer.integerValue}}</div>
+        <div [routerLink]="'info/' + fiche.id">
+            <div style="font-size:18px;float:left;margin:15px 5px 0 0">{{fiche.achternaam}} {{fiche.voornaam}}</div>
+            <div style="font-size:18px;float:right;margin:0 5px 0 0"><p class="propertyNaam">Telefoonnummer:</p> {{fiche.telefoonNummer}}</div>
         </div>
     </ng-template>
 </p-orderList>
