@@ -10,6 +10,9 @@ import { ContainerComponent } from './container/container.component';
 import { AddFicheComponent } from './add-fiche/add-fiche.component';
 import { DetailsFicheComponent } from './details-fiche/details-fiche.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ListboxModule } from 'primeng/listbox';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrderListModule } from 'primeng/orderlist';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,10 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ListboxModule,
+    FormsModule,
+    ReactiveFormsModule,
+    OrderListModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [

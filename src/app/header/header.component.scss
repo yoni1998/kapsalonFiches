@@ -1,7 +1,7 @@
 
 .header {
   overflow: hidden;
-  background-color: #9e5757;
+  background-color: #d7d7bf;
   padding: 20px 10px;
   width: 100%;
  
@@ -31,10 +31,6 @@
 .header a.active {
   background-color: dodgerblue;
   color: white;
-}
-
-.header-right {
-  float: right;
 }
 
 @media screen and (max-width: 500px) {
