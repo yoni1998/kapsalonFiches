@@ -23,7 +23,7 @@ export class FichesService {
 
   // get fiche on id
   getFicheById(id: string) {
-    return this.dbRef.doc(id).ref.get();
+    return this.dbRef.doc(id).snapshotChanges();
   }
 
   // create fiches

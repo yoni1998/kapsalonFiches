@@ -3,6 +3,8 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FichesService } from '../services/fiches.service';
+import { map, tap } from 'rxjs';
+import { Fiche } from '../types';
 
 @Component({
   selector: 'app-details-fiche',
@@ -11,6 +13,7 @@ import { FichesService } from '../services/fiches.service';
 })
 export class DetailsFicheComponent {
   ficheId: string | null;
+  ficheDetails: Fiche | undefined;
   constructor(
     private ficheService: FichesService,
     public route: ActivatedRoute,
@@ -39,9 +42,12 @@ export class DetailsFicheComponent {
   // get a fiche on id
   getFicheById(id: string): void {
     if (this.ficheId) {
-      this.ficheService.getFicheById(id).then((data) => {
-        console.log(data);
-      });
+      this.ficheService
+        .getFicheById(id)
+        .pipe(map((data) => data.payload.data()))
+        .subscribe((data) => {
+          this.ficheDetails = data;
+        });
     }
   }
 
