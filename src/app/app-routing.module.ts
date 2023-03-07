@@ -1,3 +1,4 @@
+import { AddFicheComponent } from './add-fiche/add-fiche.component';
 import { ContainerComponent } from './container/container.component';
 import { DetailsFicheComponent } from './details-fiche/details-fiche.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'fiches',
     component: ContainerComponent,
+  },
+  {
+    path: 'fiches/new',
+    component: AddFicheComponent,
   },
   {
     path: 'fiches/:id/info',

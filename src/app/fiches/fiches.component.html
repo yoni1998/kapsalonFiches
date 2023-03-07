@@ -1,3 +1,4 @@
+<button pButton routerLink="new" type="button" class="p-button-raised" aria-label="Toevoegen" icon="pi pi-plus" label="Klantenfiche Toevoegen"></button>
 <p-orderList [value]="fichesList" controlsPosition="right" filterPlaceholder="Zoeken op naam van een klant"  header="Klantenfiches" filterBy="achternaam,voornaam">
     <ng-template let-fiche pTemplate="fiche">
         <div [routerLink]="fiche.id + '/info'">

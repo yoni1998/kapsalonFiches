@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-fiche',
   templateUrl: './add-fiche.component.html',
-  styleUrls: ['./add-fiche.component.scss']
+  styleUrls: ['./add-fiche.component.scss'],
 })
-export class AddFicheComponent {
-
-}
+export class AddFicheComponent {}
