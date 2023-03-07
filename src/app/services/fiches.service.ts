@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
+  DocumentSnapshot,
 } from '@angular/fire/compat/firestore';
 import { Fiche } from '../types';
 @Injectable({
@@ -18,6 +19,11 @@ export class FichesService {
   // get all fiches
   getAllFiches(): AngularFirestoreCollection<Fiche> {
     return this.dbRef;
+  }
+
+  // get fiche on id
+  getFicheById(id: string) {
+    return this.dbRef.doc(id).ref.get();
   }
 
   // create fiches

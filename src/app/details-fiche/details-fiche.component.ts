@@ -19,8 +19,10 @@ export class DetailsFicheComponent {
     private confirmationService: ConfirmationService
   ) {
     this.ficheId = this.route.snapshot.paramMap.get('id');
+    this.getFicheById(String(this.ficheId));
   }
 
+  // delete a fiche
   deleteFiche(): void {
     if (this.ficheId) {
       this.confirmationService.confirm({
@@ -34,6 +36,16 @@ export class DetailsFicheComponent {
     }
   }
 
+  // get a fiche on id
+  getFicheById(id: string): void {
+    if (this.ficheId) {
+      this.ficheService.getFicheById(id).then((data) => {
+        console.log(data);
+      });
+    }
+  }
+
+  // update a fiche
   updateFiche(): void {
     console.log('update');
   }
