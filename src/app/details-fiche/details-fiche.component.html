@@ -1,1 +1,19 @@
-<p>details-fiche works!</p>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-toolbar>
+    <div class="p-toolbar-group-end" style="padding: 1rem">
+        <p-button (click)="updateFiche()"  icon="pi pi-pencil" pTooltip="Klantenfiche wijzigen"></p-button>
+        <p-button (click)="deleteFiche()" icon="pi pi-times" pTooltip="Klantenfiche verwijderen" tooltipPosition="bottom" styleClass="p-button-danger"></p-button>
+    </div>
+</p-toolbar>
+
+<div class="information">
+<p-fieldset>
+    <ng-template pTemplate="header">Informatie van de klant</ng-template>
+    Content
+</p-fieldset>
+
+<p-fieldset>
+    <ng-template pTemplate="header">Formules</ng-template>
+    Content
+</p-fieldset>
+</div>
