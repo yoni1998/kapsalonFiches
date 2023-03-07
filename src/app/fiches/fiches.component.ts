@@ -28,13 +28,13 @@ export class FichesComponent {
       .getAllFiches()
       .snapshotChanges()
       .pipe(
-        tap((x) => console.log(x)),
         map((changes) =>
           changes.map((c) => ({
             id: c.payload.doc.id,
             ...c.payload.doc.data(),
           }))
-        )
+        ),
+        takeUntil(this.destroy$$)
       )
       .subscribe((data) => {
         this.fichesList = data;

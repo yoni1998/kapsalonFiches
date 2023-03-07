@@ -1,6 +1,6 @@
 <p-orderList [value]="fichesList" controlsPosition="right" filterPlaceholder="Zoeken op naam van een klant"  header="Klantenfiches" filterBy="achternaam,voornaam">
     <ng-template let-fiche pTemplate="fiche">
-        <div [routerLink]="'info/' + fiche.id">
+        <div [routerLink]="fiche.id + '/info'">
             <div style="font-size:18px;float:left;margin:15px 5px 0 0">{{fiche.achternaam}} {{fiche.voornaam}}</div>
             <div style="font-size:18px;float:right;margin:0 5px 0 0"><p class="propertyNaam">Telefoonnummer:</p> {{fiche.telefoonNummer}}</div>
         </div>
