@@ -13,7 +13,6 @@ import { Subject } from 'rxjs';
 export class FichesComponent {
   destroy$$ = new Subject();
   fichesList: Fiche[] = [];
-  ficheId: string | undefined;
   selectedFiche: Fiche | undefined;
 
   constructor(
