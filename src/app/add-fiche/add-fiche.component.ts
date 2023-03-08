@@ -29,7 +29,7 @@ export class AddFicheComponent
       voornaam: [null, [Validators.required]],
       achternaam: [null, [Validators.required]],
       telefoonNummer: [null, [Validators.required]],
-      nummer: [null, [Validators.required]],
+      mobielNummer: [null, [Validators.required]],
       adres: [null, [Validators.required]],
     });
     this.ficheId = this.activeRoute.snapshot.paramMap.get('id');
@@ -45,6 +45,7 @@ export class AddFicheComponent
             voornaam: data.payload.data()?.voornaam,
             achternaam: data.payload.data()?.achternaam,
             telefoonNummer: data.payload.data()?.telefoonNummer,
+            mobielNummer: data.payload.data()?.mobielNummer,
             adres: data.payload.data()?.adres,
           });
         });
@@ -64,6 +65,7 @@ export class AddFicheComponent
       voornaam: this.formGroupFiches.controls['voornaam'].value,
       achternaam: this.formGroupFiches.controls['achternaam'].value,
       telefoonNummer: this.formGroupFiches.controls['telefoonNummer'].value,
+      mobielNummer: this.formGroupFiches.controls['mobielNummer'].value,
       adres: this.formGroupFiches.controls['adres'].value,
     };
 
@@ -78,6 +80,7 @@ export class AddFicheComponent
       voornaam: this.formGroupFiches.controls['voornaam'].value,
       achternaam: this.formGroupFiches.controls['achternaam'].value,
       telefoonNummer: this.formGroupFiches.controls['telefoonNummer'].value,
+      mobielNummer: this.formGroupFiches.controls['mobielNummer'].value,
       adres: this.formGroupFiches.controls['adres'].value,
     };
 

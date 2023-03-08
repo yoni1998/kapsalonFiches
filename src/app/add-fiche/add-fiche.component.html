@@ -1,5 +1,7 @@
-<h2 *ngIf="!this.ficheId">Klantenfiche toevoegen</h2>
-<h2 *ngIf="this.ficheId">Klantenfiche Wijzigen</h2>
+<h2 *ngIf="!this.ficheId; else update">Klantenfiche toevoegen</h2>
+<ng-template #update>
+<h2>Klantenfiche Wijzigen</h2>
+</ng-template>
 <form class="form-group" [formGroup]="formGroupFiches">
     <span class="p-float-label">
         <input id="float-input" formControlName="voornaam" type="text" class="p-inputtext-lg" pInputText> 
@@ -14,19 +16,12 @@
         <label for="float-input">telefoonnummer</label>
     </span>
     <span class="p-float-label">
-        <input id="float-input" formControlName="nummer" type="text" class="p-inputtext-lg" pInputText> 
-        <label for="float-input">nummer</label>
+        <input id="float-input" formControlName="mobielNummer" type="text" class="p-inputtext-lg" pInputText> 
+        <label for="float-input">Mobielnummer</label>
     </span>
     <span class="p-float-label">
         <input id="float-input" formControlName="adres" type="text" class="p-inputtext-lg" pInputText> 
         <label for="float-input">adres</label>
-    </span>
-</form>
-<h2>Formule(s)</h2>
-<form class="form-group">
-    <span class="p-float-label">
-        <input id="float-input" type="text" class="p-inputtext-lg" pInputText> 
-        <label for="float-input">formule</label>
     </span>
 </form>
 <button [disabled]="!formGroupFiches.valid" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Toevoegen" icon="pi pi-check" label="Toevoegen aan klantenfiches"></button>
