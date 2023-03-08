@@ -23,6 +23,7 @@ import { ToastModule } from 'primeng/toast';
 
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ConfirmationService } from 'primeng/api';
     ContainerComponent,
     AddFicheComponent,
     DetailsFicheComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,

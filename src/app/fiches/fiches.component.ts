@@ -14,6 +14,8 @@ export class FichesComponent {
   destroy$$ = new Subject();
   fichesList: Fiche[] = [];
   selectedFiche: Fiche | undefined;
+  // loading spinner
+  showSpinner: boolean = true;
 
   constructor(
     private filterService: FilterService,
@@ -37,6 +39,7 @@ export class FichesComponent {
       )
       .subscribe((data) => {
         this.fichesList = data;
+        this.showSpinner = false;
       });
   }
 }
