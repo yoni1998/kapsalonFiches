@@ -9,7 +9,25 @@
 <div class="information">
 <p-fieldset>
     <ng-template pTemplate="header">Informatie van de klant</ng-template>
-    {{ ficheDetails?.voornaam }}
+    <div class="grid">
+    <div>
+    <h4>Naam</h4>
+    <p>{{ ficheDetails?.achternaam}} {{ ficheDetails?.voornaam }} </p>
+</div>
+<div *ngIf="ficheDetails?.telefoonNummer">
+    <h4>Telefoonnummer</h4>
+  <p>{{ ficheDetails?.telefoonNummer }}</p>  
+</div>
+<div>
+    <h4>Mobiel nummer</h4>
+  <p>{{ ficheDetails?.mobielNummer }}</p>  
+</div>
+<div>
+    <h4>adres</h4>
+  <p>{{ ficheDetails?.adres }}</p>  
+</div>
+ 
+</div>
 </p-fieldset>
 
 <p-fieldset>

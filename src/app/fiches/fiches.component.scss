@@ -12,7 +12,11 @@
   }
 
   button {
-    padding: 1rem 3rem;
     margin: 1rem;
-
   }
+
+  @media only screen and (max-width: 600px) {
+    :host ::ng-deep  .p-orderlist-controls-right .p-orderlist-controls {
+      display: none;
+    }
+}

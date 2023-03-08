@@ -28,7 +28,7 @@ export class AddFicheComponent
     this.formGroupFiches = this.fb.group({
       voornaam: [null, [Validators.required]],
       achternaam: [null, [Validators.required]],
-      telefoonNummer: [null, [Validators.required]],
+      telefoonNummer: [null],
       mobielNummer: [null, [Validators.required]],
       adres: [null, [Validators.required]],
     });

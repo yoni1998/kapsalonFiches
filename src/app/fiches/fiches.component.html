@@ -2,11 +2,17 @@
 <div *ngIf="!showSpinner">
     <button pButton routerLink="new" type="button" class="p-button-raised" aria-label="Toevoegen" icon="pi pi-plus" label="Klantenfiche Toevoegen"></button>
 <p-orderList [value]="fichesList" controlsPosition="right" filterPlaceholder="Zoeken op naam van een klant"  header="Klantenfiches" filterBy="achternaam,voornaam">
- 
     <ng-template let-fiche pTemplate="fiche">
         <div [routerLink]="fiche.id + '/info'">
             <div style="font-size:18px;float:left;margin:15px 5px 0 0">{{fiche.achternaam}} {{fiche.voornaam}}</div>
-            <div style="font-size:18px;float:right;margin:0 5px 0 0"><p class="propertyNaam">Telefoonnummer:</p> {{fiche.telefoonNummer}}</div>
+            <div style="font-size:18px;float:right;margin:0 5px 0 0;">
+                <p class="propertyNaam">Telefoon nummer:</p>
+                {{fiche.telefoonNummer}}
+            </div>
+            <div style="font-size:18px;float:right;margin:0 3rem 0 0;">
+                <p class="propertyNaam">Mobiel nummer:</p>
+                {{fiche.mobielNummer}}
+            </div>
         </div>
     </ng-template>
 </p-orderList>
