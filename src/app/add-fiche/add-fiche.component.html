@@ -1,4 +1,5 @@
-<h2>Klantenfiche toevoegen</h2>
+<h2 *ngIf="!this.ficheId">Klantenfiche toevoegen</h2>
+<h2 *ngIf="this.ficheId">Klantenfiche Wijzigen</h2>
 <form class="form-group" [formGroup]="formGroupFiches">
     <span class="p-float-label">
         <input id="float-input" formControlName="voornaam" type="text" class="p-inputtext-lg" pInputText> 

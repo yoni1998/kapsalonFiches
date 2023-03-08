@@ -4,12 +4,17 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Fiche } from '../types';
 import { ActivatedRoute } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { UnsubscribeBase } from '../shared/unsubscribeBase';
 @Component({
   selector: 'app-add-fiche',
   templateUrl: './add-fiche.component.html',
   styleUrls: ['./add-fiche.component.scss'],
 })
-export class AddFicheComponent implements OnInit {
+export class AddFicheComponent
+  extends UnsubscribeBase<Fiche>
+  implements OnInit
+{
   formGroupFiches: FormGroup;
   fiche: Fiche | undefined;
   ficheId: any;
@@ -19,6 +24,7 @@ export class AddFicheComponent implements OnInit {
     private ficheService: FichesService,
     private activeRoute: ActivatedRoute
   ) {
+    super();
     this.formGroupFiches = this.fb.group({
       voornaam: [null, [Validators.required]],
       achternaam: [null, [Validators.required]],
@@ -31,14 +37,17 @@ export class AddFicheComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.ficheId) {
-      this.ficheService.getFicheById(this.ficheId).subscribe((data) => {
-        this.formGroupFiches.patchValue({
-          voornaam: data.payload.data()?.voornaam,
-          achternaam: data.payload.data()?.achternaam,
-          telefoonNummer: data.payload.data()?.telefoonNummer,
-          adres: data.payload.data()?.adres,
+      this.ficheService
+        .getFicheById(this.ficheId)
+        .pipe(takeUntil(this.destroy$$))
+        .subscribe((data) => {
+          this.formGroupFiches.patchValue({
+            voornaam: data.payload.data()?.voornaam,
+            achternaam: data.payload.data()?.achternaam,
+            telefoonNummer: data.payload.data()?.telefoonNummer,
+            adres: data.payload.data()?.adres,
+          });
         });
-      });
     }
   }
 

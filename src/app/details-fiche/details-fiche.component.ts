@@ -1,3 +1,4 @@
+import { UnsubscribeBase } from './../shared/unsubscribeBase';
 import { takeUntil } from 'rxjs/operators';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
@@ -12,10 +13,9 @@ import { Fiche } from '../types';
   templateUrl: './details-fiche.component.html',
   styleUrls: ['./details-fiche.component.scss'],
 })
-export class DetailsFicheComponent {
+export class DetailsFicheComponent extends UnsubscribeBase<Fiche> {
   ficheId: string | null;
   ficheDetails: Fiche | undefined;
-  destroy$$ = new Subject();
   constructor(
     private ficheService: FichesService,
     public route: ActivatedRoute,
@@ -24,6 +24,7 @@ export class DetailsFicheComponent {
     private confirmationService: ConfirmationService,
     private router: Router
   ) {
+    super();
     this.ficheId = this.route.snapshot.paramMap.get('id');
     this.getFicheById(String(this.ficheId));
   }

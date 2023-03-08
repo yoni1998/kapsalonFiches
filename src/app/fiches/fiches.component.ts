@@ -1,3 +1,4 @@
+import { UnsubscribeBase } from './../shared/unsubscribeBase';
 import { FichesService } from './../services/fiches.service';
 import { Component, OnInit } from '@angular/core';
 import { FilterService } from 'primeng/api';
@@ -10,8 +11,7 @@ import { Subject } from 'rxjs';
   templateUrl: './fiches.component.html',
   styleUrls: ['./fiches.component.scss'],
 })
-export class FichesComponent {
-  destroy$$ = new Subject();
+export class FichesComponent extends UnsubscribeBase<Fiche> {
   fichesList: Fiche[] = [];
   selectedFiche: Fiche | undefined;
   // loading spinner
@@ -21,6 +21,7 @@ export class FichesComponent {
     private filterService: FilterService,
     private ficheService: FichesService
   ) {
+    super();
     this.getFiches();
   }
 
