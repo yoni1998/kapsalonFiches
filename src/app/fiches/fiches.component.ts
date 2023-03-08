@@ -1,10 +1,9 @@
 import { UnsubscribeBase } from './../shared/unsubscribeBase';
 import { FichesService } from './../services/fiches.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FilterService } from 'primeng/api';
 import { Fiche } from '../types';
-import { map, tap, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-fiches',

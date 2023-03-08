@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FichesService } from '../services/fiches.service';
-import { map, tap, Subject } from 'rxjs';
+import { map } from 'rxjs';
 import { Fiche } from '../types';
 
 @Component({
