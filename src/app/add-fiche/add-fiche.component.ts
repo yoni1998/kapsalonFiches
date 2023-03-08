@@ -35,6 +35,10 @@ export class AddFicheComponent
     this.ficheId = this.activeRoute.snapshot.paramMap.get('id');
   }
 
+  toUppercase(name: string): string {
+    return name.substring(0, 1).toUpperCase() + name.substring(1);
+  }
+
   ngOnInit(): void {
     if (this.ficheId) {
       this.ficheService
@@ -77,8 +81,12 @@ export class AddFicheComponent
 
   addFiche(): void {
     this.fiche = {
-      voornaam: this.formGroupFiches.controls['voornaam'].value,
-      achternaam: this.formGroupFiches.controls['achternaam'].value,
+      voornaam: this.toUppercase(
+        this.formGroupFiches.controls['voornaam'].value
+      ),
+      achternaam: this.toUppercase(
+        this.formGroupFiches.controls['achternaam'].value
+      ),
       telefoonNummer: this.formGroupFiches.controls['telefoonNummer'].value,
       mobielNummer: this.formGroupFiches.controls['mobielNummer'].value,
       adres: this.formGroupFiches.controls['adres'].value,

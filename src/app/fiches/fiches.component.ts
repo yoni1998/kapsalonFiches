@@ -38,6 +38,7 @@ export class FichesComponent extends UnsubscribeBase<Fiche> {
         takeUntil(this.destroy$$)
       )
       .subscribe((data) => {
+        console.log(data);
         this.fichesList = data;
         this.showSpinner = false;
       });
