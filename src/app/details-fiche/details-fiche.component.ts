@@ -1,9 +1,10 @@
+import { takeUntil } from 'rxjs/operators';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FichesService } from '../services/fiches.service';
-import { map, tap } from 'rxjs';
+import { map, tap, Subject } from 'rxjs';
 import { Fiche } from '../types';
 
 @Component({
@@ -14,6 +15,7 @@ import { Fiche } from '../types';
 export class DetailsFicheComponent {
   ficheId: string | null;
   ficheDetails: Fiche | undefined;
+  destroy$$ = new Subject();
   constructor(
     private ficheService: FichesService,
     public route: ActivatedRoute,
@@ -44,7 +46,10 @@ export class DetailsFicheComponent {
     if (this.ficheId) {
       this.ficheService
         .getFicheById(id)
-        .pipe(map((data) => data.payload.data()))
+        .pipe(
+          map((data) => data.payload.data()),
+          takeUntil(this.destroy$$)
+        )
         .subscribe((data) => {
           this.ficheDetails = data;
         });

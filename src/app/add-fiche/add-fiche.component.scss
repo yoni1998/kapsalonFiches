@@ -1,0 +1,31 @@
+.form-group {
+    margin: 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    gap: 3rem;
+  
+ 
+}
+h2 {
+    padding: 1rem;
+    padding-left: 9rem;
+}
+
+button {
+    float: right;
+    margin-right: 5rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .form-group {
+    display: grid;
+    place-items: center;
+    gap: 3rem;
+    grid-template-columns: 1fr;
+}
+h2 {
+   display: grid;
+   place-items: center
+}
+}

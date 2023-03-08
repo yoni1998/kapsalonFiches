@@ -20,7 +20,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
-
+import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
@@ -42,6 +42,7 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
     FormsModule,
     ToolbarModule,
     ButtonModule,
+    InputTextModule,
     TooltipModule,
     ConfirmDialogModule,
     ToastModule,

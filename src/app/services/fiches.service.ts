@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
-  DocumentSnapshot,
 } from '@angular/fire/compat/firestore';
 import { Fiche } from '../types';
+import { query, where, orderBy } from 'firebase/firestore';
 @Injectable({
   providedIn: 'root',
 })
