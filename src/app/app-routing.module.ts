@@ -19,6 +19,10 @@ const routes: Routes = [
     component: AddFicheComponent,
   },
   {
+    path: 'fiches/new/:id',
+    component: AddFicheComponent,
+  },
+  {
     path: 'fiches/:id/info',
     component: DetailsFicheComponent,
   },

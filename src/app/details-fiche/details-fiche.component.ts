@@ -2,7 +2,7 @@ import { takeUntil } from 'rxjs/operators';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FichesService } from '../services/fiches.service';
 import { map, tap, Subject } from 'rxjs';
 import { Fiche } from '../types';
@@ -21,7 +21,8 @@ export class DetailsFicheComponent {
     public route: ActivatedRoute,
     private location: Location,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private router: Router
   ) {
     this.ficheId = this.route.snapshot.paramMap.get('id');
     this.getFicheById(String(this.ficheId));
@@ -58,6 +59,6 @@ export class DetailsFicheComponent {
 
   // update a fiche
   updateFiche(): void {
-    console.log('update');
+    this.router.navigate(['fiches/new', this.ficheId]);
   }
 }
