@@ -28,7 +28,7 @@
 </div>
 </div>
 </p-fieldset>
-
+<p-button icon="pi pi-check" pTooltip="Toevoegen"></p-button>
 <p-fieldset>
     <ng-template pTemplate="header">Formules</ng-template>
     <div *ngFor="let item of formulesList" >
@@ -52,6 +52,7 @@
     </div>
     <div class="actions">
       <i class="pi pi-trash" style="color: red; cursor: pointer; font-size: 1.5rem;" (click)="removeFormules(item)"></i>
+      <i class="pi pi-pencil" [routerLink]="'edit/' + item.id" style="color: blue; cursor: pointer; font-size: 1.5rem;"></i>
     </div>
     </div>
 </p-fieldset>

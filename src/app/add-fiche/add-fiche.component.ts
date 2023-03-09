@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Fiche, Formules } from '../types';
 import { ActivatedRoute } from '@angular/router';
-import { takeUntil } from 'rxjs';
+import { takeUntil, tap } from 'rxjs';
 import { UnsubscribeBase } from '../shared/unsubscribeBase';
 @Component({
   selector: 'app-add-fiche',
@@ -21,6 +21,7 @@ export class AddFicheComponent
   formule: Formules | undefined;
   ficheId: any;
   newFicheId: any;
+  formuleId: any;
   constructor(
     private location: Location,
     private fb: FormBuilder,
@@ -50,7 +51,10 @@ export class AddFicheComponent
   }
 
   ngOnInit(): void {
-    if (this.ficheId) {
+    if (
+      this.ficheId &&
+      this.activeRoute.snapshot.routeConfig?.path !== 'fiches/:id/info/edit/:id'
+    ) {
       this.ficheService
         .getFicheById(this.ficheId)
         .pipe(takeUntil(this.destroy$$))
@@ -61,6 +65,22 @@ export class AddFicheComponent
             telefoonNummer: data.payload.data()?.telefoonNummer,
             mobielNummer: data.payload.data()?.mobielNummer,
             adres: data.payload.data()?.adres,
+          });
+        });
+    }
+
+    if (
+      this.ficheId &&
+      this.activeRoute.snapshot.routeConfig?.path === 'fiches/:id/info/edit/:id'
+    ) {
+      this.ficheService
+        .getFormuleByFicheId(this.ficheId)
+        .pipe(takeUntil(this.destroy$$))
+        .subscribe((values: any) => {
+          this.formGroupFormules.patchValue({
+            formuleText: values.payload.data()?.formuleText,
+            prijs: values.payload.data()?.prijs,
+            createdAt: values.payload.data()?.createdAt,
           });
         });
     }
