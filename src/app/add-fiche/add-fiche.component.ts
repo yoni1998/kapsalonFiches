@@ -94,6 +94,17 @@ export class AddFicheComponent
     }
   }
 
+  handleAddAndUpdateFormules(): void {
+    if (
+      this.ficheId &&
+      this.activeRoute.snapshot.routeConfig?.path === 'fiches/:id/info/edit/:id'
+    ) {
+      this.updateFormule();
+    } else {
+      this.addFomule();
+    }
+  }
+
   updateFiche(): void {
     this.fiche = {
       voornaam: this.formGroupFiches.controls['voornaam'].value,
@@ -104,6 +115,20 @@ export class AddFicheComponent
     };
 
     this.ficheService.updateFiche(this.ficheId, this.fiche).then(() => {
+      console.log('updated');
+      this.location.back();
+    });
+  }
+
+  updateFormule(): void {
+    this.formule = {
+      formuleText: this.formGroupFormules.controls['formuleText'].value,
+      prijs: this.formGroupFormules.controls['prijs'].value,
+      createdAt: this.formGroupFormules.controls['createdAt'].value,
+      updatedAt: new Date(),
+    };
+
+    this.ficheService.updateFormule(this.ficheId, this.formule).then(() => {
       console.log('updated');
       this.location.back();
     });
