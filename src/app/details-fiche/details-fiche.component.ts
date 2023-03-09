@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FichesService } from '../services/fiches.service';
 import { map } from 'rxjs';
-import { Fiche } from '../types';
+import { Fiche, Formules } from '../types';
 
 @Component({
   selector: 'app-details-fiche',
@@ -16,6 +16,7 @@ import { Fiche } from '../types';
 export class DetailsFicheComponent extends UnsubscribeBase<Fiche> {
   ficheId: string | null;
   ficheDetails: Fiche | undefined;
+  formulesList: Formules[] | undefined;
   constructor(
     private ficheService: FichesService,
     public route: ActivatedRoute,
@@ -63,16 +64,31 @@ export class DetailsFicheComponent extends UnsubscribeBase<Fiche> {
         });
     }
   }
-
+  formuleId: string | undefined;
   getAllFormulesOnFicheId(id: string): void {
     if (this.ficheId) {
       this.ficheService
         .getAllFormulesOnFicheId(id)
         .snapshotChanges()
-        .pipe(takeUntil(this.destroy$$))
+        .pipe(
+          map((changes) =>
+            changes.map((c) => ({
+              id: c.payload.doc.id,
+              ...c.payload.doc.data(),
+            }))
+          ),
+          takeUntil(this.destroy$$)
+        )
         .subscribe((data) => {
-          console.log(data);
+          this.formulesList = data;
         });
+    }
+  }
+  removeFormules(item: Formules): void {
+    if (item.id) {
+      this.ficheService.removeFormules(item.id).then(() => {
+        console.log('deleted');
+      });
     }
   }
 }

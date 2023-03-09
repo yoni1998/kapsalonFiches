@@ -2,7 +2,7 @@ import { FichesService } from './../services/fiches.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Fiche } from '../types';
+import { Fiche, Formules } from '../types';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs';
 import { UnsubscribeBase } from '../shared/unsubscribeBase';
@@ -16,8 +16,11 @@ export class AddFicheComponent
   implements OnInit
 {
   formGroupFiches: FormGroup;
+  formGroupFormules: FormGroup;
   fiche: Fiche | undefined;
+  formule: Formules | undefined;
   ficheId: any;
+  newFicheId: any;
   constructor(
     private location: Location,
     private fb: FormBuilder,
@@ -33,6 +36,13 @@ export class AddFicheComponent
       adres: [null, [Validators.required]],
     });
     this.ficheId = this.activeRoute.snapshot.paramMap.get('id');
+
+    this.formGroupFormules = this.fb.group({
+      formuleText: [null],
+      prijs: [null],
+      createdAt: [null],
+      updatedAt: [null],
+    });
   }
 
   toUppercase(name: string): string {
@@ -92,9 +102,25 @@ export class AddFicheComponent
       adres: this.formGroupFiches.controls['adres'].value,
     };
 
-    this.ficheService.createNewFiche(this.fiche).then(() => {
+    this.ficheService.createNewFiche(this.fiche).then((data: any) => {
       console.log('created');
-      this.location.back();
+      this.newFicheId = data.id;
+      // this.location.back();
     });
+  }
+
+  addFomule(): void {
+    this.formule = {
+      id: '',
+      formuleText: this.formGroupFormules.controls['formuleText'].value,
+      prijs: this.formGroupFormules.controls['prijs'].value,
+      createdAt: this.formGroupFormules.controls['createdAt'].value,
+      updatedAt: new Date(),
+    };
+    this.ficheService
+      .createNewFormule(this.formule, this.newFicheId)
+      .then(() => {
+        console.log('created');
+      });
   }
 }

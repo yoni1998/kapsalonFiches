@@ -29,13 +29,11 @@ export class FichesComponent extends UnsubscribeBase<Fiche> {
       .getAllFiches()
       .snapshotChanges()
       .pipe(
-        map(
-          (changes) =>
-            changes.map((c) => ({
-              id: c.payload.doc.id,
-              ...c.payload.doc.data(),
-            })),
-          switchMap(async (data) => data)
+        map((changes) =>
+          changes.map((c) => ({
+            id: c.payload.doc.id,
+            ...c.payload.doc.data(),
+          }))
         ),
         takeUntil(this.destroy$$)
       )

@@ -8,6 +8,7 @@ import { Fiche, Formules } from '../types';
   providedIn: 'root',
 })
 export class FichesService {
+  ficheId: string | undefined;
   private dbPath = '/fiches';
   dbRef: AngularFirestoreCollection<Fiche>;
 
@@ -22,6 +23,7 @@ export class FichesService {
 
   // get fiche on id
   getFicheById(id: string) {
+    this.ficheId = id;
     return this.dbRef.doc(id).snapshotChanges();
   }
 
@@ -43,5 +45,19 @@ export class FichesService {
   // get all formules on ficheId
   getAllFormulesOnFicheId(id: string): AngularFirestoreCollection<Formules> {
     return this.db.collection('/fiches/' + id + '/formules');
+  }
+
+  removeFormules(id: string): Promise<void> {
+    return this.db
+      .collection('/fiches/' + this.ficheId + '/formules')
+      .doc(id)
+      .delete();
+  }
+
+  // create formule
+  createNewFormule(formule: Formules, newFicheId: string): any {
+    return this.db
+      .collection('/fiches/' + newFicheId + '/formules')
+      .add({ ...formule });
   }
 }

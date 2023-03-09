@@ -13,19 +13,37 @@
     </span>
      <span class="p-float-label">
         <input id="float-input" formControlName="telefoonNummer" type="text" class="p-inputtext-lg" pInputText> 
-        <label for="float-input">telefoonnummer</label>
+        <label for="float-input">Telefoonnummer</label>
     </span>
     <span class="p-float-label">
         <input id="float-input" formControlName="mobielNummer" type="text" class="p-inputtext-lg" pInputText> 
-        <label for="float-input">Mobielnummer</label>
+        <label for="float-input">Mobiel nummer</label>
     </span>
     <span class="p-float-label">
         <input id="float-input" formControlName="adres" type="text" class="p-inputtext-lg" pInputText> 
-        <label for="float-input">adres</label>
+        <label for="float-input">Adres</label>
     </span>
 </form>
 <button *ngIf="!this.ficheId; else updateButton" [disabled]="!formGroupFiches.valid" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Toevoegen" icon="pi pi-check" label="Toevoegen aan klantenfiches"></button>
 <ng-template #updateButton>
     <button [disabled]="!formGroupFiches.valid" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Toevoegen" icon="pi pi-check" label="Wijzig klantenfiche"></button>
     </ng-template>
+
+    <h2>Formule toevoegen</h2>
+    <form class="form-group" [formGroup]="formGroupFormules">
+        <span class="p-float-label">
+            <input id="float-input" formControlName="formuleText" type="text" class="p-inputtext-lg" pInputText> 
+            <label for="float-input">Formule</label>
+        </span>
+        <span class="p-float-label">
+            <input id="float-input" formControlName="prijs" type="text" class="p-inputtext-lg" pInputText> 
+            <label for="float-input">Prijs</label>
+        </span>
+         <span class="p-float-label">
+            <input id="float-input" formControlName="createdAt" type="text" class="p-inputtext-lg" pInputText> 
+            <label for="float-input">Aangemaakt op</label>
+        </span>
+    </form>
+    <button  pButton type="button" (click)="addFomule()" class="p-button-raised" aria-label="Formule Toevoegen" icon="pi pi-check" label="Toevoegen aan klantenfiches"></button>
+
 

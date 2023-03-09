@@ -26,12 +26,33 @@
     <h4>adres</h4>
   <p>{{ ficheDetails?.adres }}</p>  
 </div>
- 
 </div>
 </p-fieldset>
 
 <p-fieldset>
     <ng-template pTemplate="header">Formules</ng-template>
-    Content
+    <div *ngFor="let item of formulesList" >
+      <div class="grid">
+      <div>
+      <h4>Formule</h4>
+        <p>{{item.formuleText}}</p>  
+    </div>
+    <div>
+      <h4>Prijs</h4>
+        <p>{{item.prijs}}</p>  
+    </div>
+    <div>
+      <h4>Aangemaakt op</h4>
+        <p>{{item.createdAt}}</p>  
+    </div>
+    <div>
+      <h4>Aangepast op</h4>
+        <p>{{item.updatedAt}}</p>  
+    </div>
+    </div>
+    <div class="actions">
+      <i class="pi pi-trash" style="color: red; cursor: pointer; font-size: 1.5rem;" (click)="removeFormules(item)"></i>
+    </div>
+    </div>
 </p-fieldset>
 </div>
