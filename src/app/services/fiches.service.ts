@@ -60,4 +60,12 @@ export class FichesService {
       .collection('/fiches/' + newFicheId + '/formules')
       .add({ ...formule });
   }
+
+  // update fiche
+  updateFormule(id: string, formule: Formules | undefined): Promise<void> {
+    return this.db
+      .collection('/fiches/' + this.ficheId + '/formules')
+      .doc(id)
+      .set(formule);
+  }
 }

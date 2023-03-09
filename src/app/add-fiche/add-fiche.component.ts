@@ -111,7 +111,6 @@ export class AddFicheComponent
 
   addFomule(): void {
     this.formule = {
-      id: '',
       formuleText: this.formGroupFormules.controls['formuleText'].value,
       prijs: this.formGroupFormules.controls['prijs'].value,
       createdAt: this.formGroupFormules.controls['createdAt'].value,
@@ -119,8 +118,13 @@ export class AddFicheComponent
     };
     this.ficheService
       .createNewFormule(this.formule, this.newFicheId)
-      .then(() => {
-        console.log('created');
+      .then((data: any) => {
+        this.formule = {
+          id: data.id,
+        };
+        this.ficheService.updateFormule(data.id, this.formule).then(() => {
+          console.log('created');
+        });
       });
   }
 }
