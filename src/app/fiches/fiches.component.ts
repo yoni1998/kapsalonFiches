@@ -3,7 +3,7 @@ import { FichesService } from './../services/fiches.service';
 import { Component } from '@angular/core';
 import { FilterService } from 'primeng/api';
 import { Fiche } from '../types';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, switchMap, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-fiches',
@@ -29,16 +29,17 @@ export class FichesComponent extends UnsubscribeBase<Fiche> {
       .getAllFiches()
       .snapshotChanges()
       .pipe(
-        map((changes) =>
-          changes.map((c) => ({
-            id: c.payload.doc.id,
-            ...c.payload.doc.data(),
-          }))
+        map(
+          (changes) =>
+            changes.map((c) => ({
+              id: c.payload.doc.id,
+              ...c.payload.doc.data(),
+            })),
+          switchMap(async (data) => data)
         ),
         takeUntil(this.destroy$$)
       )
       .subscribe((data) => {
-        console.log(data);
         this.fichesList = data;
         this.showSpinner = false;
       });

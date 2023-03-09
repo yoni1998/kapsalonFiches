@@ -3,8 +3,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
-import { Fiche } from '../types';
-import { query, where, orderBy } from 'firebase/firestore';
+import { Fiche, Formules } from '../types';
 @Injectable({
   providedIn: 'root',
 })
@@ -12,7 +11,7 @@ export class FichesService {
   private dbPath = '/fiches';
   dbRef: AngularFirestoreCollection<Fiche>;
 
-  constructor(db: AngularFirestore) {
+  constructor(private db: AngularFirestore) {
     this.dbRef = db.collection(this.dbPath);
   }
 
@@ -39,5 +38,10 @@ export class FichesService {
   // delete fiche
   deleteFiche(id: string): Promise<void> {
     return this.dbRef.doc(id).delete();
+  }
+
+  // get all formules on ficheId
+  getAllFormulesOnFicheId(id: string): AngularFirestoreCollection<Formules> {
+    return this.db.collection('/fiches/' + id + '/formules');
   }
 }

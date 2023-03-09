@@ -24,6 +24,8 @@
         <label for="float-input">adres</label>
     </span>
 </form>
-<button [disabled]="!formGroupFiches.valid" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Toevoegen" icon="pi pi-check" label="Toevoegen aan klantenfiches"></button>
-
+<button *ngIf="!this.ficheId; else updateButton" [disabled]="!formGroupFiches.valid" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Toevoegen" icon="pi pi-check" label="Toevoegen aan klantenfiches"></button>
+<ng-template #updateButton>
+    <button [disabled]="!formGroupFiches.valid" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Toevoegen" icon="pi pi-check" label="Wijzig klantenfiche"></button>
+    </ng-template>
 

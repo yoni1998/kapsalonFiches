@@ -27,6 +27,7 @@ export class DetailsFicheComponent extends UnsubscribeBase<Fiche> {
     super();
     this.ficheId = this.route.snapshot.paramMap.get('id');
     this.getFicheById(String(this.ficheId));
+    this.getAllFormulesOnFicheId(String(this.ficheId));
   }
 
   // delete a fiche
@@ -41,6 +42,11 @@ export class DetailsFicheComponent extends UnsubscribeBase<Fiche> {
         },
       });
     }
+  }
+
+  // update a fiche
+  updateFiche(): void {
+    this.router.navigate(['fiches/new', this.ficheId]);
   }
 
   // get a fiche on id
@@ -58,8 +64,15 @@ export class DetailsFicheComponent extends UnsubscribeBase<Fiche> {
     }
   }
 
-  // update a fiche
-  updateFiche(): void {
-    this.router.navigate(['fiches/new', this.ficheId]);
+  getAllFormulesOnFicheId(id: string): void {
+    if (this.ficheId) {
+      this.ficheService
+        .getAllFormulesOnFicheId(id)
+        .snapshotChanges()
+        .pipe(takeUntil(this.destroy$$))
+        .subscribe((data) => {
+          console.log(data);
+        });
+    }
   }
 }
