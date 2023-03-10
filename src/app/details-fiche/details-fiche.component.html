@@ -28,7 +28,7 @@
 </div>
 </div>
 </p-fieldset>
-<p-button icon="pi pi-check" pTooltip="Toevoegen"></p-button>
+<p-button icon="pi pi-check" [routerLink]="'new/' + this.ficheId" pTooltip="Toevoegen"></p-button>
 <p-fieldset>
     <ng-template pTemplate="header">Formules</ng-template>
     <div *ngFor="let item of formulesList" >

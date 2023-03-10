@@ -61,6 +61,14 @@ export class FichesService {
       .add({ ...formule });
   }
 
+  // create formule from excisting fiche
+  createNewFormuleFromExcistingFiche(formule: Formules): any {
+    console.log(formule);
+    return this.db
+      .collection('/fiches/' + this.ficheId + '/formules')
+      .add({ ...formule });
+  }
+
   // update formule
   updateFormule(id: string, formule: Formules | undefined): Promise<void> {
     return this.db

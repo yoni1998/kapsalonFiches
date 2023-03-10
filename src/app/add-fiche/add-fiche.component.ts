@@ -101,7 +101,7 @@ export class AddFicheComponent
     ) {
       this.updateFormule();
     } else {
-      this.addFomule();
+      this.addFormule();
     }
   }
 
@@ -154,22 +154,42 @@ export class AddFicheComponent
     });
   }
 
-  addFomule(): void {
+  addFormule(): void {
     this.formule = {
-      formuleText: this.formGroupFormules.controls['formuleText'].value,
-      prijs: this.formGroupFormules.controls['prijs'].value,
-      createdAt: this.formGroupFormules.controls['createdAt'].value,
+      formuleText: '',
+      prijs: 0,
+      createdAt: '',
       updatedAt: new Date(),
     };
-    this.ficheService
-      .createNewFormule(this.formule, this.newFicheId)
-      .then((data: any) => {
-        this.formule = {
-          id: data.id,
-        };
-        this.ficheService.updateFormule(data.id, this.formule).then(() => {
-          console.log('created');
+
+    if (
+      this.activeRoute.snapshot.routeConfig?.path === 'fiches/:id/info/new/:id'
+    ) {
+      this.ficheService
+        .createNewFormuleFromExcistingFiche(this.formule)
+        .then((data: any) => {
+          this.formule = {
+            id: data.id,
+            formuleText: this.formGroupFormules.controls['formuleText'].value,
+            prijs: this.formGroupFormules.controls['prijs'].value,
+            createdAt: this.formGroupFormules.controls['createdAt'].value,
+            updatedAt: new Date(),
+          };
+          this.ficheService.updateFormule(data.id, this.formule).then(() => {
+            console.log('created');
+          });
         });
-      });
+    } else {
+      this.ficheService
+        .createNewFormule(this.formule, this.newFicheId)
+        .then((data: any) => {
+          this.formule = {
+            id: data.id,
+          };
+          this.ficheService.updateFormule(data.id, this.formule).then(() => {
+            console.log('created');
+          });
+        });
+    }
   }
 }

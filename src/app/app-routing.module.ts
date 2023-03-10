@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'fiches/:id/info/edit/:id',
     component: AddFicheComponent,
   },
+  {
+    path: 'fiches/:id/info/new/:id',
+    component: AddFicheComponent,
+  },
 ];
 
 @NgModule({
