@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs';
 
-export class UnsubscribeBase<T> {
+export class UnsubscribeBase {
   destroy$$ = new Subject();
 }

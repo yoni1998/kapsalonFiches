@@ -24,7 +24,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
-
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,12 +40,15 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
     AppRoutingModule,
     ListboxModule,
     FormsModule,
+    BrowserAnimationsModule,
     ToolbarModule,
     ButtonModule,
     InputTextModule,
     TooltipModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+    }),
     ConfirmDialogModule,
-    ToastModule,
     FieldsetModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

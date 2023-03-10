@@ -1,20 +1,19 @@
+import { GenericCrud } from './../shared/generic-crud';
 import { FichesService } from './../services/fiches.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Fiche, Formules } from '../types';
-import { ActivatedRoute } from '@angular/router';
-import { takeUntil, tap } from 'rxjs';
-import { UnsubscribeBase } from '../shared/unsubscribeBase';
+import { ActivatedRoute, Router } from '@angular/router';
+import { takeUntil } from 'rxjs';
+import { ConfirmationService } from 'primeng/api';
+
 @Component({
   selector: 'app-add-fiche',
   templateUrl: './add-fiche.component.html',
   styleUrls: ['./add-fiche.component.scss'],
 })
-export class AddFicheComponent
-  extends UnsubscribeBase<Fiche>
-  implements OnInit
-{
+export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
   formGroupFiches: FormGroup;
   formGroupFormules: FormGroup;
   fiche: Fiche | undefined;
@@ -23,12 +22,15 @@ export class AddFicheComponent
   newFicheId: any;
   formuleId: any;
   constructor(
+    protected override ficheService: FichesService,
+    protected override route: ActivatedRoute,
     private location: Location,
-    private fb: FormBuilder,
-    private ficheService: FichesService,
-    private activeRoute: ActivatedRoute
+    protected override confirmationService: ConfirmationService,
+    protected override router: Router,
+    protected override fb: FormBuilder,
+    protected override activeRoute: ActivatedRoute
   ) {
-    super();
+    super(ficheService, route, confirmationService, router, fb, activeRoute);
     this.formGroupFiches = this.fb.group({
       voornaam: [null, [Validators.required]],
       achternaam: [null, [Validators.required]],
@@ -56,7 +58,7 @@ export class AddFicheComponent
       this.activeRoute.snapshot.routeConfig?.path !== 'fiches/:id/info/edit/:id'
     ) {
       this.ficheService
-        .getFicheById(this.ficheId)
+        .getKlantDetailsById(this.ficheId)
         .pipe(takeUntil(this.destroy$$))
         .subscribe((data) => {
           this.formGroupFiches.patchValue({
@@ -166,7 +168,7 @@ export class AddFicheComponent
       this.activeRoute.snapshot.routeConfig?.path === 'fiches/:id/info/new/:id'
     ) {
       this.ficheService
-        .createNewFormuleFromExcistingFiche(this.formule)
+        .createNewFormuleFromExistingFiche(this.formule)
         .then((data: any) => {
           this.formule = {
             id: data.id,

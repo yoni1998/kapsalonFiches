@@ -1,9 +1,12 @@
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 <p-toolbar>
-    <div class="p-toolbar-group-end" style="padding: 1rem">
-        <p-button (click)="updateFiche()"  icon="pi pi-pencil" pTooltip="Klantenfiche wijzigen"></p-button>
-        <p-button (click)="deleteFiche()" icon="pi pi-trash" pTooltip="Klantenfiche verwijderen" tooltipPosition="bottom" styleClass="p-button-danger"></p-button>
-    </div>
+  <div class="p-toolbar-group-start">
+    <p-button label="Formule Toevoegen" tooltipPosition="bottom" pTooltip="Een nieuwe formule toevoegen" icon="pi pi-check" [routerLink]="'new/' + this.ficheId"  styleClass="p-button-success"></p-button>
+  </div>
+    <div class="p-toolbar-group-center" style="padding: 1rem;">
+      <p-button label="Klantengegeven Wijzigen" (click)="this.router.navigate(['fiches/new', this.ficheId])" icon="pi pi-pencil" pTooltip="Klantgegeven Wijzigen" tooltipPosition="bottom"></p-button>
+        <p-button label="Fiche Verwijderen" (click)="deleteFiche()" icon="pi pi-trash" pTooltip="Fiche van de klant verwijderen" tooltipPosition="bottom" styleClass="p-button-danger"></p-button>
+      </div>
 </p-toolbar>
 
 <div class="information">
@@ -12,24 +15,23 @@
     <div class="grid">
     <div>
     <h4>Naam</h4>
-    <p>{{ ficheDetails?.achternaam}} {{ ficheDetails?.voornaam }} </p>
+    <p>{{ KlantDetails?.achternaam}} {{ KlantDetails?.voornaam }} </p>
 </div>
-<div *ngIf="ficheDetails?.telefoonNummer">
+<div>
     <h4>Telefoonnummer</h4>
-  <p>{{ ficheDetails?.telefoonNummer }}</p>  
+  <p *ngIf="KlantDetails?.telefoonNummer; else nvt">{{ KlantDetails?.telefoonNummer }}</p>  
 </div>
 <div>
     <h4>Mobiel nummer</h4>
-  <p>{{ ficheDetails?.mobielNummer }}</p>  
+  <p *ngIf="KlantDetails?.mobielNummer; else nvt">{{ KlantDetails?.mobielNummer }}</p>  
 </div>
 <div>
     <h4>adres</h4>
-  <p>{{ ficheDetails?.adres }}</p>  
+  <p *ngIf="KlantDetails?.adres; else nvt">{{ KlantDetails?.adres }}</p>  
 </div>
 </div>
 </p-fieldset>
-<p-button icon="pi pi-check" [routerLink]="'new/' + this.ficheId" pTooltip="Toevoegen"></p-button>
-<p-fieldset>
+<p-fieldset *ngIf="this.formulesList?.length">
     <ng-template pTemplate="header">Formules</ng-template>
     <div *ngFor="let item of formulesList" >
       <div class="grid">
@@ -57,3 +59,7 @@
     </div>
 </p-fieldset>
 </div>
+
+<ng-template #nvt>
+  <p>Niet van toepassing</p>
+</ng-template>

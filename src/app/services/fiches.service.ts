@@ -1,3 +1,4 @@
+import { query } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
@@ -16,13 +17,15 @@ export class FichesService {
     this.dbRef = db.collection(this.dbPath);
   }
 
+  // fiches
+
   // get all fiches
   getAllFiches(): AngularFirestoreCollection<Fiche> {
-    return this.dbRef;
+    return this.db.collection(this.dbPath, (ref) => ref.orderBy('achternaam'));
   }
 
   // get fiche on id
-  getFicheById(id: string) {
+  getKlantDetailsById(id: string) {
     this.ficheId = id;
     return this.dbRef.doc(id).snapshotChanges();
   }
@@ -33,7 +36,7 @@ export class FichesService {
   }
 
   // update fiche
-  updateFiche(id: string, fiche: Fiche): Promise<void> {
+  updateFiche(id: string | undefined, fiche: Fiche): Promise<void> {
     return this.dbRef.doc(id).set(fiche);
   }
 
@@ -42,28 +45,40 @@ export class FichesService {
     return this.dbRef.doc(id).delete();
   }
 
+  // formules
+
   // get all formules on ficheId
   getAllFormulesOnFicheId(id: string): AngularFirestoreCollection<Formules> {
-    return this.db.collection('/fiches/' + id + '/formules');
+    return this.db.collection('/fiches/' + id + '/formules', (ref) =>
+      ref.orderBy('createdAt')
+    );
   }
 
-  removeFormules(id: string): Promise<void> {
+  // get formule on id
+  getFormuleByFicheId(id: string) {
+    return this.db
+      .collection('/fiches/' + this.ficheId + '/formules')
+      .doc(id)
+      .snapshotChanges();
+  }
+
+  // remove formule on id
+  removeFormules(id: string | undefined): Promise<void> {
     return this.db
       .collection('/fiches/' + this.ficheId + '/formules')
       .doc(id)
       .delete();
   }
 
-  // create formule
+  // create formule from a new created fiche
   createNewFormule(formule: Formules, newFicheId: string): any {
     return this.db
       .collection('/fiches/' + newFicheId + '/formules')
       .add({ ...formule });
   }
 
-  // create formule from excisting fiche
-  createNewFormuleFromExcistingFiche(formule: Formules): any {
-    console.log(formule);
+  // create formule from existing fiche
+  createNewFormuleFromExistingFiche(formule: Formules): any {
     return this.db
       .collection('/fiches/' + this.ficheId + '/formules')
       .add({ ...formule });
@@ -75,13 +90,5 @@ export class FichesService {
       .collection('/fiches/' + this.ficheId + '/formules')
       .doc(id)
       .set(formule);
-  }
-
-  // get formule on id
-  getFormuleByFicheId(id: string) {
-    return this.db
-      .collection('/fiches/' + this.ficheId + '/formules')
-      .doc(id)
-      .snapshotChanges();
   }
 }

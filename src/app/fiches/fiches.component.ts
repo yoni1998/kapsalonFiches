@@ -1,29 +1,37 @@
-import { UnsubscribeBase } from './../shared/unsubscribeBase';
 import { FichesService } from './../services/fiches.service';
-import { Component } from '@angular/core';
-import { FilterService } from 'primeng/api';
+import { Component, OnInit } from '@angular/core';
 import { Fiche } from '../types';
-import { map, switchMap, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, switchMap } from 'rxjs/operators';
+import { GenericCrud } from '../shared/generic-crud';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-fiches',
   templateUrl: './fiches.component.html',
   styleUrls: ['./fiches.component.scss'],
 })
-export class FichesComponent extends UnsubscribeBase<Fiche> {
+export class FichesComponent extends GenericCrud<Fiche> implements OnInit {
   fichesList: Fiche[] = [];
   selectedFiche: Fiche | undefined;
-  // loading spinner
-  showSpinner: boolean = true;
 
   constructor(
-    private filterService: FilterService,
-    private ficheService: FichesService
+    protected override ficheService: FichesService,
+    protected override route: ActivatedRoute,
+    protected override confirmationService: ConfirmationService,
+    protected override router: Router,
+    protected override fb: FormBuilder,
+    protected override activeRoute: ActivatedRoute
   ) {
-    super();
+    super(ficheService, route, confirmationService, router, fb, activeRoute);
+  }
+
+  ngOnInit(): void {
     this.getFiches();
   }
 
+  // get all fiches
   getFiches(): void {
     this.ficheService
       .getAllFiches()
