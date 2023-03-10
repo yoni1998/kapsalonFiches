@@ -156,9 +156,9 @@ export class AddFicheComponent
 
   addFormule(): void {
     this.formule = {
-      formuleText: '',
-      prijs: 0,
-      createdAt: '',
+      formuleText: this.formGroupFormules.controls['formuleText'].value,
+      prijs: this.formGroupFormules.controls['prijs'].value,
+      createdAt: this.formGroupFormules.controls['createdAt'].value,
       updatedAt: new Date(),
     };
 
