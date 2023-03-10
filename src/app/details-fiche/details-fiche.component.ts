@@ -94,6 +94,11 @@ export class DetailsFicheComponent
     }
   }
 
+  // convert seconds to a Date object
+  convertToDate(date: any): any {
+    return new Date(date?.seconds * 1000).toDateString();
+  }
+
   // remove a formule on id
   removeFormules(item: Formules): void {
     if (item.id) {

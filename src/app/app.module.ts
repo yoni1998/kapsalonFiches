@@ -19,7 +19,7 @@ import { ButtonModule } from 'primeng/button';
 import { FieldsetModule } from 'primeng/fieldset';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'primeng/tooltip';
-import { ToastModule } from 'primeng/toast';
+import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
@@ -43,6 +43,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToolbarModule,
     ButtonModule,
+    CalendarModule,
     InputTextModule,
     TooltipModule,
     ToastrModule.forRoot({

@@ -1,10 +1,10 @@
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 <p-toolbar>
   <div class="p-toolbar-group-start">
-    <p-button label="Formule Toevoegen" tooltipPosition="bottom" pTooltip="Een nieuwe formule toevoegen" icon="pi pi-check" [routerLink]="'new/' + this.ficheId"  styleClass="p-button-success"></p-button>
+    <p-button label="Formule Toevoegen" (click)="this.router.navigate(['formule/new', this.ficheId])" tooltipPosition="bottom" pTooltip="Een nieuwe formule toevoegen" icon="pi pi-check" styleClass="p-button-success"></p-button>
   </div>
     <div class="p-toolbar-group-center" style="padding: 1rem;">
-      <p-button label="Klantengegeven Wijzigen" (click)="this.router.navigate(['fiches/new', this.ficheId])" icon="pi pi-pencil" pTooltip="Klantgegeven Wijzigen" tooltipPosition="bottom"></p-button>
+      <p-button label="Klantengegeven Wijzigen" (click)="this.router.navigate(['fiches/edit', this.ficheId])" icon="pi pi-pencil" pTooltip="Klantgegeven Wijzigen" tooltipPosition="bottom"></p-button>
         <p-button label="Fiche Verwijderen" (click)="deleteFiche()" icon="pi pi-trash" pTooltip="Fiche van de klant verwijderen" tooltipPosition="bottom" styleClass="p-button-danger"></p-button>
       </div>
 </p-toolbar>
@@ -45,16 +45,16 @@
     </div>
     <div>
       <h4>Aangemaakt op</h4>
-        <p>{{item.createdAt}}</p>  
+        <p>{{ convertToDate(item.createdAt)}}</p>  
     </div>
     <div>
-      <h4>Aangepast op</h4>
-        <p>{{item.updatedAt}}</p>  
+      <h4>Laatst aangepast op</h4>
+        <p *ngIf="item.updatedAt; else nvt">{{convertToDate(item.updatedAt)}}</p>  
     </div>
     </div>
     <div class="actions">
       <i class="pi pi-trash" style="color: red; cursor: pointer; font-size: 1.5rem;" (click)="removeFormules(item)"></i>
-      <i class="pi pi-pencil" [routerLink]="'edit/' + item.id" style="color: blue; cursor: pointer; font-size: 1.5rem;"></i>
+      <i class="pi pi-pencil" (click)="this.router.navigate(['formule/edit/', item.id])" style="color: blue; cursor: pointer; font-size: 1.5rem;"></i>
     </div>
     </div>
 </p-fieldset>

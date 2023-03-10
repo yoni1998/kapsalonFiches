@@ -19,7 +19,7 @@ const routes: Routes = [
     component: AddFicheComponent,
   },
   {
-    path: 'fiches/new/:id',
+    path: 'fiches/edit/:id',
     component: AddFicheComponent,
   },
   {
@@ -27,11 +27,11 @@ const routes: Routes = [
     component: DetailsFicheComponent,
   },
   {
-    path: 'fiches/:id/info/edit/:id',
+    path: 'formule/edit/:id',
     component: AddFicheComponent,
   },
   {
-    path: 'fiches/:id/info/new/:id',
+    path: 'formule/new/:id',
     component: AddFicheComponent,
   },
 ];

@@ -7,6 +7,7 @@ import { Fiche, Formules } from '../types';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-fiche',
@@ -18,9 +19,10 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
   formGroupFormules: FormGroup;
   fiche: Fiche | undefined;
   formule: Formules | undefined;
-  ficheId: any;
-  newFicheId: any;
+  routeId: any;
+  recentCreatedFicheId: any;
   formuleId: any;
+  currentDate: Date;
   constructor(
     protected override ficheService: FichesService,
     protected override route: ActivatedRoute,
@@ -28,22 +30,24 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
     protected override confirmationService: ConfirmationService,
     protected override router: Router,
     protected override fb: FormBuilder,
-    protected override activeRoute: ActivatedRoute
+    protected override activeRoute: ActivatedRoute,
+    private toastr: ToastrService
   ) {
     super(ficheService, route, confirmationService, router, fb, activeRoute);
+
+    this.currentDate = new Date();
     this.formGroupFiches = this.fb.group({
       voornaam: [null, [Validators.required]],
       achternaam: [null, [Validators.required]],
       telefoonNummer: [null],
-      mobielNummer: [null, [Validators.required]],
-      adres: [null, [Validators.required]],
+      mobielNummer: [null],
+      adres: [null],
     });
-    this.ficheId = this.activeRoute.snapshot.paramMap.get('id');
 
     this.formGroupFormules = this.fb.group({
       formuleText: [null],
       prijs: [null],
-      createdAt: [null],
+      createdAt: [this.currentDate, [Validators.required]],
       updatedAt: [null],
     });
   }
@@ -52,44 +56,57 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
     return name.substring(0, 1).toUpperCase() + name.substring(1);
   }
 
-  ngOnInit(): void {
+  patchKlantFormValues(klant: any): void {
+    this.formGroupFiches.patchValue({
+      voornaam: klant.payload.data()?.voornaam,
+      achternaam: klant.payload.data()?.achternaam,
+      telefoonNummer: klant.payload.data()?.telefoonNummer,
+      mobielNummer: klant.payload.data()?.mobielNummer,
+      adres: klant.payload.data()?.adres,
+    });
+  }
+
+  patchFormuleFormValues(formule: any): void {
+    this.formGroupFormules.patchValue({
+      formuleText: formule.payload.data()?.formuleText,
+      prijs: formule.payload.data()?.prijs,
+      createdAt: formule.payload.data()?.createdAt,
+    });
+  }
+
+  patchForm(): void {
     if (
-      this.ficheId &&
-      this.activeRoute.snapshot.routeConfig?.path !== 'fiches/:id/info/edit/:id'
+      this.routeId &&
+      this.activeRoute.snapshot.routeConfig?.path === 'fiches/edit/:id'
     ) {
       this.ficheService
-        .getKlantDetailsById(this.ficheId)
+        .getKlantDetailsById(this.routeId)
         .pipe(takeUntil(this.destroy$$))
         .subscribe((data) => {
-          this.formGroupFiches.patchValue({
-            voornaam: data.payload.data()?.voornaam,
-            achternaam: data.payload.data()?.achternaam,
-            telefoonNummer: data.payload.data()?.telefoonNummer,
-            mobielNummer: data.payload.data()?.mobielNummer,
-            adres: data.payload.data()?.adres,
-          });
+          this.patchKlantFormValues(data);
         });
     }
 
     if (
-      this.ficheId &&
-      this.activeRoute.snapshot.routeConfig?.path === 'fiches/:id/info/edit/:id'
+      this.routeId &&
+      this.activeRoute.snapshot.routeConfig?.path === 'formule/edit/:id'
     ) {
       this.ficheService
-        .getFormuleByFicheId(this.ficheId)
+        .getFormuleByFicheId(this.routeId)
         .pipe(takeUntil(this.destroy$$))
-        .subscribe((values: any) => {
-          this.formGroupFormules.patchValue({
-            formuleText: values.payload.data()?.formuleText,
-            prijs: values.payload.data()?.prijs,
-            createdAt: values.payload.data()?.createdAt,
-          });
+        .subscribe((data: any) => {
+          this.patchFormuleFormValues(data);
         });
     }
   }
 
+  ngOnInit(): void {
+    this.routeId = this.activeRoute.snapshot.paramMap.get('id');
+    this.patchForm();
+  }
+
   handleAddAndUpdate(): void {
-    if (this.ficheId) {
+    if (this.routeId) {
       this.updateFiche();
     } else {
       this.addFiche();
@@ -98,8 +115,8 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
 
   handleAddAndUpdateFormules(): void {
     if (
-      this.ficheId &&
-      this.activeRoute.snapshot.routeConfig?.path === 'fiches/:id/info/edit/:id'
+      this.routeId &&
+      this.activeRoute.snapshot.routeConfig?.path === 'formule/edit/:id'
     ) {
       this.updateFormule();
     } else {
@@ -116,8 +133,11 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
       adres: this.formGroupFiches.controls['adres'].value,
     };
 
-    this.ficheService.updateFiche(this.ficheId, this.fiche).then(() => {
-      console.log('updated');
+    this.ficheService.updateFiche(this.routeId, this.fiche).then(() => {
+      this.toastr.info(
+        `Het fiche van ${this.fiche?.achternaam} ${this.fiche?.voornaam} is successvol gewijzigd`,
+        'Gewijzigd'
+      );
       this.location.back();
     });
   }
@@ -130,8 +150,8 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
       updatedAt: new Date(),
     };
 
-    this.ficheService.updateFormule(this.ficheId, this.formule).then(() => {
-      console.log('updated');
+    this.ficheService.updateFormule(this.routeId, this.formule).then(() => {
+      this.toastr.info('De formule is successvol gewijzigd', 'Gewijzigd');
       this.location.back();
     });
   }
@@ -150,9 +170,9 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
     };
 
     this.ficheService.createNewFiche(this.fiche).then((data: any) => {
-      console.log('created');
-      this.newFicheId = data.id;
-      // this.location.back();
+      this.toastr.success('Het fiche is successvol aangemaakt', 'Toevoegen');
+      this.recentCreatedFicheId = data.id;
+      this.location.back();
     });
   }
 
@@ -161,12 +181,9 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
       formuleText: this.formGroupFormules.controls['formuleText'].value,
       prijs: this.formGroupFormules.controls['prijs'].value,
       createdAt: this.formGroupFormules.controls['createdAt'].value,
-      updatedAt: new Date(),
+      updatedAt: null,
     };
-
-    if (
-      this.activeRoute.snapshot.routeConfig?.path === 'fiches/:id/info/new/:id'
-    ) {
+    if (this.activeRoute.snapshot.routeConfig?.path === 'formule/new/:id') {
       this.ficheService
         .createNewFormuleFromExistingFiche(this.formule)
         .then((data: any) => {
@@ -175,21 +192,29 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
             formuleText: this.formGroupFormules.controls['formuleText'].value,
             prijs: this.formGroupFormules.controls['prijs'].value,
             createdAt: this.formGroupFormules.controls['createdAt'].value,
-            updatedAt: new Date(),
+            updatedAt: null,
           };
           this.ficheService.updateFormule(data.id, this.formule).then(() => {
-            console.log('created');
+            this.toastr.success(
+              'De formule is successvol aangemaakt',
+              'Toevoegen'
+            );
+            this.location.back();
           });
         });
     } else {
       this.ficheService
-        .createNewFormule(this.formule, this.newFicheId)
+        .createNewFormule(this.formule, this.recentCreatedFicheId)
         .then((data: any) => {
           this.formule = {
             id: data.id,
           };
           this.ficheService.updateFormule(data.id, this.formule).then(() => {
-            console.log('created');
+            this.toastr.success(
+              'De formule is successvol aangemaakt',
+              'Toevoegen'
+            );
+            this.location.back();
           });
         });
     }

@@ -1,4 +1,4 @@
-<h2 *ngIf="!this.ficheId; else update">Klantenfiche toevoegen</h2>
+<h2 *ngIf="!this.routeId; else update">Klantenfiche toevoegen</h2>
 <ng-template #update>
 <h2>Klantenfiche Wijzigen</h2>
 </ng-template>
@@ -24,7 +24,7 @@
         <label for="float-input">Adres</label>
     </span>
 </form>
-<button *ngIf="!this.ficheId; else updateButton" [disabled]="!formGroupFiches.valid" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Toevoegen" icon="pi pi-check" label="Toevoegen aan klantenfiches"></button>
+<button *ngIf="!this.routeId; else updateButton" [disabled]="!formGroupFiches.valid" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Toevoegen" icon="pi pi-check" label="Toevoegen aan klantenfiches"></button>
 <ng-template #updateButton>
     <button [disabled]="!formGroupFiches.valid" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Toevoegen" icon="pi pi-check" label="Wijzig klantenfiche"></button>
     </ng-template>
@@ -40,8 +40,9 @@
             <label for="float-input">Prijs</label>
         </span>
          <span class="p-float-label">
-            <input id="float-input" formControlName="createdAt" type="text" class="p-inputtext-lg" pInputText> 
+            <p-calendar formControlName="createdAt" ></p-calendar>
             <label for="float-input">Aangemaakt op</label>
+         
         </span>
     </form>
     <button  pButton type="button" (click)="handleAddAndUpdateFormules()" class="p-button-raised" aria-label="Formule Toevoegen" icon="pi pi-check" label="Formule Toevoegen"></button>
