@@ -29,9 +29,17 @@ export class DetailsFicheComponent
     protected override router: Router,
     protected override fb: FormBuilder,
     protected override activeRoute: ActivatedRoute,
-    private toastr: ToastrService
+    protected override toast: ToastrService
   ) {
-    super(ficheService, route, confirmationService, router, fb, activeRoute);
+    super(
+      ficheService,
+      route,
+      confirmationService,
+      router,
+      fb,
+      activeRoute,
+      toast
+    );
     this.ficheId = this.route.snapshot.paramMap.get('id');
   }
 
@@ -48,7 +56,7 @@ export class DetailsFicheComponent
         accept: () => {
           this.ficheService.deleteFiche(String(this.ficheId)).then(() => {
             this.router.navigate(['/fiches']).then(() => {
-              this.toastr.info('Het fiche is verwijderd', 'Verwijderd');
+              this.toast.info('Het fiche is verwijderd', 'Verwijderd');
             });
           });
         },
@@ -100,7 +108,7 @@ export class DetailsFicheComponent
         message: `Weet je zeker dat je het formule wil verwijderen? Dit is definitief en kan later niet opnieuw opgevraagd worden!`,
         accept: () => {
           this.ficheService.removeFormules(item.id, this.ficheId).then(() => {
-            this.toastr.info('De formule is verwijderd', 'Verwijderd');
+            this.toast.info('De formule is verwijderd', 'Verwijderd');
           });
         },
       });

@@ -31,10 +31,17 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
     protected override router: Router,
     protected override fb: FormBuilder,
     protected override activeRoute: ActivatedRoute,
-    private toastr: ToastrService
+    protected override toast: ToastrService
   ) {
-    super(ficheService, route, confirmationService, router, fb, activeRoute);
-
+    super(
+      ficheService,
+      route,
+      confirmationService,
+      router,
+      fb,
+      activeRoute,
+      toast
+    );
     this.currentDate = new Date();
     this.formGroupFiches = this.fb.group({
       voornaam: [null, [Validators.required]],
@@ -45,11 +52,37 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
     });
 
     this.formGroupFormules = this.fb.group({
-      formuleText: [null],
-      prijs: [null],
+      formuleText: [null, [Validators.required]],
+      prijs: [null, [Validators.required]],
       createdAt: [this.currentDate, [Validators.required]],
       updatedAt: [null],
     });
+  }
+
+  get navcheckFormule(): boolean {
+    if (this.location.path().substring(0, 8) === '/formule') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  get navcheckFiche(): boolean {
+    if (this.location.path() === '/fiches/new') {
+      return false;
+    }
+    if (this.location.path().substring(0, 8) === '/fiches/') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  get toggleAddFormule(): boolean {
+    if (this.location.path() === '/fiches/new' && !this.recentCreatedFicheId) {
+      return true;
+    }
+    return false;
   }
 
   toUppercase(name: string): string {
@@ -134,7 +167,7 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
     };
 
     this.ficheService.updateFiche(this.routeId, this.fiche).then(() => {
-      this.toastr.info(
+      this.toast.info(
         `Het fiche van ${this.fiche?.achternaam} ${this.fiche?.voornaam} is successvol gewijzigd`,
         'Gewijzigd'
       );
@@ -151,7 +184,7 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
     };
 
     this.ficheService.updateFormule(this.routeId, this.formule).then(() => {
-      this.toastr.info('De formule is successvol gewijzigd', 'Gewijzigd');
+      this.toast.info('De formule is successvol gewijzigd', 'Gewijzigd');
       this.location.back();
     });
   }
@@ -170,7 +203,7 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
     };
 
     this.ficheService.createNewFiche(this.fiche).then((data: any) => {
-      this.toastr.success('Het fiche is successvol aangemaakt', 'Toevoegen');
+      this.toast.success('Het fiche is successvol aangemaakt', 'Toevoegen');
       this.recentCreatedFicheId = data.id;
     });
   }
@@ -194,7 +227,7 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
           updatedAt: null,
         };
         this.ficheService.updateFormule(data.id, this.formule).then(() => {
-          this.toastr.success(
+          this.toast.success(
             'De formule is successvol aangemaakt',
             'Toevoegen'
           );

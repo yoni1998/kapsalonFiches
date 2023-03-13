@@ -6,7 +6,7 @@ import { GenericCrud } from '../../shared/generic-crud';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { FormBuilder } from '@angular/forms';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-fiches',
   templateUrl: './fiches.component.html',
@@ -22,9 +22,18 @@ export class FichesComponent extends GenericCrud<Fiche> implements OnInit {
     protected override confirmationService: ConfirmationService,
     protected override router: Router,
     protected override fb: FormBuilder,
-    protected override activeRoute: ActivatedRoute
+    protected override activeRoute: ActivatedRoute,
+    protected override toast: ToastrService
   ) {
-    super(ficheService, route, confirmationService, router, fb, activeRoute);
+    super(
+      ficheService,
+      route,
+      confirmationService,
+      router,
+      fb,
+      activeRoute,
+      toast
+    );
   }
 
   ngOnInit(): void {
