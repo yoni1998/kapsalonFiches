@@ -40,10 +40,29 @@ export class FichesComponent extends Form implements OnInit {
     this.getFiches();
   }
 
+  drop(): void {
+    this.ficheService
+      .getAllFiches(this.selectedFiche?.field)
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({
+            id: c.payload.doc.id,
+            ...c.payload.doc.data(),
+          }))
+        ),
+        takeUntil(this.destroy$$)
+      )
+      .subscribe((data) => {
+        this.fichesList = data;
+        this.showSpinner = false;
+      });
+  }
+
   // get all fiches
   getFiches(): void {
     this.ficheService
-      .getAllFiches()
+      .getAllFiches(this.selectedFiche)
       .snapshotChanges()
       .pipe(
         map((changes) =>

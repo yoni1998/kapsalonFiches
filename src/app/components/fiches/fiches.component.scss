@@ -18,3 +18,8 @@
   :host ::ng-deep  .p-orderlist-controls-right .p-orderlist-controls {
     display: none;
   }
+
+  :host ::ng-deep .p-dropdown  {
+    margin: 1rem 2rem 0 0;
+    float: right;
+  }

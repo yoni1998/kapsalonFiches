@@ -7,4 +7,5 @@ export interface Fiche {
   mobielNummer: number;
   adres: string;
   formules?: Formules[];
+  field?: any;
 }

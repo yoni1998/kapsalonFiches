@@ -28,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from './components/details-fiche/pipe/date.pipe';
 import { NvtPipe } from './components/details-fiche/pipe/nvt.pipe';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     AppRoutingModule,
     ListboxModule,
     FormsModule,
+    DropdownModule,
     InputTextareaModule,
     BrowserAnimationsModule,
     ToolbarModule,
