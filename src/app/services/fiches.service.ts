@@ -73,6 +73,7 @@ export class FichesService {
   }
 
   // create new formule
+  // if ficheId is null, then recentCreatedFicheId will be used and vice versa
   createNewFormule(
     formule: Formules,
     ficheId?: string,

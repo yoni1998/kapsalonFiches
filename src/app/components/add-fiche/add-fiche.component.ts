@@ -59,7 +59,12 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
     });
   }
 
-  get navcheckFormule(): boolean {
+  ngOnInit(): void {
+    this.routeId = this.activeRoute.snapshot.paramMap.get('id');
+    this.patchForm();
+  }
+
+  get hideFormIfPathStartWithFormule(): boolean {
     if (this.location.path().substring(0, 8) === '/formule') {
       return true;
     } else {
@@ -67,7 +72,7 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
     }
   }
 
-  get navcheckFiche(): boolean {
+  get hideFormIfPathStartWithFiche(): boolean {
     if (this.location.path() === '/fiches/new') {
       return false;
     }
@@ -78,8 +83,15 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
     }
   }
 
-  get toggleAddFormule(): boolean {
+  get showFormIfPathStartWithFicheAndHasFicheId(): boolean {
     if (this.location.path() === '/fiches/new' && !this.recentCreatedFicheId) {
+      return true;
+    }
+    return false;
+  }
+
+  get createFormuleCheck(): boolean {
+    if (this.location.path().startsWith('/formule/new')) {
       return true;
     }
     return false;
@@ -131,11 +143,6 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
           this.patchFormuleFormValues(data);
         });
     }
-  }
-
-  ngOnInit(): void {
-    this.routeId = this.activeRoute.snapshot.paramMap.get('id');
-    this.patchForm();
   }
 
   handleAddAndUpdate(): void {

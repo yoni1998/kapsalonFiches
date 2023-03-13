@@ -1,4 +1,4 @@
-<div *ngIf="!navcheckFormule">
+<div *ngIf="!hideFormIfPathStartWithFormule">
 <h2 *ngIf="!this.routeId; else update">Klantenfiche toevoegen</h2>
 <ng-template #update>
 <h2>Klantenfiche Wijzigen</h2>
@@ -29,8 +29,8 @@
 </div>
 
 
-<div *ngIf="!navcheckFiche && !toggleAddFormule">
-    <h2 *ngIf="!this.routeId; else update">Formule toevoegen</h2>
+<div *ngIf="!hideFormIfPathStartWithFiche && !showFormIfPathStartWithFicheAndHasFicheId">
+    <h2 *ngIf="!this.routeId || createFormuleCheck; else update">Formule toevoegen</h2>
     <ng-template #update>
         <h2>Formule Wijzigen</h2>
         </ng-template>
