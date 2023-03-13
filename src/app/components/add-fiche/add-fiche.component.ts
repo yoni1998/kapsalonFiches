@@ -90,10 +90,16 @@ export class AddFicheComponent extends Form implements OnInit {
       updatedAt: new Date(),
     };
 
-    this.ficheService.updateFormule(this.routeId, this.formule).then(() => {
-      this.toast.info('De formule is successvol gewijzigd', 'Gewijzigd');
-      this.location.back();
-    });
+    if (this.formGroupFormules.controls['createdAt'].value > new Date()) {
+      this.toast.error(
+        'De datum van het aangemaakte fiche mag niet na de huidige datum vallen'
+      );
+    } else {
+      this.ficheService.updateFormule(this.routeId, this.formule).then(() => {
+        this.toast.info('De formule is successvol gewijzigd', 'Gewijzigd');
+        this.location.back();
+      });
+    }
   }
 
   addFiche(): void {
