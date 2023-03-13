@@ -94,6 +94,7 @@ export class DetailsFicheComponent extends Form implements OnInit {
         )
         .subscribe((data) => {
           this.formulesList = data;
+          this.showSpinner = false;
         });
     }
   }

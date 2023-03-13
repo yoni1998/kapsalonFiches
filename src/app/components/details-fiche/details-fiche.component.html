@@ -1,5 +1,5 @@
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
-<p-toolbar>
+<p-toolbar *ngIf="!this.showSpinner">
   <div class="p-toolbar-group-start">
     <p-button label="Formule Toevoegen" (click)="this.router.navigate(['formule/new', this.ficheId])" tooltipPosition="bottom" pTooltip="Een nieuwe formule toevoegen" icon="pi pi-check" styleClass="p-button-success"></p-button>
   </div>
@@ -9,7 +9,7 @@
       </div>
 </p-toolbar>
 
-<div class="information">
+<div class="information" *ngIf="!this.showSpinner">
 <p-fieldset>
     <ng-template pTemplate="header">Informatie van de klant</ng-template>
     <div class="grid">
@@ -59,7 +59,7 @@
     </div>
 </p-fieldset>
 </div>
-
+<app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
 <ng-template #nvt>
   <p>Niet Van Toepassing</p>
 </ng-template>

@@ -13,10 +13,6 @@
         <input id="float-input" pattern="[a-zA-Z]*" formControlName="achternaam" type="text" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Achternaam</label>
     </span>
-    <span class="p-float-label">
-        <input id="float-input" formControlName="adres" type="text" class="p-inputtext-lg" pInputText> 
-        <label for="float-input">Adres</label>
-    </span>
      <span class="p-float-label">
         <input id="float-input" (click)="fillInPhoneNumber()" (input)="phoneNumberValidation()"  formControlName="telefoonNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Telefoonnummer</label>
@@ -24,6 +20,10 @@
     <span class="p-float-label">
         <input id="float-input" (click)="fillInMobileNumber()" (input)="MobileNumberValidation()" formControlName="mobielNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Mobiel nummer</label>
+    </span>
+    <span class="p-float-label">
+        <input id="float-input" formControlName="adres" style="width: 60vh" type="text" class="p-inputtext-lg" pInputText> 
+        <label for="float-input">Adres</label>
     </span>
 </form>
 <div style="padding: 1rem; color: red;" *ngIf="this.formGroupFiches.controls['telefoonNummer'].invalid || this.formGroupFiches.controls['mobielNummer'].invalid">
@@ -40,7 +40,7 @@
         </ng-template>
     <form class="form-group" [formGroup]="formGroupFormules" >
         <span class="p-float-label">
-            <input id="float-input" formControlName="formuleText" type="text" class="p-inputtext-lg" pInputText> 
+            <textarea pInputTextarea [autoResize]="true" style="width: 40vh;" id="float-input" class="p-inputtext-lg" formControlName="formuleText" type="text" ></textarea>
             <label for="float-input">Formule</label>
         </span>
         <span class="p-float-label">
@@ -48,7 +48,7 @@
             <label for="float-input">Prijs</label>
         </span>
         <span class="p-float-label">
-            <p-calendar formControlName="createdAt" ></p-calendar>
+            <p-calendar formControlName="createdAt" class="p-inputtext-lg" ></p-calendar>
             <label for="float-input">Aangemaakt op</label>
         </span>
     </form>

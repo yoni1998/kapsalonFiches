@@ -82,6 +82,10 @@ export class Form extends UnsubscribeBase {
     return name.substring(0, 1).toUpperCase() + name.substring(1);
   }
 
+  convertToDate(date: any): any {
+    return new Date(date?.seconds * 1000).toDateString();
+  }
+
   // patch form
   patchKlantFormValues(klant: any): void {
     this.formGroupFiches.patchValue({
@@ -97,7 +101,9 @@ export class Form extends UnsubscribeBase {
     this.formGroupFormules.patchValue({
       formuleText: formule.payload.data()?.formuleText,
       prijs: formule.payload.data()?.prijs,
-      createdAt: formule.payload.data()?.createdAt,
+      createdAt: new Date(
+        this.convertToDate(formule.payload.data()?.createdAt)
+      ),
     });
   }
 

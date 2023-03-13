@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DatePipe implements PipeTransform {
   transform(value: any, ...args: unknown[]): unknown {
-    return new Date(value?.seconds * 1000).toDateString();
+    return new Date(value?.seconds * 1000).toLocaleString();
   }
 }

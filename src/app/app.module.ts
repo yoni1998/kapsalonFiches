@@ -27,6 +27,7 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
 import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from './components/details-fiche/pipe/date.pipe';
 import { NvtPipe } from './components/details-fiche/pipe/nvt.pipe';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { NvtPipe } from './components/details-fiche/pipe/nvt.pipe';
     AppRoutingModule,
     ListboxModule,
     FormsModule,
+    InputTextareaModule,
     BrowserAnimationsModule,
     ToolbarModule,
     ButtonModule,
