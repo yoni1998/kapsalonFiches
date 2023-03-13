@@ -1,9 +1,9 @@
-import { GenericCrud } from './../shared/generic-crud';
-import { FichesService } from './../services/fiches.service';
+import { GenericCrud } from '../../shared/generic-crud';
+import { FichesService } from '../../services/fiches.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Fiche, Formules } from '../types';
+import { Fiche, Formules } from '../../types';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';

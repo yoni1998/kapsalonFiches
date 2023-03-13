@@ -1,6 +1,6 @@
-import { AddFicheComponent } from './add-fiche/add-fiche.component';
-import { ContainerComponent } from './container/container.component';
-import { DetailsFicheComponent } from './details-fiche/details-fiche.component';
+import { AddFicheComponent } from './components/add-fiche/add-fiche.component';
+import { ContainerComponent } from './components/container/container.component';
+import { DetailsFicheComponent } from './components/details-fiche/details-fiche.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 

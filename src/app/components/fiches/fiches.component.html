@@ -7,11 +7,11 @@
             <div style="font-size:18px;float:left;margin:15px 5px 0 0">{{fiche.achternaam}} {{fiche.voornaam}}</div>
             <div style="font-size:18px;float:right;margin:0 5px 0 0;">
                 <p class="propertyNaam">Telefoon nummer:</p>
-                {{fiche?.telefoonNummer}}
+                {{fiche?.telefoonNummer | nvt}}
             </div>
             <div style="font-size:18px;float:right;margin:0 3rem 0 0;">
                 <p class="propertyNaam">Mobiel nummer:</p>
-                {{fiche?.mobielNummer}}
+                {{fiche?.mobielNummer | nvt}}
             </div>
         </div>
     </ng-template>

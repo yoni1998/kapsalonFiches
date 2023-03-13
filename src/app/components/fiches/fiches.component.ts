@@ -1,8 +1,8 @@
-import { FichesService } from './../services/fiches.service';
+import { FichesService } from '../../services/fiches.service';
 import { Component, OnInit } from '@angular/core';
-import { Fiche } from '../types';
-import { map, takeUntil, switchMap } from 'rxjs/operators';
-import { GenericCrud } from '../shared/generic-crud';
+import { Fiche } from '../../types';
+import { map, takeUntil } from 'rxjs/operators';
+import { GenericCrud } from '../../shared/generic-crud';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { FormBuilder } from '@angular/forms';

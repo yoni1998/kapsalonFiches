@@ -1,12 +1,11 @@
-import { GenericCrud } from './../shared/generic-crud';
+import { GenericCrud } from '../.././shared/generic-crud';
 import { takeUntil, switchMap } from 'rxjs/operators';
 import { ConfirmationService } from 'primeng/api';
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FichesService } from '../services/fiches.service';
+import { FichesService } from '../.././services/fiches.service';
 import { map } from 'rxjs';
-import { Fiche, Formules } from '../types';
+import { Fiche, Formules } from '../../types';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 

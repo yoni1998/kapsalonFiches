@@ -1,15 +1,15 @@
 import { MessageService } from 'primeng/api';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FichesComponent } from './fiches/fiches.component';
-import { HeaderComponent } from './header/header.component';
-import { ContainerComponent } from './container/container.component';
-import { AddFicheComponent } from './add-fiche/add-fiche.component';
-import { DetailsFicheComponent } from './details-fiche/details-fiche.component';
+import { FichesComponent } from './components/fiches/fiches.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ContainerComponent } from './components/container/container.component';
+import { AddFicheComponent } from './components/add-fiche/add-fiche.component';
+import { DetailsFicheComponent } from './components/details-fiche/details-fiche.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ListboxModule } from 'primeng/listbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,8 +25,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 import { ToastrModule } from 'ngx-toastr';
-import { DatePipe } from './details-fiche/pipe/date.pipe';
-import { NvtPipe } from './details-fiche/pipe/nvt.pipe';
+import { DatePipe } from './components/details-fiche/pipe/date.pipe';
+import { NvtPipe } from './components/details-fiche/pipe/nvt.pipe';
 @NgModule({
   declarations: [
     AppComponent,
