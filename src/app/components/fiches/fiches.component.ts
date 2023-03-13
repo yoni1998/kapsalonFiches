@@ -2,7 +2,7 @@ import { FichesService } from '../../services/fiches.service';
 import { Component, OnInit } from '@angular/core';
 import { Fiche } from '../../types';
 import { map, takeUntil } from 'rxjs/operators';
-import { GenericCrud } from '../../shared/generic-crud';
+import { Form } from '../../shared/form';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { FormBuilder } from '@angular/forms';
@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './fiches.component.html',
   styleUrls: ['./fiches.component.scss'],
 })
-export class FichesComponent extends GenericCrud<Fiche> implements OnInit {
+export class FichesComponent extends Form implements OnInit {
   fichesList: Fiche[] = [];
   selectedFiche: Fiche | undefined;
 

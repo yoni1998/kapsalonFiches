@@ -1,4 +1,4 @@
-import { GenericCrud } from '../../shared/generic-crud';
+import { Form } from '../../shared/form';
 import { FichesService } from '../../services/fiches.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './add-fiche.component.html',
   styleUrls: ['./add-fiche.component.scss'],
 })
-export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
+export class AddFicheComponent extends Form implements OnInit {
   fiche: Fiche | undefined;
   formule: Formules | undefined;
   recentCreatedFicheId: any;

@@ -1,4 +1,4 @@
-import { GenericCrud } from '../.././shared/generic-crud';
+import { Form } from '../../shared/form';
 import { takeUntil, switchMap } from 'rxjs/operators';
 import { ConfirmationService } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
@@ -14,10 +14,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './details-fiche.component.html',
   styleUrls: ['./details-fiche.component.scss'],
 })
-export class DetailsFicheComponent
-  extends GenericCrud<Fiche>
-  implements OnInit
-{
+export class DetailsFicheComponent extends Form implements OnInit {
   ficheId: string | null;
   klantName: string | undefined;
   klantDetails: Fiche | undefined;

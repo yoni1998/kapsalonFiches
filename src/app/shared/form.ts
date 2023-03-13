@@ -5,7 +5,7 @@ import { ConfirmationService } from 'primeng/api';
 import { FichesService } from '../services/fiches.service';
 import { UnsubscribeBase } from './unsubscribeBase';
 import { ToastrService } from 'ngx-toastr';
-export class GenericCrud<T> extends UnsubscribeBase {
+export class Form extends UnsubscribeBase {
   formGroupFiches: FormGroup;
   formGroupFormules: FormGroup;
   currentDate: Date;
