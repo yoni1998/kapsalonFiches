@@ -42,7 +42,7 @@ export class FichesComponent extends Form implements OnInit {
 
   drop(): void {
     this.ficheService
-      .getAllFiches(this.selectedFiche?.field)
+      .getAllFiches(this.selectedFiche?.orderField)
       .snapshotChanges()
       .pipe(
         map((changes) =>

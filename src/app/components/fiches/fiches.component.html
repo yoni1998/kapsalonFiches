@@ -2,10 +2,10 @@
 <div *ngIf="!showSpinner">
     <button pButton routerLink="new" type="button" class="p-button-raised"  pTooltip="Klantenfiche Toevoegen" aria-label="Toevoegen" icon="pi pi-plus" label="Klantenfiche Toevoegen"></button>
     <p-dropdown class="dropdown" (click)="drop()" [options]="[
-    {field: 'achternaam'},
-    {field: 'voornaam'},
-    {field: 'adres'},
-]" [(ngModel)]="selectedFiche" optionLabel="field"></p-dropdown>
+    {orderField: 'achternaam'},
+    {orderField: 'voornaam'},
+    {orderField: 'adres'},
+]" [(ngModel)]="selectedFiche" optionLabel="orderField"></p-dropdown>
 <p-orderList [value]="fichesList" controlsPosition="right" filterPlaceholder="Zoeken op naam van een klant"  header="Klantenfiches" filterBy="achternaam,voornaam">
     <ng-template let-fiche pTemplate="fiche">
         <div [routerLink]="fiche.id + '/info'">
