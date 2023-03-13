@@ -5,11 +5,11 @@
 </ng-template>
 <form class="form-group" [formGroup]="formGroupFiches">
     <span class="p-float-label">
-        <input id="float-input" formControlName="voornaam" type="text" class="p-inputtext-lg" pInputText> 
+        <input id="float-input" pattern="[a-zA-Z]*" formControlName="voornaam" type="text" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Voornaam</label>
     </span>
     <span class="p-float-label">
-        <input id="float-input" formControlName="achternaam" type="text" class="p-inputtext-lg" pInputText> 
+        <input id="float-input" pattern="[a-zA-Z]*" formControlName="achternaam" type="text" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Achternaam</label>
     </span>
     <span class="p-float-label">
@@ -17,11 +17,11 @@
         <label for="float-input">Adres</label>
     </span>
      <span class="p-float-label">
-        <input id="float-input" formControlName="telefoonNummer" type="number" class="p-inputtext-lg" pInputText> 
+        <input id="float-input" (click)="fillInPhoneNumber()" (input)="phoneNumberValidation()"  formControlName="telefoonNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Telefoonnummer</label>
     </span>
     <span class="p-float-label">
-        <input id="float-input" formControlName="mobielNummer" type="number" class="p-inputtext-lg" pInputText> 
+        <input id="float-input" (click)="fillInMobileNumber()" (input)="MobileNumberValidation()" formControlName="mobielNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Mobiel nummer</label>
     </span>
 </form>

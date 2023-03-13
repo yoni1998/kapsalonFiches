@@ -2,7 +2,7 @@ import { GenericCrud } from '../../shared/generic-crud';
 import { FichesService } from '../../services/fiches.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Fiche, Formules } from '../../types';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
@@ -15,14 +15,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./add-fiche.component.scss'],
 })
 export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
-  formGroupFiches: FormGroup;
-  formGroupFormules: FormGroup;
   fiche: Fiche | undefined;
   formule: Formules | undefined;
-  routeId: any;
   recentCreatedFicheId: any;
   formuleId: any;
-  currentDate: Date;
+
   constructor(
     protected override ficheService: FichesService,
     protected override route: ActivatedRoute,
@@ -42,107 +39,11 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
       activeRoute,
       toast
     );
-    this.currentDate = new Date();
-    this.formGroupFiches = this.fb.group({
-      voornaam: [null, [Validators.required]],
-      achternaam: [null, [Validators.required]],
-      telefoonNummer: [null],
-      mobielNummer: [null],
-      adres: [null],
-    });
-
-    this.formGroupFormules = this.fb.group({
-      formuleText: [null, [Validators.required]],
-      prijs: [null, [Validators.required]],
-      createdAt: [this.currentDate, [Validators.required]],
-      updatedAt: [null],
-    });
   }
 
   ngOnInit(): void {
     this.routeId = this.activeRoute.snapshot.paramMap.get('id');
     this.patchForm();
-  }
-
-  get hideFormIfPathStartWithFormule(): boolean {
-    if (this.location.path().substring(0, 8) === '/formule') {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  get hideFormIfPathStartWithFiche(): boolean {
-    if (this.location.path() === '/fiches/new') {
-      return false;
-    }
-    if (this.location.path().substring(0, 8) === '/fiches/') {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  get showFormIfPathStartWithFicheAndHasFicheId(): boolean {
-    if (this.location.path() === '/fiches/new' && !this.recentCreatedFicheId) {
-      return true;
-    }
-    return false;
-  }
-
-  get createFormuleCheck(): boolean {
-    if (this.location.path().startsWith('/formule/new')) {
-      return true;
-    }
-    return false;
-  }
-
-  toUppercase(name: string): string {
-    return name.substring(0, 1).toUpperCase() + name.substring(1);
-  }
-
-  patchKlantFormValues(klant: any): void {
-    this.formGroupFiches.patchValue({
-      voornaam: klant.payload.data()?.voornaam,
-      achternaam: klant.payload.data()?.achternaam,
-      telefoonNummer: klant.payload.data()?.telefoonNummer,
-      mobielNummer: klant.payload.data()?.mobielNummer,
-      adres: klant.payload.data()?.adres,
-    });
-  }
-
-  patchFormuleFormValues(formule: any): void {
-    this.formGroupFormules.patchValue({
-      formuleText: formule.payload.data()?.formuleText,
-      prijs: formule.payload.data()?.prijs,
-      createdAt: formule.payload.data()?.createdAt,
-    });
-  }
-
-  patchForm(): void {
-    if (
-      this.routeId &&
-      this.activeRoute.snapshot.routeConfig?.path === 'fiches/edit/:id'
-    ) {
-      this.ficheService
-        .getKlantDetailsById(this.routeId)
-        .pipe(takeUntil(this.destroy$$))
-        .subscribe((data) => {
-          this.patchKlantFormValues(data);
-        });
-    }
-
-    if (
-      this.routeId &&
-      this.activeRoute.snapshot.routeConfig?.path === 'formule/edit/:id'
-    ) {
-      this.ficheService
-        .getFormuleByFicheId(this.routeId)
-        .pipe(takeUntil(this.destroy$$))
-        .subscribe((data: any) => {
-          this.patchFormuleFormValues(data);
-        });
-    }
   }
 
   handleAddAndUpdate(): void {
@@ -241,5 +142,39 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
           this.location.back();
         });
       });
+  }
+
+  // chech which form needs to be shown to the user
+  get hideFormIfPathStartWithFormule(): boolean {
+    if (this.location.path().substring(0, 8) === '/formule') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  get hideFormIfPathStartWithFiche(): boolean {
+    if (this.location.path() === '/fiches/new') {
+      return false;
+    }
+    if (this.location.path().substring(0, 8) === '/fiches/') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  get showFormIfPathStartWithFicheAndHasFicheId(): boolean {
+    if (this.location.path() === '/fiches/new' && !this.recentCreatedFicheId) {
+      return true;
+    }
+    return false;
+  }
+
+  get createFormuleCheck(): boolean {
+    if (this.location.path().startsWith('/formule/new')) {
+      return true;
+    }
+    return false;
   }
 }
