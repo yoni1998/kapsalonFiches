@@ -5,7 +5,6 @@ import { Location } from '@angular/common';
 import { FormBuilder } from '@angular/forms';
 import { Fiche, Formules } from '../../types';
 import { ActivatedRoute, Router } from '@angular/router';
-import { takeUntil } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
 import { ToastrService } from 'ngx-toastr';
 

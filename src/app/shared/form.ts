@@ -32,7 +32,7 @@ export class Form extends UnsubscribeBase {
 
     this.formGroupFormules = this.fb.group({
       formuleText: [null, [Validators.required]],
-      prijs: [null, [Validators.required, Validators.max(500)]],
+      prijs: [null, [Validators.max(500)]],
       createdAt: [this.currentDate, [Validators.required]],
       updatedAt: [null],
     });
