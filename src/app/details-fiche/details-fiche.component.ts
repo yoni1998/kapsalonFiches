@@ -19,9 +19,9 @@ export class DetailsFicheComponent
   extends GenericCrud<Fiche>
   implements OnInit
 {
-  ficheId: string | null | undefined;
+  ficheId: string | null;
   klantName: string | undefined;
-  KlantDetails: Fiche | undefined;
+  klantDetails: Fiche | undefined;
   formulesList: Formules[] | undefined;
   constructor(
     protected override ficheService: FichesService,
@@ -33,10 +33,10 @@ export class DetailsFicheComponent
     private toastr: ToastrService
   ) {
     super(ficheService, route, confirmationService, router, fb, activeRoute);
+    this.ficheId = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
-    this.ficheId = this.route.snapshot.paramMap.get('id');
     this.getKlantDetailsById();
     this.getAllFormulesOnFicheId();
   }
@@ -68,7 +68,7 @@ export class DetailsFicheComponent
         )
         .subscribe((data) => {
           this.klantName = data?.achternaam + ' ' + data?.voornaam;
-          this.KlantDetails = data;
+          this.klantDetails = data;
         });
     }
   }
@@ -94,18 +94,13 @@ export class DetailsFicheComponent
     }
   }
 
-  // convert seconds to a Date object
-  convertToDate(date: any): any {
-    return new Date(date?.seconds * 1000).toDateString();
-  }
-
   // remove a formule on id
   removeFormules(item: Formules): void {
     if (item.id) {
       this.confirmationService.confirm({
         message: `Weet je zeker dat je het formule wil verwijderen? Dit is definitief en kan later niet opnieuw opgevraagd worden!`,
         accept: () => {
-          this.ficheService.removeFormules(item.id).then(() => {
+          this.ficheService.removeFormules(item.id, this.ficheId).then(() => {
             this.toastr.info('De formule is verwijderd', 'Verwijderd');
           });
         },

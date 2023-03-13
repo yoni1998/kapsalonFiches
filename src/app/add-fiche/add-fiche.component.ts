@@ -172,7 +172,6 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
     this.ficheService.createNewFiche(this.fiche).then((data: any) => {
       this.toastr.success('Het fiche is successvol aangemaakt', 'Toevoegen');
       this.recentCreatedFicheId = data.id;
-      this.location.back();
     });
   }
 
@@ -183,40 +182,24 @@ export class AddFicheComponent extends GenericCrud<Fiche> implements OnInit {
       createdAt: this.formGroupFormules.controls['createdAt'].value,
       updatedAt: null,
     };
-    if (this.activeRoute.snapshot.routeConfig?.path === 'formule/new/:id') {
-      this.ficheService
-        .createNewFormuleFromExistingFiche(this.formule)
-        .then((data: any) => {
-          this.formule = {
-            id: data.id,
-            formuleText: this.formGroupFormules.controls['formuleText'].value,
-            prijs: this.formGroupFormules.controls['prijs'].value,
-            createdAt: this.formGroupFormules.controls['createdAt'].value,
-            updatedAt: null,
-          };
-          this.ficheService.updateFormule(data.id, this.formule).then(() => {
-            this.toastr.success(
-              'De formule is successvol aangemaakt',
-              'Toevoegen'
-            );
-            this.location.back();
-          });
+
+    this.ficheService
+      .createNewFormule(this.formule, this.routeId, this.recentCreatedFicheId)
+      .then((data: any) => {
+        this.formule = {
+          id: data.id,
+          formuleText: this.formGroupFormules.controls['formuleText'].value,
+          prijs: this.formGroupFormules.controls['prijs'].value,
+          createdAt: this.formGroupFormules.controls['createdAt'].value,
+          updatedAt: null,
+        };
+        this.ficheService.updateFormule(data.id, this.formule).then(() => {
+          this.toastr.success(
+            'De formule is successvol aangemaakt',
+            'Toevoegen'
+          );
+          this.location.back();
         });
-    } else {
-      this.ficheService
-        .createNewFormule(this.formule, this.recentCreatedFicheId)
-        .then((data: any) => {
-          this.formule = {
-            id: data.id,
-          };
-          this.ficheService.updateFormule(data.id, this.formule).then(() => {
-            this.toastr.success(
-              'De formule is successvol aangemaakt',
-              'Toevoegen'
-            );
-            this.location.back();
-          });
-        });
-    }
+      });
   }
 }

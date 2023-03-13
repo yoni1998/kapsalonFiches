@@ -1,5 +1,5 @@
 import { MessageService } from 'primeng/api';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -25,6 +25,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 import { ToastrModule } from 'ngx-toastr';
+import { DatePipe } from './details-fiche/pipe/date.pipe';
+import { NvtPipe } from './details-fiche/pipe/nvt.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +36,8 @@ import { ToastrModule } from 'ngx-toastr';
     AddFicheComponent,
     DetailsFicheComponent,
     LoadingSpinnerComponent,
+    DatePipe,
+    NvtPipe,
   ],
   imports: [
     BrowserModule,

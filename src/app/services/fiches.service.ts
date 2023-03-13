@@ -1,4 +1,3 @@
-import { query } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
@@ -63,25 +62,32 @@ export class FichesService {
   }
 
   // remove formule on id
-  removeFormules(id: string | undefined): Promise<void> {
+  removeFormules(
+    id: string | undefined,
+    ficheId: string | null
+  ): Promise<void> {
     return this.db
-      .collection('/fiches/' + this.ficheId + '/formules')
+      .collection('/fiches/' + ficheId + '/formules')
       .doc(id)
       .delete();
   }
 
-  // create formule from a new created fiche
-  createNewFormule(formule: Formules, newFicheId: string): any {
-    return this.db
-      .collection('/fiches/' + newFicheId + '/formules')
-      .add({ ...formule });
-  }
-
-  // create formule from existing fiche
-  createNewFormuleFromExistingFiche(formule: Formules): any {
-    return this.db
-      .collection('/fiches/' + this.ficheId + '/formules')
-      .add({ ...formule });
+  // create new formule
+  createNewFormule(
+    formule: Formules,
+    ficheId?: string,
+    recentCreatedFicheId?: string
+  ): any {
+    if (ficheId) {
+      return this.db
+        .collection('/fiches/' + ficheId + '/formules')
+        .add({ ...formule });
+    }
+    if (recentCreatedFicheId) {
+      return this.db
+        .collection('/fiches/' + recentCreatedFicheId + '/formules')
+        .add({ ...formule });
+    }
   }
 
   // update formule

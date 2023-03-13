@@ -15,19 +15,19 @@
     <div class="grid">
     <div>
     <h4>Naam</h4>
-    <p>{{ KlantDetails?.achternaam}} {{ KlantDetails?.voornaam }} </p>
+    <p>{{ klantDetails?.achternaam}} {{ klantDetails?.voornaam }} </p>
 </div>
 <div>
     <h4>Telefoonnummer</h4>
-  <p *ngIf="KlantDetails?.telefoonNummer; else nvt">{{ KlantDetails?.telefoonNummer }}</p>  
+  <p>{{ klantDetails?.telefoonNummer | nvt }}</p>  
 </div>
 <div>
     <h4>Mobiel nummer</h4>
-  <p *ngIf="KlantDetails?.mobielNummer; else nvt">{{ KlantDetails?.mobielNummer }}</p>  
+  <p>{{ klantDetails?.mobielNummer | nvt }}</p>  
 </div>
 <div>
     <h4>adres</h4>
-  <p *ngIf="KlantDetails?.adres; else nvt">{{ KlantDetails?.adres }}</p>  
+  <p>{{ klantDetails?.adres | nvt }}</p>  
 </div>
 </div>
 </p-fieldset>
@@ -37,19 +37,19 @@
       <div class="grid">
       <div>
       <h4>Formule</h4>
-        <p>{{item.formuleText}}</p>  
+        <p>{{ item.formuleText }}</p>  
     </div>
     <div>
       <h4>Prijs</h4>
-        <p>{{item.prijs}}</p>  
+        <p>€ {{ item.prijs }}</p>  
     </div>
     <div>
       <h4>Aangemaakt op</h4>
-        <p>{{ convertToDate(item.createdAt)}}</p>  
+        <p>{{ item.createdAt | customDate}}</p>  
     </div>
     <div>
       <h4>Laatst aangepast op</h4>
-        <p *ngIf="item.updatedAt; else nvt">{{convertToDate(item.updatedAt)}}</p>  
+        <p *ngIf="item.updatedAt; else nvt">{{ item.updatedAt | customDate }}</p>  
     </div>
     </div>
     <div class="actions">
@@ -61,5 +61,5 @@
 </div>
 
 <ng-template #nvt>
-  <p>Niet van toepassing</p>
+  <p>Niet Van Toepassing</p>
 </ng-template>
