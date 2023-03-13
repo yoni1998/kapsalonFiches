@@ -40,7 +40,7 @@ export class FichesComponent extends Form implements OnInit {
     this.getFiches();
   }
 
-  drop(): void {
+  filterField(): void {
     this.ficheService
       .getAllFiches(this.selectedFiche?.orderField)
       .snapshotChanges()

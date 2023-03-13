@@ -25,8 +25,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 import { ToastrModule } from 'ngx-toastr';
-import { DatePipe } from './components/details-fiche/pipe/date.pipe';
-import { NvtPipe } from './components/details-fiche/pipe/nvt.pipe';
+import { DatePipe } from './pipes/date.pipe';
+import { NvtPipe } from './pipes/nvt.pipe';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 @NgModule({

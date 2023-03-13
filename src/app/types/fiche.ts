@@ -5,6 +5,7 @@ export interface Fiche {
   achternaam: string;
   telefoonNummer: number;
   mobielNummer: number;
+  zakelijkNummer?: number;
   adres: string;
   formules?: Formules[];
   orderField?: any;

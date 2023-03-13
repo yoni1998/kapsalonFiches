@@ -1,7 +1,7 @@
 
 <div *ngIf="!showSpinner">
     <button pButton routerLink="new" type="button" class="p-button-raised"  pTooltip="Klantenfiche Toevoegen" aria-label="Toevoegen" icon="pi pi-plus" label="Klantenfiche Toevoegen"></button>
-    <p-dropdown class="dropdown" (click)="drop()" [options]="[
+    <p-dropdown class="dropdown" (click)="filterField()" [options]="[
     {orderField: 'achternaam'},
     {orderField: 'voornaam'},
     {orderField: 'adres'},
