@@ -40,8 +40,9 @@
 </p-fieldset>
 
 <p-fieldset *ngIf="this.formulesList?.length">
-  <p-badge [value]='"2"'></p-badge>
-    <ng-template pTemplate="header">Formules</ng-template>
+    <ng-template pTemplate="header">Formules
+      <p-badge class="badge" [value]='this.aantalFormules'></p-badge>
+    </ng-template>
     <div *ngFor="let item of formulesList" >
       <div class="grid">
       <div>

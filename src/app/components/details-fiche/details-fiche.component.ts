@@ -20,6 +20,7 @@ export class DetailsFicheComponent extends Form implements OnInit {
   klantName: string | undefined;
   klantDetails: Fiche | undefined;
   formulesList: Formules[] | undefined;
+  aantalFormules: any;
   constructor(
     protected override ficheService: FichesService,
     protected override route: ActivatedRoute,
@@ -100,6 +101,7 @@ export class DetailsFicheComponent extends Form implements OnInit {
           takeUntil(this.destroy$$)
         )
         .subscribe((data) => {
+          this.aantalFormules = data.length;
           this.formulesList = data;
           this.showSpinner = false;
         });
