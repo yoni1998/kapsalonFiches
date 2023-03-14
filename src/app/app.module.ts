@@ -30,6 +30,7 @@ import { NvtPipe } from './pipes/nvt.pipe';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 import { NumberPipe } from './pipes/number.pipe';
+import {SplitButtonModule} from 'primeng/splitbutton';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,7 @@ import { NumberPipe } from './pipes/number.pipe';
     BrowserAnimationsModule,
     ToolbarModule,
     ButtonModule,
+    SplitButtonModule,
     CalendarModule,
     InputTextModule,
     TooltipModule,
