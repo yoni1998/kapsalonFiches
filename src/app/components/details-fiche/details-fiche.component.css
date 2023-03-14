@@ -1,0 +1,51 @@
+p-button {
+  margin-left: 2rem;
+}
+
+p-fieldset {
+  padding: 1rem;
+}
+
+h4 {
+  color: rgb(145, 145, 145);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  place-items: center;
+}
+
+@media only screen and (max-width: 650px) {
+  .grid {
+    display: grid;
+    margin-left: unset;
+    grid-template-columns: unset;
+  }
+}
+.information {
+  padding: 3rem;
+}
+
+i {
+  padding: 1rem;
+}
+
+.copyBtn {
+  margin-left: 0.2rem;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  padding: 0 16px;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  border: 1px solid #dddbda;
+  color: #0070d2;
+  font-size: 13px;
+  line-height: 30px;
+  font-weight: 400;
+  text-align: center;
+}
+.copyBtn :hover {
+  background-color: #f4f6f9;
+}/*# sourceMappingURL=details-fiche.component.css.map */
