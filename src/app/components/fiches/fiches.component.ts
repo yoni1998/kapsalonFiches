@@ -35,6 +35,12 @@ export class FichesComponent extends Form implements OnInit {
       toast
     );
   }
+  sortFields = [
+    { orderField: 'achternaam', value: 'Achternaam' },
+    { orderField: 'voornaam', value: 'Voornaam' },
+    { orderField: 'adres', value: 'Adres' },
+    { orderField: 'createdAt', value: 'Aangemaakt op' },
+  ];
 
   ngOnInit(): void {
     this.getFiches();

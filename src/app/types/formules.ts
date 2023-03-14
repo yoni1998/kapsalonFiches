@@ -5,4 +5,5 @@ export interface Formules {
   opmerking?: string;
   createdAt?: Date;
   updatedAt?: Date | null;
+  ficheId?: number;
 }

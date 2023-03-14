@@ -9,7 +9,7 @@ h4 {
 }
 .grid  {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     place-items: center;
 }
 @media only screen and (max-width: 650px) {

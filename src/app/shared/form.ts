@@ -27,12 +27,15 @@ export class Form extends UnsubscribeBase {
       achternaam: [null, [Validators.required]],
       telefoonNummer: [null],
       mobielNummer: [null],
+      zakelijkNummer: [null],
       adres: [null],
+      createdAt: [null],
     });
 
     this.formGroupFormules = this.fb.group({
       formuleText: [null, [Validators.required]],
       prijs: [null, [Validators.max(500)]],
+      opmerking: [null],
       createdAt: [this.currentDate, [Validators.required]],
       updatedAt: [null],
     });
@@ -54,7 +57,7 @@ export class Form extends UnsubscribeBase {
     }
   }
 
-  MobileNumberValidation(): void {
+  mobileNumberValidation(): void {
     if (
       this.formGroupFiches.controls['mobielNummer'].value?.toString().length >
         11 ||
@@ -66,6 +69,24 @@ export class Form extends UnsubscribeBase {
     }
   }
 
+  zakelijkNumberValidation(): void {
+    if (
+      this.formGroupFiches.controls['zakelijkNummer'].value?.toString().length >
+        11 ||
+      this.formGroupFiches.controls['zakelijkNummer'].value?.toString().length <
+        9
+    ) {
+      this.formGroupFiches.controls['zakelijkNummer'].setErrors({
+        incorrect: true,
+      });
+    }
+  }
+
+  fillInZakelijkNumber(): void {
+    if (!this.formGroupFiches.controls['zakelijkNummer'].value) {
+      this.formGroupFiches.controls['zakelijkNummer'].setValue('02');
+    }
+  }
   fillInPhoneNumber(): void {
     if (!this.formGroupFiches.controls['telefoonNummer'].value) {
       this.formGroupFiches.controls['telefoonNummer'].setValue('02');
@@ -93,7 +114,9 @@ export class Form extends UnsubscribeBase {
       achternaam: klant.payload.data()?.achternaam,
       telefoonNummer: klant.payload.data()?.telefoonNummer,
       mobielNummer: klant.payload.data()?.mobielNummer,
+      zakelijkNummer: klant.payload.data().zakelijkNummer,
       adres: klant.payload.data()?.adres,
+      createdAt: klant.payload.data().createdAt,
     });
   }
 
@@ -101,6 +124,7 @@ export class Form extends UnsubscribeBase {
     this.formGroupFormules.patchValue({
       formuleText: formule.payload.data()?.formuleText,
       prijs: formule.payload.data()?.prijs,
+      opmerking: formule.payload.data()?.opmerking,
       createdAt: new Date(
         this.convertToDate(formule.payload.data()?.createdAt)
       ),

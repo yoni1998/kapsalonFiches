@@ -26,6 +26,10 @@
   <p>{{ klantDetails?.mobielNummer | nvt }}</p>  
 </div>
 <div>
+    <h4>Zakelijk nummer</h4>
+  <p>{{ klantDetails?.zakelijkNummer | nvt }}</p>  
+</div>
+<div>
     <h4>Adres</h4>
   <p>{{ klantDetails?.adres | nvt }}</p>  
 </div>
@@ -42,6 +46,10 @@
     <div>
       <h4>Prijs</h4>
         <p>€ {{ item.prijs }}</p>  
+    </div>
+    <div>
+      <h4>Opmerking</h4>
+        <p>{{ item.opmerking | nvt }}</p>  
     </div>
     <div>
       <h4>Aangemaakt op</h4>

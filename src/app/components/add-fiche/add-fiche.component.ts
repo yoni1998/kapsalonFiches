@@ -70,7 +70,9 @@ export class AddFicheComponent extends Form implements OnInit {
       achternaam: this.formGroupFiches.controls['achternaam'].value,
       telefoonNummer: this.formGroupFiches.controls['telefoonNummer'].value,
       mobielNummer: this.formGroupFiches.controls['mobielNummer'].value,
+      zakelijkNummer: this.formGroupFiches.controls['zakelijkNummer'].value,
       adres: this.formGroupFiches.controls['adres'].value,
+      createdAt: this.formGroupFiches.controls['createdAt'].value,
     };
 
     this.ficheService.updateFiche(this.routeId, this.fiche).then(() => {
@@ -86,6 +88,7 @@ export class AddFicheComponent extends Form implements OnInit {
     this.formule = {
       formuleText: this.formGroupFormules.controls['formuleText'].value,
       prijs: this.formGroupFormules.controls['prijs'].value,
+      opmerking: this.formGroupFormules.controls['opmerking'].value,
       createdAt: this.formGroupFormules.controls['createdAt'].value,
       updatedAt: new Date(),
     };
@@ -112,7 +115,9 @@ export class AddFicheComponent extends Form implements OnInit {
       ),
       telefoonNummer: this.formGroupFiches.controls['telefoonNummer'].value,
       mobielNummer: this.formGroupFiches.controls['mobielNummer'].value,
+      zakelijkNummer: this.formGroupFiches.controls['zakelijkNummer'].value,
       adres: this.formGroupFiches.controls['adres'].value,
+      createdAt: new Date(),
     };
 
     this.ficheService.createNewFiche(this.fiche).then((data: any) => {
@@ -122,11 +127,14 @@ export class AddFicheComponent extends Form implements OnInit {
   }
 
   addFormule(): void {
+    console.log(this.routeId);
     this.formule = {
       formuleText: this.formGroupFormules.controls['formuleText'].value,
       prijs: this.formGroupFormules.controls['prijs'].value,
+      opmerking: this.formGroupFormules.controls['opmerking'].value,
       createdAt: this.formGroupFormules.controls['createdAt'].value,
       updatedAt: null,
+      ficheId: this.routeId ? this.routeId : this.recentCreatedFicheId,
     };
 
     this.ficheService
@@ -136,8 +144,10 @@ export class AddFicheComponent extends Form implements OnInit {
           id: data.id,
           formuleText: this.formGroupFormules.controls['formuleText'].value,
           prijs: this.formGroupFormules.controls['prijs'].value,
+          opmerking: this.formGroupFormules.controls['opmerking'].value,
           createdAt: this.formGroupFormules.controls['createdAt'].value,
           updatedAt: null,
+          ficheId: this.routeId ? this.routeId : this.recentCreatedFicheId,
         };
         this.ficheService.updateFormule(data.id, this.formule).then(() => {
           this.toast.success(

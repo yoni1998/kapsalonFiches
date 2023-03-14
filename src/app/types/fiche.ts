@@ -9,4 +9,5 @@ export interface Fiche {
   adres: string;
   formules?: Formules[];
   orderField?: any;
+  createdAt?: Date;
 }

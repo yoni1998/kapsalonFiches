@@ -18,8 +18,12 @@
         <label for="float-input">Telefoonnummer</label>
     </span>
     <span class="p-float-label">
-        <input id="float-input" (click)="fillInMobileNumber()" (input)="MobileNumberValidation()" formControlName="mobielNummer" type="number" class="p-inputtext-lg" pInputText> 
+        <input id="float-input" (click)="fillInMobileNumber()" (input)="mobileNumberValidation()" formControlName="mobielNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Mobiel nummer</label>
+    </span>
+    <span class="p-float-label">
+        <input id="float-input" (click)="fillInZakelijkNumber()" (input)="zakelijkNumberValidation()" formControlName="zakelijkNummer" type="number" class="p-inputtext-lg" pInputText> 
+        <label for="float-input">Zakelijk nummer</label>
     </span>
     <span class="p-float-label">
         <input id="float-input" formControlName="adres" style="width: 50vh" type="text" class="p-inputtext-lg" pInputText> 
@@ -50,6 +54,10 @@
         <span class="p-float-label">
             <p-calendar formControlName="createdAt" class="p-inputtext-lg" ></p-calendar>
             <label for="float-input">Aangemaakt op</label>
+        </span>
+        <span class="p-float-label">
+            <textarea pInputTextarea [autoResize]="true" style="width: 40vh;" id="float-input" class="p-inputtext-lg" formControlName="opmerking" type="text" ></textarea>
+            <label for="float-input">Opmerking</label>
         </span>
     </form>
     <div style="padding: 1rem; color: red;" *ngIf="this.formGroupFormules.controls['prijs'].invalid">
