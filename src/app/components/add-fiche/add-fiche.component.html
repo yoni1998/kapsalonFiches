@@ -20,7 +20,9 @@
     <span class="p-float-label">
         <input id="float-input" (click)="fillInMobileNumber()" (input)="mobileNumberValidation()" formControlName="mobielNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Mobiel nummer</label>
+        
     </span>
+
     <span class="p-float-label">
         <input id="float-input" (click)="fillInZakelijkNumber()" (input)="zakelijkNumberValidation()" formControlName="zakelijkNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Zakelijk nummer</label>
@@ -35,7 +37,6 @@
   </div>
 <button [disabled]="!formGroupFiches.valid || this.recentCreatedFicheId" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Opslaan" icon="pi pi-check" label="klantenfiches Opslaan"></button>
 </div>
-
 
 <div *ngIf="!hideFormIfPathStartWithFiche && !showFormIfPathStartWithFicheAndHasFicheId">
     <h2 *ngIf="!this.routeId || createFormuleCheck; else update">Formule toevoegen</h2>
@@ -65,5 +66,6 @@
       </div>
     <button pButton type="button" [disabled]="this.formGroupFormules.invalid" (click)="handleAddAndUpdateFormules()" class="p-button-raised" aria-label="Formule Opslaan" icon="pi pi-check" label="Formule Opslaan"></button>
 </div>
+
 
 

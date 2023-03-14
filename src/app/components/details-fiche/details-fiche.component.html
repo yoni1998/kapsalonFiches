@@ -19,15 +19,18 @@
 </div>
 <div>
     <h4>Telefoonnummer</h4>
-  <p>{{ klantDetails?.telefoonNummer | nvt }}</p>  
+  <p>{{ klantDetails?.telefoonNummer | nvt | number }} </p>   
+  <button class="copyBtn" *ngIf="klantDetails?.telefoonNummer" type="button" (click)="copyText(klantDetails?.telefoonNummer)">Copy</button> 
 </div>
 <div>
     <h4>Mobiel nummer</h4>
-  <p>{{ klantDetails?.mobielNummer | nvt }}</p>  
+  <p>{{ klantDetails?.mobielNummer | nvt | number }} </p>
+    <button class="copyBtn" *ngIf="klantDetails?.telefoonNummer" type="button" (click)="copyText(klantDetails?.mobielNummer)">Copy</button>
 </div>
 <div>
     <h4>Zakelijk nummer</h4>
-  <p>{{ klantDetails?.zakelijkNummer | nvt }}</p>  
+  <p>{{ klantDetails?.zakelijkNummer | nvt | number}}</p>  
+    <button class="copyBtn" *ngIf="klantDetails?.telefoonNummer" type="button" (click)="copyText(klantDetails?.zakelijkNummer)">Copy</button>
 </div>
 <div>
     <h4>Adres</h4>

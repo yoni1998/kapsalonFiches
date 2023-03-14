@@ -29,6 +29,7 @@ import { DatePipe } from './pipes/date.pipe';
 import { NvtPipe } from './pipes/nvt.pipe';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
+import { NumberPipe } from './pipes/number.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { DropdownModule } from 'primeng/dropdown';
     LoadingSpinnerComponent,
     DatePipe,
     NvtPipe,
+    NumberPipe,
   ],
   imports: [
     BrowserModule,

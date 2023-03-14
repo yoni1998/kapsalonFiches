@@ -8,6 +8,7 @@ import { map } from 'rxjs';
 import { Fiche, Formules } from '../../types';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-details-fiche',
@@ -26,7 +27,8 @@ export class DetailsFicheComponent extends Form implements OnInit {
     protected override router: Router,
     protected override fb: FormBuilder,
     protected override activeRoute: ActivatedRoute,
-    protected override toast: ToastrService
+    protected override toast: ToastrService,
+    private clipboard: Clipboard
   ) {
     super(
       ficheService,
@@ -43,6 +45,11 @@ export class DetailsFicheComponent extends Form implements OnInit {
   ngOnInit(): void {
     this.getKlantDetailsById();
     this.getAllFormulesOnFicheId();
+  }
+
+  copyText(textToCopy: any) {
+    this.clipboard.copy(textToCopy);
+    this.toast.info('Nummer gekopieerd');
   }
 
   // delete a fiche

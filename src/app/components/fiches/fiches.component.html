@@ -8,11 +8,15 @@
             <div style="font-size:18px;float:left;margin:15px 5px 0 0">{{fiche.achternaam}} {{fiche.voornaam}}</div>
             <div style="font-size:18px;float:right;margin:0 5px 0 0;">
                 <p class="propertyNaam">Telefoon nummer:</p>
-                {{ fiche?.telefoonNummer | nvt }}
+                {{ fiche?.telefoonNummer | nvt | number }}
             </div>
             <div style="font-size:18px;float:right;margin:0 3rem 0 0;">
                 <p class="propertyNaam">Mobiel nummer:</p>
-                {{ fiche?.mobielNummer | nvt }}
+                {{ fiche?.mobielNummer | nvt |number }}
+            </div>
+            <div style="font-size:18px;float:right;margin:0 3rem 0 0;">
+                <p class="propertyNaam">Zakelijk nummer:</p>
+                {{ fiche?.zakelijkNummer | nvt |number }}
             </div>
         </div>
     </ng-template>

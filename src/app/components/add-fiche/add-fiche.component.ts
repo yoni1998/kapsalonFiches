@@ -127,7 +127,6 @@ export class AddFicheComponent extends Form implements OnInit {
   }
 
   addFormule(): void {
-    console.log(this.routeId);
     this.formule = {
       formuleText: this.formGroupFormules.controls['formuleText'].value,
       prijs: this.formGroupFormules.controls['prijs'].value,
