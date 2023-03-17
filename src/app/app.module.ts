@@ -1,5 +1,5 @@
 import { MessageService } from 'primeng/api';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -33,6 +33,7 @@ import { NumberPipe } from './pipes/number.pipe';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { BadgeModule } from 'primeng/badge';
 import { PrijsPipe } from './pipes/prijs.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +72,12 @@ import { PrijsPipe } from './pipes/prijs.pipe';
     BrowserAnimationsModule,
     OrderListModule,
     AngularFireModule.initializeApp(environment.firebase),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   providers: [
     {
