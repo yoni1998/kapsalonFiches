@@ -7,9 +7,14 @@ p-fieldset {
 h4 {
     color: rgb(145, 145, 145);
 }
-.grid  {
+.grid-klant  {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    place-items: center;
+}
+.grid-formules  {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     place-items: center;
 }
 @media only screen and (max-width: 650px) {

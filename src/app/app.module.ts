@@ -32,6 +32,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { NumberPipe } from './pipes/number.pipe';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { BadgeModule } from 'primeng/badge';
+import { PrijsPipe } from './pipes/prijs.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { BadgeModule } from 'primeng/badge';
     DatePipe,
     NvtPipe,
     NumberPipe,
+    PrijsPipe,
   ],
   imports: [
     BrowserModule,

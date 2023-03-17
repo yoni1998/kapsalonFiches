@@ -21,6 +21,7 @@ export class DetailsFicheComponent extends Form implements OnInit {
   klantDetails: Fiche | undefined;
   formulesList: Formules[] | undefined;
   aantalFormules: any;
+  actionsActive: boolean | undefined;
   constructor(
     protected override ficheService: FichesService,
     protected override route: ActivatedRoute,
@@ -51,6 +52,14 @@ export class DetailsFicheComponent extends Form implements OnInit {
   copyText(textToCopy: any) {
     this.clipboard.copy(textToCopy);
     this.toast.info('Nummer gekopieerd');
+  }
+
+  showActions(): void {
+    if (this.actionsActive === true) {
+      this.actionsActive = false;
+    } else {
+      this.actionsActive = true;
+    }
   }
 
   // delete a fiche
