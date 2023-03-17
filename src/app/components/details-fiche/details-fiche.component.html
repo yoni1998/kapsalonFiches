@@ -10,7 +10,7 @@
 </p-toolbar>
 
 <div class="information" *ngIf="!this.showSpinner">
-<p-fieldset>
+<p-fieldset [toggleable]="true" [transitionOptions]="'500ms'">
     <ng-template pTemplate="header">Informatie van de klant</ng-template>
     <div class="grid-klant">
     <div>
@@ -39,36 +39,37 @@
 </div>
 </p-fieldset>
 
-<p-fieldset *ngIf="this.formulesList?.length">
-  <button pButton pRipple type="button" (click)="showActions()" class="p-button-outlined">Formules Bewerken</button>
-    <ng-template pTemplate="header">Formules
+<p-fieldset *ngIf="this.formulesList?.length" [toggleable]="true" [transitionOptions]="'500ms'">
+  <h5>Formules Bewerken</h5>
+  <p-inputSwitch (onChange)="showActions()"></p-inputSwitch>  
+  <ng-template pTemplate="header">Formules
       <p-badge class="badge" [value]='this.aantalFormules'></p-badge>
     </ng-template>
-    <div *ngFor="let item of formulesList" >
+    <div *ngFor="let formule of formulesList">
       <div class="grid-formules" [ngStyle]="{'grid-template-columns': this.actionsActive ? 'repeat(6, 1fr)' : 'repeat(5, 1fr)'}">
       <div>
       <h4>Formule</h4>
-        <p>{{ item.formuleText }}</p>  
+        <p>{{ formule.formuleText }}</p>  
     </div>
     <div>
       <h4>Prijs</h4>
-        <p>{{ item.prijs | prijs }}</p>  
+        <p>{{ formule.prijs | prijs }}</p>  
     </div>
     <div>
       <h4>Opmerking</h4>
-        <p>{{ item.opmerking | nvt }}</p>  
+        <p>{{ formule.opmerking | nvt }}</p>  
     </div>
     <div>
       <h4>Aangemaakt op</h4>
-        <p>{{ item.createdAt | customDate}}</p>  
+        <p>{{ formule.createdAt | customDate}}</p>  
     </div>
     <div>
       <h4>Laatst aangepast op</h4>
-        <p *ngIf="item.updatedAt; else nvt">{{ item.updatedAt | customDate }}</p>  
+        <p *ngIf="formule.updatedAt; else nvt">{{ formule.updatedAt | customDate }}</p>  
     </div>
     <div class="actions" *ngIf="actionsActive">
-      <button style="margin: 0 1rem 0 1rem;" pButton pRipple type="button" (click)="this.router.navigate(['formule/edit/', item.id])" icon="pi pi-pencil"  aria-label="Wijzig Formule" class="p-button-rounded p-button-outlined"></button>
-      <button  pButton pRipple type="button" (click)="removeFormules(item)" aria-label="Verwijder Formule" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>
+      <button style="margin: 0 1rem 0 1rem;" pButton pRipple type="button" (click)="this.router.navigate(['formule/edit/', formule.id])" icon="pi pi-pencil"  aria-label="Wijzig Formule" class="p-button-rounded p-button-outlined"></button>
+      <button  pButton pRipple type="button" (click)="removeFormules(formule)" aria-label="Verwijder Formule" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>
     </div>
     </div>
     </div>

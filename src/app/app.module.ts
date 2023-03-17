@@ -33,6 +33,7 @@ import { NumberPipe } from './pipes/number.pipe';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { BadgeModule } from 'primeng/badge';
 import { PrijsPipe } from './pipes/prijs.pipe';
+import { InputSwitchModule } from 'primeng/inputswitch';
 import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     BrowserAnimationsModule,
     ToolbarModule,
     ButtonModule,
+    InputSwitchModule,
     SplitButtonModule,
     CalendarModule,
     InputTextModule,

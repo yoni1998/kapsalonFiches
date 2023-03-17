@@ -53,6 +53,10 @@ export class AddFicheComponent extends Form implements OnInit {
     }
   }
 
+  goBack(): void {
+    this.location.back();
+  }
+
   handleAddAndUpdateFormules(): void {
     if (
       this.routeId &&
