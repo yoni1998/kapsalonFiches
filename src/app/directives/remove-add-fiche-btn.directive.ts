@@ -10,7 +10,7 @@ import {
   selector: '[appRemoveAddFicheBtn]',
 })
 export class RemoveAddFicheBtnDirective implements OnChanges {
-  @Input() removeAddFichesBtn: any = true;
+  @Input() removeAddFichesBtn: any;
   constructor(private elementRef: ElementRef) {}
   ngOnChanges(changes: SimpleChanges) {
     if (changes['removeAddFichesBtn'].currentValue === true) {

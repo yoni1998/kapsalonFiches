@@ -30,7 +30,10 @@
 <div class="errorMessage" *ngIf="this.formGroupFiches.controls['telefoonNummer'].invalid || this.formGroupFiches.controls['mobielNummer'].invalid">
     Gelieve een geldig nummer in te voeren
   </div>
+  <div class="btnContainer">
+    <button pButton pRipple type="button" appRemoveAddFicheBtn [removeAddFichesBtn]="removeAddFichesBtn"  aria-label="back" (click)="goBack()" icon="pi pi-backward" label="Terug Naar De Vorige Pagina" class="p-button-outlined p-button-secondary"></button>
 <button [disabled]="!formGroupFiches.valid || this.recentCreatedFicheId" appRemoveAddFicheBtn [removeAddFichesBtn]="removeAddFichesBtn" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Opslaan" icon="pi pi-check" label="klantenfiches Opslaan"></button>
+</div>
 </div>
 
 <div appHideOrShowFormIfPathHasFiche [recentCreatedFicheId]="this.recentCreatedFicheId">
@@ -54,8 +57,11 @@
         </span>
     </form>
    <app-error-message *ngIf="this.formGroupFormules.controls['prijs'].invalid"></app-error-message>
+   <div class="btnContainer">
+    <button pButton pRipple type="button"  aria-label="back" (click)="goBack()" icon="pi pi-backward" label="Terug Naar De Vorige Pagina" class="p-button-outlined p-button-secondary"></button>
     <button pButton type="button" [disabled]="this.formGroupFormules.invalid" (click)="handleAddAndUpdateFormules()" class="p-button-raised" aria-label="Formule Opslaan" icon="pi pi-check" label="Formule Opslaan"></button>
 </div>
-<button pButton pRipple type="button"  aria-label="back" (click)="goBack()" icon="pi pi-backward" label="Terug Naar De Vorige Pagina" class="p-button-outlined p-button-secondary"></button>
+</div>
+
 
 
