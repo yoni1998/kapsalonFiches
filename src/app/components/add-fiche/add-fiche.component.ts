@@ -127,6 +127,7 @@ export class AddFicheComponent extends Form implements OnInit {
     this.ficheService.createNewFiche(this.fiche).then((data: any) => {
       this.toast.success('Het fiche is successvol aangemaakt', 'Toevoegen');
       this.recentCreatedFicheId = data.id;
+      this.formGroupFiches?.disable();
     });
   }
 

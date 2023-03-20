@@ -1,7 +1,7 @@
 <div *ngIf="!hideFormIfPathStartWithFormule">
-<h2 *ngIf="!this.routeId; else update">Klantenfiche toevoegen</h2>
+<h2 class="addFicheTitle" *ngIf="!this.routeId; else update">Klantenfiche Toevoegen</h2>
 <ng-template #update>
-<h2>Klantenfiche Wijzigen</h2>
+<h2 class="addFicheTitle">Klantenfiche Wijzigen</h2>
 </ng-template>
 
 <form class="form-group" [formGroup]="formGroupFiches">
@@ -22,7 +22,6 @@
         <label for="float-input">Mobiel nummer</label>
         
     </span>
-
     <span class="p-float-label">
         <input id="float-input" (click)="fillInZakelijkNumber()" (input)="zakelijkNumberValidation()" formControlName="zakelijkNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Zakelijk nummer</label>
@@ -32,16 +31,16 @@
         <label for="float-input">Adres</label>
     </span>
 </form>
-<div style="padding: 1rem; color: red;" *ngIf="this.formGroupFiches.controls['telefoonNummer'].invalid || this.formGroupFiches.controls['mobielNummer'].invalid">
+<div class="errorMessage" *ngIf="this.formGroupFiches.controls['telefoonNummer'].invalid || this.formGroupFiches.controls['mobielNummer'].invalid">
     Gelieve een geldig nummer in te voeren
   </div>
 <button [disabled]="!formGroupFiches.valid || this.recentCreatedFicheId" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Opslaan" icon="pi pi-check" label="klantenfiches Opslaan"></button>
 </div>
 
 <div *ngIf="!hideFormIfPathStartWithFiche && !showFormIfPathStartWithFicheAndHasFicheId">
-    <h2 *ngIf="!this.routeId || createFormuleCheck; else update">Formule toevoegen</h2>
+    <h2 class="formuleTitle" *ngIf="!this.routeId || createFormuleCheck; else update">Formule toevoegen</h2>
     <ng-template #update>
-        <h2>Formule Wijzigen</h2>
+        <h2 class="formuleTitle">Formule Wijzigen</h2>
         </ng-template>
     <form class="form-group" [formGroup]="formGroupFormules" >
         <span class="p-float-label">
@@ -61,11 +60,11 @@
             <label for="float-input">Opmerking</label>
         </span>
     </form>
-    <div style="padding: 1rem; color: red;" *ngIf="this.formGroupFormules.controls['prijs'].invalid">
+    <div class="errorMessage" *ngIf="this.formGroupFormules.controls['prijs'].invalid">
         Gelieve een geldige prijs in te voeren. De prijs kan niet hoger dan 500 euro zijn.
       </div>
     <button pButton type="button" [disabled]="this.formGroupFormules.invalid" (click)="handleAddAndUpdateFormules()" class="p-button-raised" aria-label="Formule Opslaan" icon="pi pi-check" label="Formule Opslaan"></button>
 </div>
-<button pButton pRipple type="button" style="float: left; margin-left: 5rem;"  aria-label="back" (click)="goBack()" icon="pi pi-backward" label="Terug Naar De Vorige Pagina" class="p-button-outlined p-button-secondary"></button>
+<button pButton pRipple type="button"  aria-label="back" (click)="goBack()" icon="pi pi-backward" label="Terug Naar De Vorige Pagina" class="p-button-outlined p-button-secondary"></button>
 
 

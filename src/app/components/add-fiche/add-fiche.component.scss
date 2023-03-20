@@ -4,28 +4,66 @@
     grid-template-columns: repeat(3, 1fr);
     place-items: center;
     gap: 3rem;
-  
- 
 }
-h2 {
+.addFicheTitle {
     padding: 1rem;
     padding-left: 9rem;
-}
 
-button {
+}
+.formuleTitle {
+    padding: 1rem;
+    padding-left: 9rem;
+    padding-top: 5rem;
+}
+.p-button-raised, .p-button-outlined {
     float: right;
-    margin-right: 5rem;
+    margin: 2rem 5rem 2rem 5rem;
 }
 
-@media only screen and (max-width: 600px) {
+
+.errorMessage {
+    padding: 1rem; 
+    color: red;
+    margin: 0.3rem;
+}
+
+
+@media only screen and (max-width: 1100px) {
     .form-group {
     display: grid;
     place-items: center;
-    gap: 3rem;
     grid-template-columns: 1fr;
+    margin: 0;
+    padding: 0;
 }
-h2 {
-   display: grid;
-   place-items: center
+.addFicheTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: unset;
+    padding-left: unset;
+    margin-bottom: 4rem;
 }
+.formuleTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: unset;
+    padding-left: unset;
+    margin-top: 7rem;
+
+}
+
+.p-button-raised, .p-button-outlined {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+}
+
+@media only screen and (max-width: 410px) {
+.formuleTitle {
+  padding-left: 3rem;
+}
+
 }
