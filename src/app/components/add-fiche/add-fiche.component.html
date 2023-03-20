@@ -1,9 +1,5 @@
-<div *ngIf="!hideFormIfPathStartWithFormule">
-<h2 class="addFicheTitle" *ngIf="!this.routeId; else update">Klantenfiche Toevoegen</h2>
-<ng-template #update>
-<h2 class="addFicheTitle">Klantenfiche Wijzigen</h2>
-</ng-template>
-
+<div appHideFormIfPathStartWithFormule>
+<h2 class="addFicheTitle" aria-label="title fiches" appAddOrUpdate [routeId]="this.routeId"></h2>
 <form class="form-group" [formGroup]="formGroupFiches">
     <span class="p-float-label">
         <input id="float-input" pattern="[a-zA-Z]*" formControlName="voornaam" type="text" class="p-inputtext-lg" pInputText> 
@@ -37,11 +33,8 @@
 <button [disabled]="!formGroupFiches.valid || this.recentCreatedFicheId" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Opslaan" icon="pi pi-check" label="klantenfiches Opslaan"></button>
 </div>
 
-<div *ngIf="!hideFormIfPathStartWithFiche && !showFormIfPathStartWithFicheAndHasFicheId">
-    <h2 class="formuleTitle" *ngIf="!this.routeId || createFormuleCheck; else update">Formule toevoegen</h2>
-    <ng-template #update>
-        <h2 class="formuleTitle">Formule Wijzigen</h2>
-        </ng-template>
+<div appHideOrShowFormIfPathHasFiche [recentCreatedFicheId]="this.recentCreatedFicheId">
+    <h2 class="formuleTitle" appAddOrHideFormuleTitle [routeId]="this.routeId" >Formule toevoegen</h2>
     <form class="form-group" [formGroup]="formGroupFormules" >
         <span class="p-float-label">
             <textarea pInputTextarea [autoResize]="true" style="width: 40vh;" id="float-input" class="p-inputtext-lg" formControlName="formuleText" type="text" ></textarea>
@@ -60,9 +53,7 @@
             <label for="float-input">Opmerking</label>
         </span>
     </form>
-    <div class="errorMessage" *ngIf="this.formGroupFormules.controls['prijs'].invalid">
-        Gelieve een geldige prijs in te voeren. De prijs kan niet hoger dan 500 euro zijn.
-      </div>
+   <app-error-message *ngIf="this.formGroupFormules.controls['prijs'].invalid"></app-error-message>
     <button pButton type="button" [disabled]="this.formGroupFormules.invalid" (click)="handleAddAndUpdateFormules()" class="p-button-raised" aria-label="Formule Opslaan" icon="pi pi-check" label="Formule Opslaan"></button>
 </div>
 <button pButton pRipple type="button"  aria-label="back" (click)="goBack()" icon="pi pi-backward" label="Terug Naar De Vorige Pagina" class="p-button-outlined p-button-secondary"></button>

@@ -35,6 +35,11 @@ import { BadgeModule } from 'primeng/badge';
 import { PrijsPipe } from './pipes/prijs.pipe';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AddOrUpdateDirective } from './directives/add-or-update.directive';
+import { HideFormIfPathStartWithFormuleDirective } from './directives/hide-form-if-path-start-with-formule.directive';
+import { AddOrHideFormuleTitleDirective } from './directives/add-or-hide-formule-title.directive';
+import { HideOrShowFormIfPathHasFicheDirective } from './directives/hide-or-show-form-if-path-has-fiche.directive';
+import { ErrorMessageComponent } from './ui/error-message/error-message.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +53,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     NvtPipe,
     NumberPipe,
     PrijsPipe,
+    AddOrUpdateDirective,
+    HideFormIfPathStartWithFormuleDirective,
+    AddOrHideFormuleTitleDirective,
+    HideOrShowFormIfPathHasFicheDirective,
+    ErrorMessageComponent,
   ],
   imports: [
     BrowserModule,

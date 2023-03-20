@@ -162,38 +162,4 @@ export class AddFicheComponent extends Form implements OnInit {
         });
       });
   }
-
-  // chech which form needs to be shown to the user
-  get hideFormIfPathStartWithFormule(): boolean {
-    if (this.location.path().substring(0, 8) === '/formule') {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  get hideFormIfPathStartWithFiche(): boolean {
-    if (this.location.path() === '/fiches/new') {
-      return false;
-    }
-    if (this.location.path().substring(0, 8) === '/fiches/') {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  get showFormIfPathStartWithFicheAndHasFicheId(): boolean {
-    if (this.location.path() === '/fiches/new' && !this.recentCreatedFicheId) {
-      return true;
-    }
-    return false;
-  }
-
-  get createFormuleCheck(): boolean {
-    if (this.location.path().startsWith('/formule/new')) {
-      return true;
-    }
-    return false;
-  }
 }
