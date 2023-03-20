@@ -30,7 +30,7 @@
 <div class="errorMessage" *ngIf="this.formGroupFiches.controls['telefoonNummer'].invalid || this.formGroupFiches.controls['mobielNummer'].invalid">
     Gelieve een geldig nummer in te voeren
   </div>
-<button [disabled]="!formGroupFiches.valid || this.recentCreatedFicheId" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Opslaan" icon="pi pi-check" label="klantenfiches Opslaan"></button>
+<button [disabled]="!formGroupFiches.valid || this.recentCreatedFicheId" appRemoveAddFicheBtn [removeAddFichesBtn]="removeAddFichesBtn" pButton type="button" (click)="handleAddAndUpdate()" class="p-button-raised" aria-label="Fiche Opslaan" icon="pi pi-check" label="klantenfiches Opslaan"></button>
 </div>
 
 <div appHideOrShowFormIfPathHasFiche [recentCreatedFicheId]="this.recentCreatedFicheId">

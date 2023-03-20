@@ -40,6 +40,7 @@ import { HideFormIfPathStartWithFormuleDirective } from './directives/hide-form-
 import { AddOrHideFormuleTitleDirective } from './directives/add-or-hide-formule-title.directive';
 import { HideOrShowFormIfPathHasFicheDirective } from './directives/hide-or-show-form-if-path-has-fiche.directive';
 import { ErrorMessageComponent } from './ui/error-message/error-message.component';
+import { RemoveAddFicheBtnDirective } from './directives/remove-add-fiche-btn.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { ErrorMessageComponent } from './ui/error-message/error-message.componen
     AddOrHideFormuleTitleDirective,
     HideOrShowFormIfPathHasFicheDirective,
     ErrorMessageComponent,
+    RemoveAddFicheBtnDirective,
   ],
   imports: [
     BrowserModule,

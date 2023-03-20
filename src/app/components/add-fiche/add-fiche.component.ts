@@ -18,6 +18,7 @@ export class AddFicheComponent extends Form implements OnInit {
   formule: Formules | undefined;
   recentCreatedFicheId: any;
   formuleId: any;
+  removeAddFichesBtn: boolean = false;
 
   constructor(
     protected override ficheService: FichesService,
@@ -128,6 +129,7 @@ export class AddFicheComponent extends Form implements OnInit {
       this.toast.success('Het fiche is successvol aangemaakt', 'Toevoegen');
       this.recentCreatedFicheId = data.id;
       this.formGroupFiches?.disable();
+      this.removeAddFichesBtn = true;
     });
   }
 

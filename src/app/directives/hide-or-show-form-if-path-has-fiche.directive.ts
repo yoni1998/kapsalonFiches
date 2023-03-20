@@ -18,8 +18,7 @@ export class HideOrShowFormIfPathHasFicheDirective
 
   ngOnInit(): void {
     if (this.location.path() === '/fiches/new' && !this.recentCreatedFicheId) {
-      this.elementRef.nativeElement.style.position = 'absolute';
-      this.elementRef.nativeElement.style.visibility = 'hidden';
+      this.elementRef.nativeElement.style.display = 'none';
     }
 
     if (this.location.path().substring(0, 12) === '/fiches/edit') {
@@ -30,8 +29,7 @@ export class HideOrShowFormIfPathHasFicheDirective
   ngOnChanges(changes: SimpleChanges) {
     if (changes['recentCreatedFicheId']) {
       if (this.location.path() === '/fiches/new' && this.recentCreatedFicheId) {
-        this.elementRef.nativeElement.style.visibility = 'visible';
-        this.elementRef.nativeElement.style.position = 'relative';
+        this.elementRef.nativeElement.style.display = '';
       }
     }
   }
