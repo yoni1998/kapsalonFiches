@@ -2,7 +2,7 @@ import { ExportExcelService } from './../../services/export-excel.service';
 import { FichesService } from '../../services/fiches.service';
 import { Component, OnInit } from '@angular/core';
 import { Fiche, Formules } from '../../types';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, tap } from 'rxjs/operators';
 import { Form } from '../../shared/form';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';

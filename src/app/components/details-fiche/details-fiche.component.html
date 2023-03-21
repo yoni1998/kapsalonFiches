@@ -1,8 +1,9 @@
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+
 <p-toolbar *ngIf="!this.showSpinner" class="btnContainter">
   <div class="p-toolbar-group-start">
-    <p-button label="Formule Toevoegen" (click)="this.router.navigate(['formule/new', this.ficheId])" tooltipPosition="bottom" pTooltip="Een nieuwe formule toevoegen" icon="pi pi-check" styleClass="p-button-success"></p-button>
+    <p-button label="Formule Toevoegen" (click)="this.router.navigate(['formule/new', this.ficheId])" tooltipPosition="bottom" pTooltip="Een nieuwe formule toevoegen" icon="pi pi-plus" styleClass="p-button-success"></p-button>
   </div>
     <div class="p-toolbar-group-center">
       <p-button label="Klantengegeven Wijzigen" (click)="this.router.navigate(['fiches/edit', this.ficheId])" icon="pi pi-pencil" pTooltip="Klantgegeven Wijzigen" tooltipPosition="bottom"></p-button>
@@ -19,17 +20,17 @@
         <label for="float-input">Naam</label>
       </span>
       <span class="p-float-label">
-        <input id="float-input" [value]="klantDetails?.telefoonNummer | number | nvt" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+        <input id="float-input" [value]="klantDetails?.telefoonNummer | number" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
         <label for="float-input">Telefoonnummer</label>
         <i class="pi pi-copy" *ngIf="klantDetails?.telefoonNummer" (click)="copyText(klantDetails?.telefoonNummer)"></i>
       </span>
       <span class="p-float-label">
-        <input id="float-input" [value]="klantDetails?.mobielNummer | number | nvt" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+        <input id="float-input" [value]="klantDetails?.mobielNummer | number" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
         <label for="float-input">Mobielnummer</label>
         <i class="pi pi-copy" *ngIf="klantDetails?.mobielNummer" (click)="copyText(klantDetails?.mobielNummer)"></i>
       </span>
       <span class="p-float-label">
-        <input id="float-input" [value]="klantDetails?.zakelijkNummer | number | nvt" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+        <input id="float-input" [value]="klantDetails?.zakelijkNummer | number" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
         <label for="float-input">Zakelijknummer</label>
         <i class="pi pi-copy" *ngIf="klantDetails?.zakelijkNummer" (click)="copyText(klantDetails?.zakelijkNummer)"></i>
       </span>
@@ -48,29 +49,29 @@
     </ng-template>
     <div *ngFor="let formule of formulesList">
       <div class="grid-formules" [ngStyle]="{'grid-template-columns': this.actionsActive ? 'repeat(6, 1fr)' : 'repeat(5, 1fr)'}">
-      <div>
-      <h4>Formule</h4>
-        <p>{{ formule.formuleText }}</p>  
-    </div>
-    <div>
-      <h4>Prijs</h4>
-        <p>{{ formule.prijs | prijs }}</p>  
-    </div>
-    <div>
-      <h4>Opmerking</h4>
-        <p>{{ formule.opmerking | nvt }}</p>  
-    </div>
-    <div>
-      <h4>Aangemaakt op</h4>
-        <p>{{ formule.createdAt | customDate}}</p>  
-    </div>
-    <div>
-      <h4>Laatst aangepast op</h4>
-        <p>{{ formule.updatedAt | customDate}}</p>  
-    </div>
+    <span class="p-float-label">
+      <input id="float-input" [value]="formule.formuleText" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+      <label for="float-input">Formule</label>
+    </span>
+    <span class="p-float-label">
+      <input id="float-input" [value]="formule.prijs | prijs" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+      <label for="float-input">Prijs</label>
+    </span>
+    <span class="p-float-label">
+      <input id="float-input" [value]="formule.opmerking | nvt" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+      <label for="float-input">Opmerking</label>
+    </span>
+    <span class="p-float-label">
+      <input id="float-input" [value]="formule.createdAt | customDate" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+      <label for="float-input">Aangemaakt Op</label>
+    </span>
+    <span class="p-float-label">
+      <input id="float-input" [value]="formule.updatedAt | customDate" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+      <label for="float-input">Aangepast Op</label>
+    </span>
     <div class="actions" *ngIf="actionsActive">
-      <button style="margin: 0 1rem 0 1rem;" pButton pRipple type="button" (click)="this.router.navigate(['formule/edit/', formule.id])" icon="pi pi-pencil"  aria-label="Wijzig Formule" class="p-button-rounded p-button-outlined"></button>
-      <button  pButton pRipple type="button" (click)="removeFormules(formule)" aria-label="Verwijder Formule" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>
+      <button pButton pRipple type="button" (click)="this.router.navigate(['formule/edit/', formule.id])" icon="pi pi-pencil"  aria-label="Wijzig Formule" class="p-button-rounded p-button-outlined"></button>
+      <button pButton pRipple type="button" (click)="removeFormules(formule)" aria-label="Verwijder Formule" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>
     </div>
     </div>
     </div>

@@ -5,12 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NumberPipe implements PipeTransform {
   transform(value: any, ...args: unknown[]): unknown {
-    if (value === 'NVT') {
+    if (!value) {
       return 'NVT';
+    } else {
+      let stringValueNumber: string = value;
+      let match = stringValueNumber.toString().match(/.{1,3}/g);
+      let formattedNumber = match?.join(' ');
+      return formattedNumber;
     }
-    let stringValueNumber: string = value;
-    let match = stringValueNumber.toString().match(/.{1,3}/g);
-    let formattedNumber = match?.join(' ');
-    return formattedNumber;
   }
 }

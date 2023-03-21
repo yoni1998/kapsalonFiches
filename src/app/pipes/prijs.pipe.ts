@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PrijsPipe implements PipeTransform {
   transform(value: number | undefined, ...args: unknown[]): unknown {
     if (!value) {
-      return '';
+      return 'NVT';
     } else {
       return '€ ' + value;
     }

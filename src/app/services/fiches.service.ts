@@ -54,7 +54,7 @@ export class FichesService {
   // get all formules on ficheId
   getAllFormulesOnFicheId(id: string): AngularFirestoreCollection<Formules> {
     return this.db.collection('/fiches/' + id + '/formules', (ref) =>
-      ref.orderBy('createdAt')
+      ref.orderBy('createdAt', 'desc')
     );
   }
 
