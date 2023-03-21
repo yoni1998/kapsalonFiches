@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NvtPipe implements PipeTransform {
   transform(value: unknown, ...args: unknown[]): unknown {
-    return value ? value : 'Niet Van Toepassing';
+    return value ? value : 'NVT';
   }
 }

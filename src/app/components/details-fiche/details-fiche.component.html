@@ -1,41 +1,42 @@
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
-<p-toolbar *ngIf="!this.showSpinner">
+<app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+<p-toolbar *ngIf="!this.showSpinner" class="btnContainter">
   <div class="p-toolbar-group-start">
     <p-button label="Formule Toevoegen" (click)="this.router.navigate(['formule/new', this.ficheId])" tooltipPosition="bottom" pTooltip="Een nieuwe formule toevoegen" icon="pi pi-check" styleClass="p-button-success"></p-button>
   </div>
-    <div class="p-toolbar-group-center" style="padding: 1rem;">
+    <div class="p-toolbar-group-center">
       <p-button label="Klantengegeven Wijzigen" (click)="this.router.navigate(['fiches/edit', this.ficheId])" icon="pi pi-pencil" pTooltip="Klantgegeven Wijzigen" tooltipPosition="bottom"></p-button>
-        <p-button label="Fiche Verwijderen" (click)="deleteFiche()" icon="pi pi-trash" pTooltip="Fiche van de klant verwijderen" tooltipPosition="bottom" styleClass="p-button-danger"></p-button>
       </div>
+      <p-button label="Fiche Verwijderen" (click)="deleteFiche()" icon="pi pi-trash" pTooltip="Fiche van de klant verwijderen" tooltipPosition="bottom" styleClass="p-button-danger"></p-button>
 </p-toolbar>
 
 <div class="information" *ngIf="!this.showSpinner">
-<p-fieldset [toggleable]="true" [transitionOptions]="'500ms'">
+<p-fieldset [toggleable]="true" [transitionOptions]="'500ms'" class="klantenFieldset">
     <ng-template pTemplate="header">Informatie van de klant</ng-template>
     <div class="grid-klant">
-    <div>
-    <h4>Naam</h4>
-    <p>{{ klantDetails?.achternaam}} {{ klantDetails?.voornaam }} </p>
-</div>
-<div>
-    <h4>Telefoonnummer</h4>
-  <p>{{ klantDetails?.telefoonNummer | nvt | number }} </p>   
-  <button class="copyBtn" *ngIf="klantDetails?.telefoonNummer" type="button" (click)="copyText(klantDetails?.telefoonNummer)">Copy</button> 
-</div>
-<div>
-    <h4>Mobiel nummer</h4>
-  <p>{{ klantDetails?.mobielNummer | nvt | number }} </p>
-    <button class="copyBtn" *ngIf="klantDetails?.telefoonNummer" type="button" (click)="copyText(klantDetails?.mobielNummer)">Copy</button>
-</div>
-<div>
-    <h4>Zakelijk nummer</h4>
-  <p>{{ klantDetails?.zakelijkNummer | nvt | number}}</p>  
-    <button class="copyBtn" *ngIf="klantDetails?.telefoonNummer" type="button" (click)="copyText(klantDetails?.zakelijkNummer)">Copy</button>
-</div>
-<div>
-    <h4>Adres</h4>
-  <p>{{ klantDetails?.adres | nvt }}</p>  
-</div>
+      <span class="p-float-label">
+        <input id="float-input" [value]="this.klantName" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+        <label for="float-input">Naam</label>
+      </span>
+      <span class="p-float-label">
+        <input id="float-input" [value]="klantDetails?.telefoonNummer | number | nvt" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+        <label for="float-input">Telefoonnummer</label>
+        <i class="pi pi-copy" *ngIf="klantDetails?.telefoonNummer" (click)="copyText(klantDetails?.telefoonNummer)"></i>
+      </span>
+      <span class="p-float-label">
+        <input id="float-input" [value]="klantDetails?.mobielNummer | number | nvt" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+        <label for="float-input">Mobielnummer</label>
+        <i class="pi pi-copy" *ngIf="klantDetails?.mobielNummer" (click)="copyText(klantDetails?.mobielNummer)"></i>
+      </span>
+      <span class="p-float-label">
+        <input id="float-input" [value]="klantDetails?.zakelijkNummer | number | nvt" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+        <label for="float-input">Zakelijknummer</label>
+        <i class="pi pi-copy" *ngIf="klantDetails?.zakelijkNummer" (click)="copyText(klantDetails?.zakelijkNummer)"></i>
+      </span>
+      <span class="p-float-label">
+        <input id="float-input" [value]="klantDetails?.adres | nvt" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+        <label for="float-input">Adres</label>
+      </span>
 </div>
 </p-fieldset>
 
@@ -65,7 +66,7 @@
     </div>
     <div>
       <h4>Laatst aangepast op</h4>
-        <p *ngIf="formule.updatedAt; else nvt">{{ formule.updatedAt | customDate }}</p>  
+        <p>{{ formule.updatedAt | customDate}}</p>  
     </div>
     <div class="actions" *ngIf="actionsActive">
       <button style="margin: 0 1rem 0 1rem;" pButton pRipple type="button" (click)="this.router.navigate(['formule/edit/', formule.id])" icon="pi pi-pencil"  aria-label="Wijzig Formule" class="p-button-rounded p-button-outlined"></button>
@@ -75,7 +76,3 @@
     </div>
 </p-fieldset>
 </div>
-<app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
-<ng-template #nvt>
-  <p>Niet Van Toepassing</p>
-</ng-template>

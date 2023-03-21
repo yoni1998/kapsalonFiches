@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NumberPipe implements PipeTransform {
   transform(value: any, ...args: unknown[]): unknown {
-    if (value === 'Niet Van Toepassing') {
-      return 'Niet Van Toepassing';
+    if (value === 'NVT') {
+      return 'NVT';
     }
     let stringValueNumber: string = value;
     let match = stringValueNumber.toString().match(/.{1,3}/g);

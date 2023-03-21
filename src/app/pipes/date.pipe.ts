@@ -5,6 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DatePipe implements PipeTransform {
   transform(value: any, ...args: unknown[]): unknown {
-    return new Date(value?.seconds * 1000).toLocaleString();
+    if (!value) {
+      return 'NVT';
+    } else {
+      return new Date(value?.seconds * 1000).toLocaleString();
+    }
   }
 }
