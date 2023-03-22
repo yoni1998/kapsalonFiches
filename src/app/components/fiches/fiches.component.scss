@@ -3,6 +3,10 @@
     font-size: 16px;
 }
 
+.product-description, .product-name {
+  font-size: 18px;
+}
+
   button  {
     margin: 1rem;
   }
@@ -18,7 +22,6 @@
     place-items: center;
     margin-bottom: 1rem;
     cursor: pointer;
-  
   }
   
   .col-12:hover {
@@ -34,6 +37,7 @@
     .product-list-item {
       grid-template-columns: repeat(2, 1fr);
       padding-bottom: 1rem;
+      place-items: unset;
       border-bottom: 1px rgb(195, 185, 185) dotted;
     }
   .flex {
