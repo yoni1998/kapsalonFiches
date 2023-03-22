@@ -1,9 +1,52 @@
-
 <div *ngIf="!showSpinner">
-    <button pButton routerLink="new" tooltipPosition="top"  type="button" class="p-button-raised"  pTooltip="Klantenfiche Toevoegen" aria-label="Toevoegen" icon="pi pi-plus" label="Klantenfiche Toevoegen"></button>
-    <p-splitButton styleClass="p-button-raised p-button-secondary mr-2 mb-2"  tooltipPosition="top" pTooltip="Fiches En/Of Formules Exporteren" (onClick)="exportExcel()" label="Export To Excel" icon="pi pi-download" [model]="this.items"></p-splitButton>
-    <p-dropdown class="dropdown" (click)="filterField()" [options]="sortFields" [(ngModel)]="selectedFiche" optionLabel="value"></p-dropdown>
-<p-orderList [value]="fichesList" controlsPosition="right" filterPlaceholder="Zoeken op naam van een klant"  header="Klantenfiches" filterBy="achternaam,voornaam">
+    <h2>Klantenfiches</h2>
+    <p-dataView  #dv [value]="fichesList" [paginator]="true" [rows]="9" filterBy="achternaam,voornaam"
+        [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+        <ng-template pTemplate="header">
+            <div class="flex">
+                <button pButton routerLink="new" tooltipPosition="top"  type="button" class="p-button-raised"  pTooltip="Klantenfiche Toevoegen" aria-label="Toevoegen" icon="pi pi-plus" label="Klantenfiche Toevoegen"></button>
+                <p-splitButton styleClass="p-button-raised p-button-secondary mr-2 mb-2"  tooltipPosition="top" pTooltip="Fiches En/Of Formules Exporteren" (onClick)="exportExcel()" label="Export To Excel" icon="pi pi-download" [model]="this.items"></p-splitButton>
+                <p-dropdown class="dropdown" (click)="filterField()" [options]="sortFields" [(ngModel)]="selectedFiche" optionLabel="value"></p-dropdown>               
+                    <span class="p-input-icon-left mb-2 md:mb-0">
+                    <i class="pi pi-search"></i>
+                    <input type="search"   pInputText #input placeholder="Zoeken op naam" (input)="dv.filter(input.value)">
+                </span>
+            </div>
+        </ng-template>
+        <ng-template let-fiche pTemplate="gridItem">
+            <div class="col-12">
+                <div class="product-list-item" [routerLink]="fiche.id + '/info'">
+                    <div class="product-list-detail">
+                        <p class="propertyNaam">Naam klant</p>
+                        <div class="product-name">{{fiche.achternaam}} {{fiche.voornaam}}</div>
+                    </div>
+                    <div class="product-list-action">
+                        <p class="propertyNaam">Telefoonnummer:</p>
+                        <span class="product-description">{{fiche.telefoonNummer | nvt | number }}</span>
+                    </div>
+                    <div class="product-list-action">
+                        <p class="propertyNaam">Mobielnummer:</p>
+                        <span class="product-description">{{fiche.mobielNummer | nvt | number }}</span>
+                    </div>
+                    <div class="product-list-action">
+                        <p class="propertyNaam">Zakelijknummer:</p>
+                        <span class="product-description">{{fiche.zakelijkNummer | nvt | number }}</span>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>
+
+
+
+
+
+
+
+
+
+    
     <ng-template let-fiche pTemplate="fiche">
         <div [routerLink]="fiche.id + '/info'">
             <div style="font-size:18px;float:left;margin:15px 5px 0 0">{{fiche.achternaam}} {{fiche.voornaam}}</div>
@@ -21,6 +64,5 @@
             </div>
         </div>
     </ng-template>
-</p-orderList>
-</div>
+
 <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>

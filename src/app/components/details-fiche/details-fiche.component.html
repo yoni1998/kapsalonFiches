@@ -44,8 +44,7 @@
 <p-fieldset *ngIf="this.formulesList?.length" [toggleable]="true" [transitionOptions]="'500ms'">
   <h5>Formules Bewerken</h5>
   <p-inputSwitch (onChange)="showActions()"></p-inputSwitch>  
-  <ng-template pTemplate="header">Formules
-      <p-badge class="badge" [value]='this.aantalFormules'></p-badge>
+  <ng-template pTemplate="header">{{ aantalFormules }} Formules
     </ng-template>
     <div *ngFor="let formule of formulesList">
       <div class="grid-formules" [ngStyle]="{'grid-template-columns': this.actionsActive ? 'repeat(6, 1fr)' : 'repeat(5, 1fr)'}">

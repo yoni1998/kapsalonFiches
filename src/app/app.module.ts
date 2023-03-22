@@ -17,6 +17,7 @@ import { OrderListModule } from 'primeng/orderlist';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { FieldsetModule } from 'primeng/fieldset';
+import { DataViewModule } from 'primeng/dataview';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'primeng/tooltip';
 import { CalendarModule } from 'primeng/calendar';
@@ -73,6 +74,7 @@ import { RemoveAddFicheBtnDirective } from './directives/remove-add-fiche-btn.di
     ToolbarModule,
     ButtonModule,
     InputSwitchModule,
+    DataViewModule,
     SplitButtonModule,
     CalendarModule,
     InputTextModule,

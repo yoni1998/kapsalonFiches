@@ -19,6 +19,12 @@ export class FichesComponent extends Form implements OnInit {
   formuleList: Formules[] = [];
   selectedFiche: Fiche | undefined;
   items: any;
+  sortOptions: any[] | undefined;
+
+  sortOrder!: number;
+
+  sortField!: string;
+  sortKey: any;
 
   constructor(
     protected override ficheService: FichesService,

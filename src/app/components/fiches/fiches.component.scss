@@ -1,22 +1,10 @@
 .propertyNaam {
     color: grey;
-    font-size: 12px;
+    font-size: 16px;
 }
-
-:host ::ng-deep .ui-listbox {
-    width: 20em;
-    z-index: -1 !important;
-  }
-  :host ::ng-deep .p-ink {
-    display: none !important;
-  }
 
   button  {
     margin: 1rem;
-  }
-
-  :host ::ng-deep  .p-orderlist-controls-right .p-orderlist-controls {
-    display: none;
   }
 
   :host ::ng-deep .p-dropdown, p-splitButton {
@@ -24,7 +12,53 @@
     float: right;
   }
 
-  @media only screen and (max-width: 850px) {
+  .product-list-item {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    margin-bottom: 1rem;
+    cursor: pointer;
   
+  }
+  
+  .col-12:hover {
+    background-color: #e4e6eb;
+  }
+
+  .p-input-icon-left {
+    margin: 0 0 0.8rem 3rem;
+  }
+
+
+  @media only screen and (max-width: 750px) {
+    .product-list-item {
+      grid-template-columns: repeat(2, 1fr);
+      padding-bottom: 1rem;
+      border-bottom: 1px rgb(195, 185, 185) dotted;
+    }
+  .flex {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    align-content: center;
+    flex-direction: column;
+    }
+    .propertyNaam {
+     font-size: 12px;
+     padding-top: 0.5rem;
+  }
+
+    button, p-splitButton, .dropdown, .p-input-icon-left {
+      margin: unset;
+      margin-bottom: 0.5rem;
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+  .p-input-icon-left  {
+    margin: unset;
+    margin-left: 1rem;
+    margin-bottom: 0.7rem;
+  }
 }
 
