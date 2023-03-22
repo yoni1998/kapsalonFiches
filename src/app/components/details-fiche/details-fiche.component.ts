@@ -22,6 +22,7 @@ export class DetailsFicheComponent extends Form implements OnInit {
   formulesList: Formules[] | undefined;
   aantalFormules: any;
   actionsActive: boolean | undefined;
+  isCopied: any | undefined;
   constructor(
     protected override ficheService: FichesService,
     protected override route: ActivatedRoute,
@@ -51,6 +52,7 @@ export class DetailsFicheComponent extends Form implements OnInit {
 
   copyText(textToCopy: any) {
     this.clipboard.copy(textToCopy);
+    this.isCopied = textToCopy;
     this.toast.info('Nummer gekopieerd');
   }
 

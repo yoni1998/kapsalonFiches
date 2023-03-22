@@ -16,26 +16,26 @@
     <ng-template pTemplate="header">Informatie van de klant</ng-template>
     <div class="grid-klant">
       <span class="p-float-label">
-        <input id="float-input" [value]="this.klantName" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+        <input id="float-input" [value]="this.klantName" [disabled]="true" type="text" class="p-inputtext-m" pInputText> 
         <label for="float-input">Naam</label>
       </span>
       <span class="p-float-label">
-        <input id="float-input" [value]="klantDetails?.telefoonNummer | number" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+        <input id="float-input" [value]="klantDetails?.telefoonNummer | number" [disabled]="true" type="text" class="p-inputtext-m" pInputText> 
         <label for="float-input">Telefoonnummer</label>
-        <i class="pi pi-copy" *ngIf="klantDetails?.telefoonNummer" (click)="copyText(klantDetails?.telefoonNummer)"></i>
+        <i class="pi pi-copy" *ngIf="klantDetails?.telefoonNummer" appCopyBtnDisable [copyText]="isCopied" [currentCopyText]="klantDetails?.telefoonNummer" (click)="copyText(klantDetails?.telefoonNummer)"></i>
       </span>
       <span class="p-float-label">
-        <input id="float-input" [value]="klantDetails?.mobielNummer | number" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+        <input id="float-input" [value]="klantDetails?.mobielNummer | number" [disabled]="true" type="text" class="p-inputtext-m" pInputText> 
         <label for="float-input">Mobielnummer</label>
-        <i class="pi pi-copy" *ngIf="klantDetails?.mobielNummer" (click)="copyText(klantDetails?.mobielNummer)"></i>
+        <i class="pi pi-copy" *ngIf="klantDetails?.mobielNummer" appCopyBtnDisable [copyText]="isCopied" [currentCopyText]="klantDetails?.mobielNummer" (click)="copyText(klantDetails?.mobielNummer)"></i>
       </span>
       <span class="p-float-label">
-        <input id="float-input" [value]="klantDetails?.zakelijkNummer | number" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+        <input id="float-input" [value]="klantDetails?.zakelijkNummer | number" [disabled]="true" type="text" class="p-inputtext-m" pInputText> 
         <label for="float-input">Zakelijknummer</label>
-        <i class="pi pi-copy" *ngIf="klantDetails?.zakelijkNummer" (click)="copyText(klantDetails?.zakelijkNummer)"></i>
+        <i class="pi pi-copy" *ngIf="klantDetails?.zakelijkNummer" appCopyBtnDisable [copyText]="isCopied" [currentCopyText]="klantDetails?.zakelijkNummer" (click)="copyText(klantDetails?.zakelijkNummer)"></i>
       </span>
       <span class="p-float-label">
-        <input id="float-input" [value]="klantDetails?.adres | nvt" [disabled]="true" type="text" class="p-inputtext-sm" pInputText> 
+        <input id="float-input" [value]="klantDetails?.adres | nvt" [disabled]="true" type="text" class="p-inputtext-m" pInputText> 
         <label for="float-input">Adres</label>
       </span>
 </div>

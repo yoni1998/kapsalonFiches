@@ -19,9 +19,9 @@
   .product-list-item {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    place-items: center;
     margin-bottom: 1rem;
     cursor: pointer;
+    margin-left: 10%;
   }
   
   .col-12:hover {
@@ -39,6 +39,7 @@
       padding-bottom: 1rem;
       place-items: unset;
       border-bottom: 1px rgb(195, 185, 185) dotted;
+      margin-left: unset;
     }
   .flex {
     display: flex;

@@ -19,12 +19,21 @@ export class FichesService {
   // fiches
 
   // get all fiches
-  getAllFiches(orderField?: any): AngularFirestoreCollection<Fiche> {
+  getAllFiches(
+    orderField?: any,
+    fieldOrder?: any
+  ): AngularFirestoreCollection<Fiche> {
     if (!orderField) {
       orderField = 'achternaam';
     }
+    if (orderField === 'achternaam' || 'voornaam' || 'adres') {
+      fieldOrder = 'asc';
+    }
+    if (orderField === 'createdAt') {
+      fieldOrder = 'desc';
+    }
     return this.db.collection(this.dbPath, (ref) =>
-      ref.orderBy(String(orderField))
+      ref.orderBy(String(orderField), fieldOrder)
     );
   }
 

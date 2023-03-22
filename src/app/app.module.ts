@@ -43,6 +43,7 @@ import { HideOrShowFormIfPathHasFicheDirective } from './directives/hide-or-show
 import { ErrorMessageComponent } from './ui/error-message/error-message.component';
 import { RemoveAddFicheBtnDirective } from './directives/remove-add-fiche-btn.directive';
 import { FormuleFieldsetDirective } from './directives/formule-fieldset.directive';
+import { CopyBtnDisableDirective } from './directives/copy-btn-disable.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +64,7 @@ import { FormuleFieldsetDirective } from './directives/formule-fieldset.directiv
     ErrorMessageComponent,
     RemoveAddFicheBtnDirective,
     FormuleFieldsetDirective,
+    CopyBtnDisableDirective,
   ],
   imports: [
     BrowserModule,
