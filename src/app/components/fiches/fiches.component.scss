@@ -15,7 +15,6 @@
       margin: 0.5rem 0 0.4rem 0;
     }
   }
-  
 
   .product-list-item {
     display: grid;
@@ -34,6 +33,10 @@
 
   .p-input-icon-left {
     margin: 0 0 0.8rem 3rem;
+  }
+
+  .dropdown, p-splitButton {
+    padding-top: 0.5rem;
   }
 
 

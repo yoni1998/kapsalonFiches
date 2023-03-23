@@ -121,7 +121,9 @@ export class FichesComponent extends Form implements OnInit {
           takeUntil(this.destroy$$)
         )
         .subscribe((data) => {
-          this.formuleList = data;
+          if (data.length !== 0) {
+            this.formuleList.push(...data);
+          }
         });
     }
   }
