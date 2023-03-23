@@ -38,18 +38,18 @@
 
 <div appHideOrShowFormIfPathHasFiche [recentCreatedFicheId]="this.recentCreatedFicheId">
     <h2 class="formuleTitle" appAddOrHideFormuleTitle [routeId]="this.routeId" >Formule toevoegen</h2>
-    <form class="form-group" [formGroup]="formGroupFormules" >
+    <form class="form-group" [formGroup]="formGroupFormules">
         <span class="p-float-label">
-            <textarea pInputTextarea [autoResize]="true" style="width: 40vh;" id="float-input" class="p-inputtext-lg" formControlName="formuleText" type="text" ></textarea>
-            <label for="float-input">Formule</label>
+            <p-calendar formControlName="createdAt" class="p-inputtext-lg" ></p-calendar>
+            <label for="float-input">Aangemaakt op</label>
         </span>
         <span class="p-float-label">
             <input id="float-input" formControlName="prijs" type="number" class="p-inputtext-lg" pInputText> 
             <label for="float-input">Prijs</label>
         </span>
         <span class="p-float-label">
-            <p-calendar formControlName="createdAt" class="p-inputtext-lg" ></p-calendar>
-            <label for="float-input">Aangemaakt op</label>
+            <textarea pInputTextarea [autoResize]="true" style="width: 40vh;" id="float-input" class="p-inputtext-lg" formControlName="formuleText" type="text" ></textarea>
+            <label for="float-input">Formule</label>
         </span>
         <span class="p-float-label">
             <textarea pInputTextarea [autoResize]="true" style="width: 40vh;" id="float-input" class="p-inputtext-lg" formControlName="opmerking" type="text" ></textarea>

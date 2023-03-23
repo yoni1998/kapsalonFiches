@@ -1,6 +1,6 @@
 <div *ngIf="!showSpinner">
     <h2>Klantenfiches</h2>
-    <p-dataView  #dv [value]="fichesList" [paginator]="true" [rows]="9" filterBy="achternaam,voornaam" layout="grid">
+    <p-dataView  #dv [value]="fichesList" [paginator]="true" [rows]="10" filterBy="achternaam,voornaam" layout="grid">
         <ng-template pTemplate="header">
             <div class="flex">
                 <button pButton routerLink="new" tooltipPosition="top"  type="button" class="p-button-raised"  pTooltip="Klantenfiche Toevoegen" aria-label="Toevoegen" icon="pi pi-plus" label="Klantenfiche Toevoegen"></button>
@@ -16,7 +16,7 @@
             <div class="col-12">
                 <div class="product-list-item" [routerLink]="fiche.id + '/info'">
                     <div class="product-list-detail">
-                        <p class="propertyNaam">Naam klant</p>
+                        <p class="propertyNaam">Naam Klant</p>
                         <div class="product-name">{{fiche.achternaam}} {{fiche.voornaam}}</div>
                     </div>
                     <div class="product-list-action">

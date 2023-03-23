@@ -7,21 +7,26 @@
   font-size: 18px;
 }
 
-  button  {
-    margin: 1rem;
+.flex {
+  display: flex;
+  align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    span {
+      margin-top: 0.8rem;
+    }
   }
-
-  :host ::ng-deep .p-dropdown, p-splitButton {
-    margin: 1rem 2rem 0 0;
-    float: right;
-  }
+  
 
   .product-list-item {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 40% 20% 20% 20%;
     margin-bottom: 1rem;
     cursor: pointer;
-    margin-left: 10%;
+  
+  }
+  .product-list-item div:nth-child(4) {
+    grid-column-start: 4;
   }
   
   .col-12:hover {
@@ -33,13 +38,12 @@
   }
 
 
-  @media only screen and (max-width: 750px) {
+  @media only screen and (max-width: 800px) {
     .product-list-item {
       grid-template-columns: repeat(2, 1fr);
       padding-bottom: 1rem;
       place-items: unset;
       border-bottom: 1px rgb(195, 185, 185) dotted;
-      margin-left: unset;
     }
   .flex {
     display: flex;
@@ -57,6 +61,10 @@
       margin: unset;
       margin-bottom: 0.5rem;
     }
+
+    .product-list-item div:nth-child(4) {
+      grid-column-start: unset;
+    }
 }
 
 @media only screen and (max-width: 1150px) {
@@ -65,5 +73,17 @@
     margin-left: 1rem;
     margin-bottom: 0.7rem;
   }
+
+  .flex {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    align-content: center;
+    flex-direction: column;
+
+    button, p-splitButton, p-dropdown {
+      margin: 0.5rem;
+    }
+    }
 }
 

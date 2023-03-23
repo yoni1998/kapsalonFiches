@@ -71,8 +71,12 @@ export class AddFicheComponent extends Form implements OnInit {
 
   updateFiche(): void {
     this.fiche = {
-      voornaam: this.formGroupFiches.controls['voornaam'].value,
-      achternaam: this.formGroupFiches.controls['achternaam'].value,
+      voornaam: this.toUppercase(
+        this.formGroupFiches.controls['voornaam'].value
+      ),
+      achternaam: this.toUppercase(
+        this.formGroupFiches.controls['achternaam'].value
+      ),
       telefoonNummer: this.formGroupFiches.controls['telefoonNummer'].value,
       mobielNummer: this.formGroupFiches.controls['mobielNummer'].value,
       zakelijkNummer: this.formGroupFiches.controls['zakelijkNummer'].value,
