@@ -4,12 +4,12 @@
         <ng-template pTemplate="header">
             <div class="flex">
                 <button pButton routerLink="new" tooltipPosition="top"  type="button" class="p-button-raised"  pTooltip="Klantenfiche Toevoegen" aria-label="Toevoegen" icon="pi pi-plus" label="Klantenfiche Toevoegen"></button>
-                <p-splitButton styleClass="p-button-raised p-button-secondary mr-2 mb-2"  tooltipPosition="top" pTooltip="Fiches En/Of Formules Exporteren" (onClick)="exportExcel()" label="Export To Excel" icon="pi pi-download" [model]="this.items"></p-splitButton>
-                <p-dropdown class="dropdown" (click)="filterField()" [options]="sortFields" [(ngModel)]="selectedFiche" optionLabel="value"></p-dropdown>               
                     <span class="p-input-icon-left mb-2 md:mb-0">
                     <i class="pi pi-search"></i>
                     <input type="search" pInputText #input placeholder="Zoeken op naam" (input)="dv.filter(input.value)">
                 </span>
+                <p-dropdown class="dropdown" (click)="filterField()" [options]="sortFields" [(ngModel)]="selectedFiche" optionLabel="value"></p-dropdown>               
+                <p-splitButton styleClass="p-button-raised p-button-secondary mr-2 mb-2"  tooltipPosition="top" pTooltip="Fiches En/Of Formules Exporteren" (onClick)="exportExcel()" label="Export To Excel" icon="pi pi-download" [model]="this.items"></p-splitButton>
             </div>
         </ng-template>
         <ng-template let-fiche pTemplate="gridItem">
