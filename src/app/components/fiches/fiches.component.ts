@@ -58,8 +58,7 @@ export class FichesComponent extends Form implements OnInit {
     ];
   }
   sortFields = [
-    { orderField: 'achternaam', value: 'Sorteren Op Achternaam' },
-    { orderField: 'voornaam', value: 'Sorteren Op Voornaam' },
+    { orderField: 'naam', value: 'Sorteren Op Naam' },
     { orderField: 'createdAt', value: 'Sorteren Op Datum' },
   ];
 
@@ -74,7 +73,7 @@ export class FichesComponent extends Form implements OnInit {
 
   exportFichesToExcel(): void {
     var res = alasql(
-      `SEARCH / AS @data \ RETURN(voornaam as Voornaam, achternaam as Achternaam, adres as Adres, telefoonNummer as TelefoonNummer, mobielNummer as MobielNummer, zakelijkNummer as ZakelijkNummer, createdAt.seconds as CreatedAt) \ FROM ?`,
+      `SEARCH / AS @data \ RETURN(naam as Naam, adres as Adres, telefoonNummer as TelefoonNummer, mobielNummer as MobielNummer, zakelijkNummer as ZakelijkNummer, createdAt.seconds as CreatedAt) \ FROM ?`,
       [this.fichesList]
     );
     this.exportExcelService.exportAsExcelFile(res, 'fichesList');
@@ -82,7 +81,7 @@ export class FichesComponent extends Form implements OnInit {
 
   exportFormulesToExcel(): void {
     var res = alasql(
-      `SEARCH / AS @data \ RETURN(formuleText as Formule, id as Id, prijs as Prijs, opmerking as Opmerking, ficheId as FicheID, createdAt.seconds as CreatedAt, updatedAt as UpdatedAt) \ FROM ?`,
+      `SEARCH / AS @data \ RETURN(formuleText as Formule, id as Id, prijs as Prijs, opmerking as Opmerking, ficheId as FicheID, createdAt.seconds as CreatedAt) \ FROM ?`,
       [this.formuleList]
     );
     this.exportExcelService.exportAsExcelFile(res, 'formuleList');

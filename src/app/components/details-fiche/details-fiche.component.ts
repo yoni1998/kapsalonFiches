@@ -90,7 +90,7 @@ export class DetailsFicheComponent extends Form implements OnInit {
           takeUntil(this.destroy$$)
         )
         .subscribe((data) => {
-          this.klantName = data?.achternaam + ' ' + data?.voornaam;
+          this.klantName = data?.naam;
           this.klantDetails = data;
         });
     }

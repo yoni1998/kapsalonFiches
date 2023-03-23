@@ -1,6 +1,6 @@
 <div *ngIf="!showSpinner">
     <h2>Klantenfiches</h2>
-    <p-dataView  #dv [value]="fichesList" [paginator]="true" [rows]="10" filterBy="achternaam,voornaam" layout="grid">
+    <p-dataView  #dv [value]="fichesList" [paginator]="true" [rows]="10" filterBy="naam" layout="grid">
         <ng-template pTemplate="header">
             <div class="flex">
                 <button pButton routerLink="new" tooltipPosition="top"  type="button" class="p-button-raised"  pTooltip="Klantenfiche Toevoegen" aria-label="Toevoegen" icon="pi pi-plus" label="Klantenfiche Toevoegen"></button>
@@ -17,7 +17,7 @@
                 <div class="product-list-item" [routerLink]="fiche.id + '/info'">
                     <div class="product-list-detail">
                         <p class="propertyNaam">Naam Klant</p>
-                        <div class="product-name">{{fiche.achternaam}} {{fiche.voornaam}}</div>
+                        <div class="product-name">{{fiche.naam}}</div>
                     </div>
                     <div class="product-list-action">
                         <p class="propertyNaam">Telefoonnummer</p>
@@ -36,32 +36,4 @@
         </ng-template>
     </p-dataView>
 </div>
-
-
-
-
-
-
-
-
-
-    
-    <ng-template let-fiche pTemplate="fiche">
-        <div [routerLink]="fiche.id + '/info'">
-            <div style="font-size:18px;float:left;margin:15px 5px 0 0">{{fiche.achternaam}} {{fiche.voornaam}}</div>
-            <div style="font-size:18px;float:right;margin:0 5px 0 0;">
-                <p class="propertyNaam">Telefoon nummer:</p>
-                {{ fiche?.telefoonNummer | nvt | number }}
-            </div>
-            <div style="font-size:18px;float:right;margin:0 3rem 0 0;">
-                <p class="propertyNaam">Mobiel nummer:</p>
-                {{ fiche?.mobielNummer | nvt |number }}
-            </div>
-            <div style="font-size:18px;float:right;margin:0 3rem 0 0;">
-                <p class="propertyNaam">Zakelijk nummer:</p>
-                {{ fiche?.zakelijkNummer | nvt |number }}
-            </div>
-        </div>
-    </ng-template>
-
 <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>

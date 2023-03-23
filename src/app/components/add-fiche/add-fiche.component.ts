@@ -69,63 +69,13 @@ export class AddFicheComponent extends Form implements OnInit {
     }
   }
 
-  updateFiche(): void {
-    this.fiche = {
-      voornaam: this.toUppercase(
-        this.formGroupFiches.controls['voornaam'].value
-      ),
-      achternaam: this.toUppercase(
-        this.formGroupFiches.controls['achternaam'].value
-      ),
-      telefoonNummer: this.formGroupFiches.controls['telefoonNummer'].value,
-      mobielNummer: this.formGroupFiches.controls['mobielNummer'].value,
-      zakelijkNummer: this.formGroupFiches.controls['zakelijkNummer'].value,
-      adres: this.formGroupFiches.controls['adres'].value,
-      createdAt: this.formGroupFiches.controls['createdAt'].value,
-    };
-
-    this.ficheService.updateFiche(this.routeId, this.fiche).then(() => {
-      this.toast.info(
-        `Het fiche van ${this.fiche?.achternaam} ${this.fiche?.voornaam} is successvol gewijzigd`,
-        'Gewijzigd'
-      );
-      this.location.back();
-    });
-  }
-
-  updateFormule(): void {
-    this.formule = {
-      formuleText: this.formGroupFormules.controls['formuleText'].value,
-      prijs: this.formGroupFormules.controls['prijs'].value,
-      opmerking: this.formGroupFormules.controls['opmerking'].value,
-      createdAt: this.formGroupFormules.controls['createdAt'].value,
-      updatedAt: new Date(),
-    };
-
-    if (this.formGroupFormules.controls['createdAt'].value > new Date()) {
-      this.toast.error(
-        'De datum van het aangemaakte fiche mag niet na de huidige datum vallen'
-      );
-    } else {
-      this.ficheService.updateFormule(this.routeId, this.formule).then(() => {
-        this.toast.info('De formule is successvol gewijzigd', 'Gewijzigd');
-        this.location.back();
-      });
-    }
-  }
-
   addFiche(): void {
     this.fiche = {
-      voornaam: this.toUppercase(
-        this.formGroupFiches.controls['voornaam'].value
-      ),
-      achternaam: this.toUppercase(
-        this.formGroupFiches.controls['achternaam'].value
-      ),
+      naam: this.toUppercase(this.formGroupFiches.controls['naam'].value),
       telefoonNummer: this.formGroupFiches.controls['telefoonNummer'].value,
       mobielNummer: this.formGroupFiches.controls['mobielNummer'].value,
       zakelijkNummer: this.formGroupFiches.controls['zakelijkNummer'].value,
-      adres: this.formGroupFiches.controls['adres'].value,
+      adres: this.toUppercase(this.formGroupFiches.controls['adres'].value),
       createdAt: new Date(),
     };
 
@@ -159,13 +109,60 @@ export class AddFicheComponent extends Form implements OnInit {
           updatedAt: null,
           ficheId: this.routeId ? this.routeId : this.recentCreatedFicheId,
         };
-        this.ficheService.updateFormule(data.id, this.formule).then(() => {
-          this.toast.success(
-            'De formule is successvol aangemaakt',
-            'Toevoegen'
+
+        if (this.formGroupFormules.controls['createdAt'].value > new Date()) {
+          this.toast.error(
+            'De datum van het aangemaakte formule mag niet na de huidige datum vallen'
           );
-          this.location.back();
-        });
+        } else {
+          this.ficheService.updateFormule(data.id, this.formule).then(() => {
+            this.toast.success(
+              'De formule is successvol aangemaakt',
+              'Toevoegen'
+            );
+            this.location.back();
+          });
+        }
       });
+  }
+
+  updateFiche(): void {
+    this.fiche = {
+      naam: this.toUppercase(this.formGroupFiches.controls['naam'].value),
+      telefoonNummer: this.formGroupFiches.controls['telefoonNummer'].value,
+      mobielNummer: this.formGroupFiches.controls['mobielNummer'].value,
+      zakelijkNummer: this.formGroupFiches.controls['zakelijkNummer'].value,
+      adres: this.toUppercase(this.formGroupFiches.controls['adres'].value),
+      createdAt: this.formGroupFiches.controls['createdAt'].value,
+    };
+
+    this.ficheService.updateFiche(this.routeId, this.fiche).then(() => {
+      this.toast.info(
+        `Het fiche van ${this.fiche?.naam} is successvol gewijzigd`,
+        'Gewijzigd'
+      );
+      this.location.back();
+    });
+  }
+
+  updateFormule(): void {
+    this.formule = {
+      formuleText: this.formGroupFormules.controls['formuleText'].value,
+      prijs: this.formGroupFormules.controls['prijs'].value,
+      opmerking: this.formGroupFormules.controls['opmerking'].value,
+      createdAt: this.formGroupFormules.controls['createdAt'].value,
+      updatedAt: new Date(),
+    };
+
+    if (this.formGroupFormules.controls['createdAt'].value > new Date()) {
+      this.toast.error(
+        'De datum van het aangemaakte formule mag niet na de huidige datum vallen'
+      );
+    } else {
+      this.ficheService.updateFormule(this.routeId, this.formule).then(() => {
+        this.toast.info('De formule is successvol gewijzigd', 'Gewijzigd');
+        this.location.back();
+      });
+    }
   }
 }

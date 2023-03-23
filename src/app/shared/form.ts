@@ -23,8 +23,7 @@ export class Form extends UnsubscribeBase {
     this.currentDate = new Date();
 
     this.formGroupFiches = this.fb.group({
-      voornaam: [null, [Validators.required]],
-      achternaam: [null, [Validators.required]],
+      naam: [null, [Validators.required]],
       telefoonNummer: [null],
       mobielNummer: [null],
       zakelijkNummer: [null],
@@ -39,7 +38,6 @@ export class Form extends UnsubscribeBase {
       createdAt: [this.currentDate, [Validators.required]],
       updatedAt: [null],
     });
-    
   }
   // loading spinner
   showSpinner: boolean = true;
@@ -101,7 +99,12 @@ export class Form extends UnsubscribeBase {
 
   // tranform data
   toUppercase(name: string): string {
-    return name.substring(0, 1).toUpperCase() + name.substring(1);
+    const words = name.split(' ');
+    return words
+      .map((word) => {
+        return word[0].toUpperCase() + word.substring(1);
+      })
+      .join(' ');
   }
 
   convertToDate(date: any): any {
@@ -111,8 +114,7 @@ export class Form extends UnsubscribeBase {
   // patch form
   patchKlantFormValues(klant: any): void {
     this.formGroupFiches.patchValue({
-      voornaam: klant.payload.data()?.voornaam,
-      achternaam: klant.payload.data()?.achternaam,
+      naam: klant.payload.data()?.naam,
       telefoonNummer: klant.payload.data()?.telefoonNummer,
       mobielNummer: klant.payload.data()?.mobielNummer,
       zakelijkNummer: klant.payload.data().zakelijkNummer,

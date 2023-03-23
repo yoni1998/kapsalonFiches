@@ -2,25 +2,20 @@
 <h2 class="addFicheTitle" aria-label="title fiches" appAddOrUpdate [routeId]="this.routeId"></h2>
 <form class="form-group" [formGroup]="formGroupFiches">
     <span class="p-float-label">
-        <input id="float-input" pattern="[a-zA-Z]*" formControlName="voornaam" type="text" class="p-inputtext-lg" pInputText> 
-        <label for="float-input">Voornaam</label>
-    </span>
-    <span class="p-float-label">
-        <input id="float-input" pattern="[a-zA-Z]*" formControlName="achternaam" type="text" class="p-inputtext-lg" pInputText> 
-        <label for="float-input">Achternaam</label>
-    </span>
-     <span class="p-float-label">
-        <input id="float-input" (click)="fillInPhoneNumber()" (input)="phoneNumberValidation()"  formControlName="telefoonNummer" type="number" class="p-inputtext-lg" pInputText> 
-        <label for="float-input">Telefoonnummer</label>
+        <input id="float-input" pattern="[a-zA-Z_ ]*" formControlName="naam" type="text" class="p-inputtext-lg" pInputText> 
+        <label for="float-input">Naam Van De Klant</label>
     </span>
     <span class="p-float-label">
         <input id="float-input" (click)="fillInMobileNumber()" (input)="mobileNumberValidation()" formControlName="mobielNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Mobiel nummer</label>
-        
     </span>
     <span class="p-float-label">
         <input id="float-input" (click)="fillInZakelijkNumber()" (input)="zakelijkNumberValidation()" formControlName="zakelijkNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Zakelijk nummer</label>
+    </span>
+    <span class="p-float-label">
+        <input id="float-input" (click)="fillInPhoneNumber()" (input)="phoneNumberValidation()"  formControlName="telefoonNummer" type="number" class="p-inputtext-lg" pInputText> 
+        <label for="float-input">Telefoonnummer</label>
     </span>
     <span class="p-float-label">
         <input id="float-input" formControlName="adres" type="text" class="p-inputtext-lg" pInputText> 

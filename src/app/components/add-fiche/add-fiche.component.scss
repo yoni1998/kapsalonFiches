@@ -9,13 +9,10 @@
     gap: 3rem;
 }
 // adres 
-.form-group span:nth-child(6) {
-    grid-row-end: 4;
-}
-// number
-.form-group span:nth-child(2) {
+.form-group span:nth-child(5) {
     grid-row-end: 3;
 }
+
 
 .addFicheTitle {
 display: grid;

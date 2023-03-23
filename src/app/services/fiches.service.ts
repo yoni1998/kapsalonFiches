@@ -24,9 +24,9 @@ export class FichesService {
     fieldOrder?: any
   ): AngularFirestoreCollection<Fiche> {
     if (!orderField) {
-      orderField = 'achternaam';
+      orderField = 'naam';
     }
-    if (orderField === 'achternaam' || 'voornaam' || 'adres') {
+    if (orderField === 'naam') {
       fieldOrder = 'asc';
     }
     if (orderField === 'createdAt') {
