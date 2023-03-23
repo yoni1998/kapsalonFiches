@@ -2,23 +2,23 @@
 <h2 class="addFicheTitle" aria-label="title fiches" appAddOrUpdate [routeId]="this.routeId"></h2>
 <form class="form-group" [formGroup]="formGroupFiches">
     <span class="p-float-label">
-        <input id="float-input" pattern="[a-zA-Z_ ]*" formControlName="naam" type="text" class="p-inputtext-lg" pInputText> 
+        <input id="float-input" pattern="[a-zA-Z_ ]*" [autocomplete]="false" formControlName="naam" type="text" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Naam</label>
     </span>
     <span class="p-float-label">
-        <input id="float-input" (click)="fillInMobileNumber()" (input)="mobileNumberValidation()" formControlName="mobielNummer" type="number" class="p-inputtext-lg" pInputText> 
+        <input id="float-input" (click)="fillInMobileNumber()" [autocomplete]="false" (input)="mobileNumberValidation()" formControlName="mobielNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Mobiel nummer</label>
     </span>
     <span class="p-float-label">
-        <input id="float-input" (click)="fillInPhoneNumber()" (input)="phoneNumberValidation()"  formControlName="telefoonNummer" type="number" class="p-inputtext-lg" pInputText> 
+        <input id="float-input" (click)="fillInPhoneNumber()" [autocomplete]="false" (input)="phoneNumberValidation()"  formControlName="telefoonNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Telefoonnummer</label>
     </span>
     <span class="p-float-label">
-        <input id="float-input" (click)="fillInZakelijkNumber()" (input)="zakelijkNumberValidation()" formControlName="zakelijkNummer" type="number" class="p-inputtext-lg" pInputText> 
+        <input id="float-input" (click)="fillInZakelijkNumber()" [autocomplete]="false" (input)="zakelijkNumberValidation()" formControlName="zakelijkNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Zakelijk nummer</label>
     </span>
     <span class="p-float-label">
-        <input id="float-input" formControlName="adres" type="text" class="p-inputtext-lg" pInputText> 
+        <input id="float-input" formControlName="adres" [autocomplete]="false" type="text" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Adres</label>
     </span>
 </form>
@@ -37,15 +37,15 @@
             <label for="float-input">Aangemaakt op</label>
         </span>
         <span class="p-float-label">
-            <input id="float-input" formControlName="prijs" type="number" class="p-inputtext-lg" pInputText> 
+            <input id="float-input" formControlName="prijs" [autocomplete]="false" type="number" class="p-inputtext-lg" pInputText> 
             <label for="float-input">Prijs</label>
         </span>
         <span class="p-float-label">
-            <textarea pInputTextarea [autoResize]="true" style="width: 40vh;" id="float-input" class="p-inputtext-lg" formControlName="formuleText" type="text" ></textarea>
+            <textarea pInputTextarea style="width: 40vh;" [autocomplete]="false" id="float-input" class="p-inputtext-lg" formControlName="formuleText" type="text" ></textarea>
             <label for="float-input">Formule</label>
         </span>
         <span class="p-float-label">
-            <textarea pInputTextarea [autoResize]="true" style="width: 40vh;" id="float-input" class="p-inputtext-lg" formControlName="opmerking" type="text" ></textarea>
+            <textarea pInputTextarea style="width: 40vh;" [autocomplete]="false" id="float-input" class="p-inputtext-lg" formControlName="opmerking" type="text" ></textarea>
             <label for="float-input">Opmerking</label>
         </span>
     </form>
