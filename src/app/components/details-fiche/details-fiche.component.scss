@@ -63,9 +63,11 @@ i {
 .p-float-label input[type] {
     color: black;
 }
-label {
-   font-weight: 1000;
+.p-float-label label {
+    font-weight: 600;
    font-style: italic;
+   font-size: 17px;
+   margin: -1rem 0 0 0;
 }
 
 :host ::ng-deep fieldset {
@@ -89,6 +91,10 @@ label {
         gap: 2rem;
         margin: 4rem 0 4rem 0;
     }
+    .p-float-label {
+        margin: unset;
+       margin: 0 0 1rem 0;
+    }
 }
 @media only screen and (max-width: 900px) {
     .grid-klant  {
@@ -111,5 +117,9 @@ label {
     }
     :host ::ng-deep fieldset {
         width: 100%;
+    }
+    .p-float-label {
+        margin: unset;
+       margin: 0 0 1rem 0;
     }
 }

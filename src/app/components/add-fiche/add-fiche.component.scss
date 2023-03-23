@@ -13,6 +13,9 @@
     grid-row-end: 3;
 }
 
+.form-group span:nth-child(4) {
+    grid-column-end: 3;
+}
 
 .addFicheTitle {
 display: grid;
@@ -47,8 +50,9 @@ button {
         gap: 3rem;
         padding-top: 2rem;
 }
-.form-group span:nth-child(6) {
-    grid-row-end: 7;
+.form-group span:nth-child(6),
+.form-group span:nth-child(4) {
+    grid-column-end: unset;
 }
 }
 

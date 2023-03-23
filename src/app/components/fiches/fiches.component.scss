@@ -9,7 +9,6 @@
 
 .flex {
   display: flex;
-  align-items: center;
     justify-content: space-around;
     flex-direction: row;
     span {
@@ -20,7 +19,7 @@
 
   .product-list-item {
     display: grid;
-    grid-template-columns: 40% 20% 20% 20%;
+    grid-template-columns: 1fr 20% 20% 20%;
     margin-bottom: 1rem;
     cursor: pointer;
   
@@ -42,8 +41,8 @@
     .product-list-item {
       grid-template-columns: repeat(2, 1fr);
       padding-bottom: 1rem;
-      place-items: unset;
-      border-bottom: 1px rgb(195, 185, 185) dotted;
+      border-bottom: 2px rgba(71, 71, 71, 0.584) solid;
+      margin-bottom: 1rem;
     }
   .flex {
     display: flex;

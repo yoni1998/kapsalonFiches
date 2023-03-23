@@ -20,6 +20,9 @@ export class AddFicheComponent extends Form implements OnInit {
   formuleId: any;
   removeAddFichesBtn: boolean = false;
 
+  errorTextPrijs: string =
+    'Gelieve een geldige prijs in te voeren. De prijs kan niet hoger dan 500 euro zijn.';
+  errorTextNumbers: string = 'Gelieve een geldig nummer in te voeren';
   constructor(
     protected override ficheService: FichesService,
     protected override route: ActivatedRoute,

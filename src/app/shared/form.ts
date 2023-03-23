@@ -98,13 +98,17 @@ export class Form extends UnsubscribeBase {
   }
 
   // tranform data
-  toUppercase(name: string): string {
-    const words = name.split(' ');
-    return words
-      .map((word) => {
-        return word[0].toUpperCase() + word.substring(1);
-      })
-      .join(' ');
+  toUppercase(name?: string): any {
+    if (name) {
+      const words = name.split(' ');
+      return words
+        .map((word: any) => {
+          return word[0].toUpperCase() + word.substring(1);
+        })
+        .join(' ');
+    } else {
+      return name;
+    }
   }
 
   convertToDate(date: any): any {
