@@ -67,7 +67,7 @@
     </span>
     <div class="actions" *ngIf="actionsActive">
       <button pButton pRipple type="button" [routerLink]="'../../../formule/edit/' + formule.id" [state]="{ficheId: this.ficheId}" icon="pi pi-pencil"  aria-label="Wijzig Formule" class="p-button-rounded p-button-outlined"></button>
-      <button pButton pRipple type="button" (click)="copyFormule(formule.id)" aria-label="Kopieer Formule" icon="pi pi-copy" class="p-button-rounded p-button-info p-button-outlined"></button>
+      <button pButton pRipple type="button" *ngIf="formule === this.firstFormule" (click)="copyFormule(formule.id)" aria-label="Kopieer Formule" icon="pi pi-copy" class="p-button-rounded p-button-info p-button-outlined"></button>
       <button pButton pRipple type="button" (click)="removeFormules(formule)" aria-label="Verwijder Formule" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>
     </div>
     </div>

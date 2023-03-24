@@ -25,6 +25,7 @@ export class DetailsFicheComponent extends Form implements OnInit {
   aantalFormules: any;
   actionsActive: boolean | undefined;
   isCopied: any | undefined;
+  firstFormule: any;
   constructor(
     protected override ficheService: FichesService,
     protected override formulesService: FormulesService,
@@ -90,6 +91,8 @@ export class DetailsFicheComponent extends Form implements OnInit {
       updatedAt: null,
       ficheId: data?.ficheId,
     };
+
+    // zorg ervoor dat ''idem'' niet elke keer opnieuw wordt geschreven bij kopieeren
 
     if (
       new Date(data.createdAt?.seconds * 1000).toDateString() ===
@@ -163,6 +166,7 @@ export class DetailsFicheComponent extends Form implements OnInit {
         .subscribe((data) => {
           this.aantalFormules = data.length;
           this.formulesList = data;
+          this.firstFormule = this.formulesList[0];
           this.showSpinner = false;
         });
     }
