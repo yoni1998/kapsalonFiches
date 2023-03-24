@@ -20,7 +20,6 @@ export class AddFicheComponent extends Form implements OnInit {
   recentCreatedFicheId: any;
   formuleId: any;
   removeAddFichesBtn: boolean = false;
-  ficheWithId: any;
   errorTextPrijs: string =
     'Gelieve een geldige prijs in te voeren. De prijs kan niet hoger dan 500 euro zijn.';
   errorTextNumbers: string = 'Gelieve een geldig nummer in te voeren';
@@ -50,8 +49,6 @@ export class AddFicheComponent extends Form implements OnInit {
   ngOnInit(): void {
     this.routeId = this.activeRoute.snapshot.paramMap.get('id');
     this.patchForm();
-    console.log(history.state.ficheId);
-    this.ficheWithId = history.state.ficheId;
   }
 
   handleAddAndUpdate(): void {
@@ -124,7 +121,7 @@ export class AddFicheComponent extends Form implements OnInit {
           );
         } else {
           this.formulesService
-            .updateFormule(data.id, this.formule, this.ficheWithId)
+            .updateFormule(data.id, this.formule, this.ficheOnId)
             .then(() => {
               this.toast.success(
                 'De formule is successvol aangemaakt',
@@ -170,7 +167,7 @@ export class AddFicheComponent extends Form implements OnInit {
       );
     } else {
       this.formulesService
-        .updateFormule(this.routeId, this.formule, this.ficheWithId)
+        .updateFormule(this.routeId, this.formule, this.ficheOnId)
         .then(() => {
           this.toast.info('De formule is successvol gewijzigd', 'Gewijzigd');
           this.location.back();
