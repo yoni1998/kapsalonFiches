@@ -1,3 +1,4 @@
+import { FormulesService } from './../../services/formules.service';
 import { Form } from '../../shared/form';
 import { takeUntil, switchMap } from 'rxjs/operators';
 import { ConfirmationService } from 'primeng/api';
@@ -25,6 +26,7 @@ export class DetailsFicheComponent extends Form implements OnInit {
   isCopied: any | undefined;
   constructor(
     protected override ficheService: FichesService,
+    protected override formulesService: FormulesService,
     protected override route: ActivatedRoute,
     protected override confirmationService: ConfirmationService,
     protected override router: Router,
@@ -35,6 +37,7 @@ export class DetailsFicheComponent extends Form implements OnInit {
   ) {
     super(
       ficheService,
+      formulesService,
       route,
       confirmationService,
       router,
@@ -99,7 +102,7 @@ export class DetailsFicheComponent extends Form implements OnInit {
   // get all formules on fiche id
   getAllFormulesOnFicheId(): void {
     if (this.ficheId) {
-      this.ficheService
+      this.formulesService
         .getAllFormulesOnFicheId(this.ficheId)
         .snapshotChanges()
         .pipe(
@@ -125,9 +128,11 @@ export class DetailsFicheComponent extends Form implements OnInit {
       this.confirmationService.confirm({
         message: `Weet je zeker dat je het formule wil verwijderen? Dit is definitief en kan later niet opnieuw opgevraagd worden!`,
         accept: () => {
-          this.ficheService.removeFormules(item.id, this.ficheId).then(() => {
-            this.toast.info('De formule is verwijderd', 'Verwijderd');
-          });
+          this.formulesService
+            .removeFormules(item.id, this.ficheId)
+            .then(() => {
+              this.toast.info('De formule is verwijderd', 'Verwijderd');
+            });
         },
       });
     }

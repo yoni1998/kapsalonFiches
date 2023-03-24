@@ -5,13 +5,16 @@ import { ConfirmationService } from 'primeng/api';
 import { FichesService } from '../services/fiches.service';
 import { UnsubscribeBase } from './unsubscribeBase';
 import { ToastrService } from 'ngx-toastr';
+import { FormulesService } from '../services/formules.service';
 export class Form extends UnsubscribeBase {
   formGroupFiches: FormGroup;
   formGroupFormules: FormGroup;
   currentDate: Date;
   routeId: any;
+  ficheOnId: any;
   constructor(
     protected ficheService: FichesService,
+    protected formulesService: FormulesService,
     protected route: ActivatedRoute,
     protected confirmationService: ConfirmationService,
     protected router: Router,
@@ -20,6 +23,7 @@ export class Form extends UnsubscribeBase {
     protected toast: ToastrService
   ) {
     super();
+    this.ficheOnId = history.state.ficheId;
     this.currentDate = new Date();
 
     this.formGroupFiches = this.fb.group({
@@ -155,8 +159,8 @@ export class Form extends UnsubscribeBase {
       this.routeId &&
       this.activeRoute.snapshot.routeConfig?.path === 'formule/edit/:id'
     ) {
-      this.ficheService
-        .getFormuleByFicheId(this.routeId)
+      this.formulesService
+        .getFormuleByFicheId(this.routeId, this.ficheOnId)
         .pipe(takeUntil(this.destroy$$))
         .subscribe((data: any) => {
           this.patchFormuleFormValues(data);

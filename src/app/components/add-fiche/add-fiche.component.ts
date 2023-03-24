@@ -7,6 +7,7 @@ import { Fiche, Formules } from '../../shared/types';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { ToastrService } from 'ngx-toastr';
+import { FormulesService } from 'src/app/services/formules.service';
 
 @Component({
   selector: 'app-add-fiche',
@@ -19,12 +20,13 @@ export class AddFicheComponent extends Form implements OnInit {
   recentCreatedFicheId: any;
   formuleId: any;
   removeAddFichesBtn: boolean = false;
-
+  ficheWithId: any;
   errorTextPrijs: string =
     'Gelieve een geldige prijs in te voeren. De prijs kan niet hoger dan 500 euro zijn.';
   errorTextNumbers: string = 'Gelieve een geldig nummer in te voeren';
   constructor(
     protected override ficheService: FichesService,
+    protected override formulesService: FormulesService,
     protected override route: ActivatedRoute,
     private location: Location,
     protected override confirmationService: ConfirmationService,
@@ -35,6 +37,7 @@ export class AddFicheComponent extends Form implements OnInit {
   ) {
     super(
       ficheService,
+      formulesService,
       route,
       confirmationService,
       router,
@@ -47,6 +50,8 @@ export class AddFicheComponent extends Form implements OnInit {
   ngOnInit(): void {
     this.routeId = this.activeRoute.snapshot.paramMap.get('id');
     this.patchForm();
+    console.log(history.state.ficheId);
+    this.ficheWithId = history.state.ficheId;
   }
 
   handleAddAndUpdate(): void {
@@ -100,7 +105,7 @@ export class AddFicheComponent extends Form implements OnInit {
       ficheId: this.routeId ? this.routeId : this.recentCreatedFicheId,
     };
 
-    this.ficheService
+    this.formulesService
       .createNewFormule(this.formule, this.routeId, this.recentCreatedFicheId)
       .then((data: any) => {
         this.formule = {
@@ -118,13 +123,15 @@ export class AddFicheComponent extends Form implements OnInit {
             'De datum van het aangemaakte formule mag niet na de huidige datum vallen'
           );
         } else {
-          this.ficheService.updateFormule(data.id, this.formule).then(() => {
-            this.toast.success(
-              'De formule is successvol aangemaakt',
-              'Toevoegen'
-            );
-            this.location.back();
-          });
+          this.formulesService
+            .updateFormule(data.id, this.formule, this.ficheWithId)
+            .then(() => {
+              this.toast.success(
+                'De formule is successvol aangemaakt',
+                'Toevoegen'
+              );
+              this.location.back();
+            });
         }
       });
   }
@@ -162,10 +169,12 @@ export class AddFicheComponent extends Form implements OnInit {
         'De datum van het aangemaakte formule mag niet na de huidige datum vallen'
       );
     } else {
-      this.ficheService.updateFormule(this.routeId, this.formule).then(() => {
-        this.toast.info('De formule is successvol gewijzigd', 'Gewijzigd');
-        this.location.back();
-      });
+      this.formulesService
+        .updateFormule(this.routeId, this.formule, this.ficheWithId)
+        .then(() => {
+          this.toast.info('De formule is successvol gewijzigd', 'Gewijzigd');
+          this.location.back();
+        });
     }
   }
 }

@@ -14,7 +14,7 @@
         </ng-template>
         <ng-template let-fiche pTemplate="gridItem">
             <div class="col-12">
-                <div class="product-list-item" [routerLink]="fiche.id + '/info'">
+                <div class="product-list-item" [routerLink]="fiche.id + '/info'" [state]="{ficheId: fiche.id}">
                     <div class="product-list-detail">
                         <p class="propertyNaam" style="font-size: 17px">Naam Klant</p>
                         <div class="product-name">{{fiche.naam}}</div>

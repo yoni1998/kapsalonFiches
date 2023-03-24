@@ -9,6 +9,7 @@ import { ConfirmationService } from 'primeng/api';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import alasql from 'alasql';
+import { FormulesService } from 'src/app/services/formules.service';
 @Component({
   selector: 'app-fiches',
   templateUrl: './fiches.component.html',
@@ -22,6 +23,7 @@ export class FichesComponent extends Form implements OnInit {
 
   constructor(
     protected override ficheService: FichesService,
+    protected override formulesService: FormulesService,
     protected override route: ActivatedRoute,
     protected override confirmationService: ConfirmationService,
     protected override router: Router,
@@ -32,6 +34,7 @@ export class FichesComponent extends Form implements OnInit {
   ) {
     super(
       ficheService,
+      formulesService,
       route,
       confirmationService,
       router,
@@ -109,7 +112,7 @@ export class FichesComponent extends Form implements OnInit {
   // get all formules on ficheIds for export
   getFormules(fiches: any): void {
     for (let fiche of fiches) {
-      this.ficheService
+      this.formulesService
         .getAllFormulesOnFicheId(fiche.id)
         .snapshotChanges()
         .pipe(

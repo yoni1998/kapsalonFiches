@@ -57,7 +57,7 @@
       <textarea id="float-input" [value]="formule.formuleText" [disabled]="true" type="text" pInputTextarea class="textAreaFormule"></textarea>
       <label for="float-input">Formule</label>
     </span>
-    <span class="p-float-label">
+       <span class="p-float-label">
       <textarea id="float-input" [value]="formule.opmerking | nvt" [disabled]="true" type="text" pInputTextarea class="textAreaFormule"></textarea>
       <label for="float-input">Opmerking</label>
     </span>
@@ -66,7 +66,7 @@
       <label for="float-input">Prijs</label>
     </span>
     <div class="actions" *ngIf="actionsActive">
-      <button pButton pRipple type="button" (click)="this.router.navigate(['formule/edit/', formule.id])" icon="pi pi-pencil"  aria-label="Wijzig Formule" class="p-button-rounded p-button-outlined"></button>
+      <button pButton pRipple type="button" [routerLink]="'../../../formule/edit/' + formule.id" [state]="{ficheId: this.ficheId}" icon="pi pi-pencil"  aria-label="Wijzig Formule" class="p-button-rounded p-button-outlined"></button>
       <button pButton pRipple type="button" (click)="removeFormules(formule)" aria-label="Verwijder Formule" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>
     </div>
     </div>
