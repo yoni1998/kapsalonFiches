@@ -28,15 +28,6 @@ p-fieldset {
     margin-top: 4rem;
 }
 
- // prijs
-.grid-formules span:nth-child(3) input[type]{
-    width: 7rem;
- }
-
- // opmerking
-.grid-formules span:nth-child(4) input[type]{
-    width: 25rem;
- }
 
 .actions button {
     margin-right: 1.5rem;
@@ -166,9 +157,5 @@ i {
         margin: unset;
         margin: 0 0 1rem 0;
     }
-// opmerking en prijs 
-.grid-formules span:nth-child(3) input[type],
-.grid-formules span:nth-child(4) input[type]{
-    width: unset;
- }
+
 }
