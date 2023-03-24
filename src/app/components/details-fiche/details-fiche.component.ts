@@ -1,6 +1,6 @@
 import { FormulesService } from './../../services/formules.service';
 import { Form } from '../../shared/form';
-import { takeUntil, switchMap } from 'rxjs/operators';
+import { takeUntil, switchMap, take } from 'rxjs/operators';
 import { ConfirmationService } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,6 +20,7 @@ export class DetailsFicheComponent extends Form implements OnInit {
   ficheId: string | null;
   klantName: string | undefined;
   klantDetails: Fiche | undefined;
+  formule: Formules | undefined;
   formulesList: Formules[] | undefined;
   aantalFormules: any;
   actionsActive: boolean | undefined;
@@ -64,6 +65,51 @@ export class DetailsFicheComponent extends Form implements OnInit {
       this.actionsActive = false;
     } else {
       this.actionsActive = true;
+    }
+  }
+
+  copyFormule(id: string | undefined): void {
+    this.formulesService
+      .getFormuleByFicheId(id, this.ficheId)
+      .pipe(
+        take(1),
+        map((formule) => formule.payload.data()),
+        takeUntil(this.destroy$$)
+      )
+      .subscribe((data: any) => {
+        this.createDuplicateFormule(data);
+      });
+  }
+
+  createDuplicateFormule(data: any): any {
+    this.formule = {
+      formuleText: 'idem ' + data.formuleText,
+      prijs: data.prijs,
+      opmerking: data.opmerking ? 'idem ' + data.opmerking : 'idem NVT',
+      createdAt: new Date(),
+      updatedAt: null,
+      ficheId: data?.ficheId,
+    };
+
+    if (
+      new Date(data.createdAt?.seconds * 1000).toDateString() ===
+      new Date().toDateString()
+    ) {
+      this.toast.error('Er kan maar 1 formule per dag worden gekopieerd');
+    } else {
+      this.confirmationService.confirm({
+        message: `Weet je zeker dat je de formule wil dupliceren?`,
+        accept: () => {
+          this.formulesService
+            .createNewFormule(this.formule, this.ficheId)
+            .then(() => {
+              this.toast.success(
+                'De gedupliceerde formule is successvol aangemaakt',
+                'Toevoegen'
+              );
+            });
+        },
+      });
     }
   }
 

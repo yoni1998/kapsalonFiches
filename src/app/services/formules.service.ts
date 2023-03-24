@@ -12,14 +12,16 @@ export class FormulesService {
   constructor(private db: AngularFirestore) {}
 
   // get all formules on ficheId
-  getAllFormulesOnFicheId(id: string): AngularFirestoreCollection<Formules> {
+  getAllFormulesOnFicheId(
+    id: string | null
+  ): AngularFirestoreCollection<Formules> {
     return this.db.collection('/fiches/' + id + '/formules', (ref) =>
       ref.orderBy('createdAt', 'desc')
     );
   }
 
   // get formule on id
-  getFormuleByFicheId(id: string, ficheId: string) {
+  getFormuleByFicheId(id: string | undefined, ficheId: string | null) {
     return this.db
       .collection('/fiches/' + ficheId + '/formules')
       .doc(id)
@@ -40,8 +42,8 @@ export class FormulesService {
   // create new formule
   // if ficheId is null, then recentCreatedFicheId will be used and vice versa
   createNewFormule(
-    formule: Formules,
-    ficheId?: string,
+    formule: Formules | undefined,
+    ficheId?: string | null,
     recentCreatedFicheId?: string
   ): any {
     if (ficheId) {
@@ -58,9 +60,9 @@ export class FormulesService {
 
   // update formule
   updateFormule(
-    id: string,
+    id: string | undefined,
     formule: Formules | undefined,
-    ficheId: string
+    ficheId: string | null
   ): Promise<void> {
     return this.db
       .collection('/fiches/' + ficheId + '/formules')

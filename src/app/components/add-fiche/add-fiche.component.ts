@@ -159,6 +159,7 @@ export class AddFicheComponent extends Form implements OnInit {
       opmerking: this.formGroupFormules.controls['opmerking'].value,
       createdAt: this.formGroupFormules.controls['createdAt'].value,
       updatedAt: new Date(),
+      ficheId: this.ficheOnId,
     };
 
     if (this.formGroupFormules.controls['createdAt'].value > new Date()) {
