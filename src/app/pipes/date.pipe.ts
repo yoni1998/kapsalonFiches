@@ -8,7 +8,7 @@ export class DatePipe implements PipeTransform {
     if (!value) {
       return 'NVT';
     } else {
-      return new Date(value?.seconds * 1000).toDateString();
+      return new Date(value?.seconds * 1000).toLocaleDateString();
     }
   }
 }

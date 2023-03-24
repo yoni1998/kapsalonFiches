@@ -17,6 +17,14 @@
     grid-column-end: 3;
 }
 
+.textArea {
+    max-width: 20rem;
+    max-height: 8rem; 
+    min-width: 15rem; 
+    min-height: 5rem;
+
+}
+
 .addFicheTitle {
 display: grid;
 justify-content: center;

@@ -35,7 +35,7 @@
         <i class="pi pi-copy" *ngIf="klantDetails?.zakelijkNummer" appCopyBtnDisable [copyText]="isCopied" [currentCopyText]="klantDetails?.zakelijkNummer" (click)="copyText(klantDetails?.zakelijkNummer)"></i>
       </span>
       <span class="p-float-label">
-        <input id="float-input" [value]="klantDetails?.adres | nvt" [disabled]="true" type="text" class="p-inputtext-lg" pInputText> 
+        <textarea id="float-input" [value]="klantDetails?.adres | nvt" [disabled]="true" type="text" pInputTextarea class="textArea"></textarea>
         <label for="float-input">Adres</label>
       </span>
 </div>
@@ -54,7 +54,7 @@
           <label for="float-input">Datum</label>
         </span>
         <span class="p-float-label">
-      <input id="float-input" [value]="formule.formuleText" [disabled]="true" type="text" class="p-inputtext-lg" pInputText> 
+      <textarea id="float-input" [value]="formule.formuleText" [disabled]="true" type="text" pInputTextarea class="textAreaFormule"></textarea>
       <label for="float-input">Formule</label>
     </span>
     <span class="p-float-label">
@@ -62,7 +62,7 @@
       <label for="float-input">Prijs</label>
     </span>
     <span class="p-float-label">
-      <input id="float-input" [value]="formule.opmerking | nvt" [disabled]="true" type="text" class="p-inputtext-lg" pInputText> 
+      <textarea id="float-input" [value]="formule.opmerking | nvt" [disabled]="true" type="text" pInputTextarea class="textAreaFormule"></textarea>
       <label for="float-input">Opmerking</label>
     </span>
     <div class="actions" *ngIf="actionsActive">
