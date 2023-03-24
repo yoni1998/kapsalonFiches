@@ -83,7 +83,7 @@ i {
     border: 1px solid #dddbda;
     color: #0070d2;
     font-size: 13px;
-    line-height: 47px;
+    line-height: 46.5px;
     font-weight: 400;
     text-align: center;
     position: absolute;
@@ -91,6 +91,10 @@ i {
 }
 .p-float-label input[type] {
     color: black;
+}
+.p-float-label textarea[type] {
+    color: black;
+    font-size: 18px;
 }
 .p-float-label label {
     font-weight: 600;

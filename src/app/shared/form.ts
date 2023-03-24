@@ -100,7 +100,7 @@ export class Form extends UnsubscribeBase {
   // tranform data
   toUppercase(name?: string): any {
     if (name) {
-      const words = name.split(' ');
+      const words = name.trim().split(' ');
       return words
         .map((word: any) => {
           return word[0].toUpperCase() + word.substring(1);
