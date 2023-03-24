@@ -28,7 +28,6 @@ p-fieldset {
     margin-top: 4rem;
 }
 
-
 .actions button {
     margin-right: 1.5rem;
     margin-top: 0.5rem;
@@ -47,7 +46,7 @@ p-fieldset {
  }
 
    // opmerking formule
-   .grid-formules span:nth-child(4) textarea{
+   .grid-formules span:nth-child(3) textarea{
     margin-bottom: -2rem;
  }
 
@@ -130,7 +129,8 @@ i {
         margin: 0 0 1rem 0;
     }
      // formule formule
-  .grid-formules span:nth-child(2) textarea{
+  .grid-formules span:nth-child(2) textarea, 
+  .grid-formules span:nth-child(3) textarea{
     margin-bottom: unset;
  }
 }
