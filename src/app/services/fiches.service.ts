@@ -3,7 +3,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
-import { Fiche, Formules } from '../types';
+import { Fiche, Formules } from '../shared/types';
 @Injectable({
   providedIn: 'root',
 })

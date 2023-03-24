@@ -1,7 +1,7 @@
 import { ExportExcelService } from './../../services/export-excel.service';
 import { FichesService } from '../../services/fiches.service';
 import { Component, OnInit } from '@angular/core';
-import { Fiche, Formules } from '../../types';
+import { Fiche, Formules } from '../../shared/types';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { Form } from '../../shared/form';
 import { ActivatedRoute, Router } from '@angular/router';

@@ -3,7 +3,7 @@ import { FichesService } from '../../services/fiches.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder } from '@angular/forms';
-import { Fiche, Formules } from '../../types';
+import { Fiche, Formules } from '../../shared/types';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { ToastrService } from 'ngx-toastr';

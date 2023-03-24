@@ -26,24 +26,24 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 import { ToastrModule } from 'ngx-toastr';
-import { DatePipe } from './pipes/date.pipe';
-import { NvtPipe } from './pipes/nvt.pipe';
+import { DatePipe } from './shared/pipes/date.pipe';
+import { NvtPipe } from './shared/pipes/nvt.pipe';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
-import { NumberPipe } from './pipes/number.pipe';
+import { NumberPipe } from './shared/pipes/number.pipe';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { BadgeModule } from 'primeng/badge';
-import { PrijsPipe } from './pipes/prijs.pipe';
+import { PrijsPipe } from './shared/pipes/prijs.pipe';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { AddOrUpdateDirective } from './directives/add-or-update.directive';
-import { HideFormIfPathStartWithFormuleDirective } from './directives/hide-form-if-path-start-with-formule.directive';
-import { AddOrHideFormuleTitleDirective } from './directives/add-or-hide-formule-title.directive';
-import { HideOrShowFormIfPathHasFicheDirective } from './directives/hide-or-show-form-if-path-has-fiche.directive';
+import { AddOrUpdateDirective } from './shared/directives/add-or-update.directive';
+import { HideFormIfPathStartWithFormuleDirective } from './shared/directives/hide-form-if-path-start-with-formule.directive';
+import { AddOrHideFormuleTitleDirective } from './shared/directives/add-or-hide-formule-title.directive';
+import { HideOrShowFormIfPathHasFicheDirective } from './shared/directives/hide-or-show-form-if-path-has-fiche.directive';
 import { ErrorMessageComponent } from './ui/error-message/error-message.component';
-import { RemoveAddFicheBtnDirective } from './directives/remove-add-fiche-btn.directive';
-import { FormuleFieldsetDirective } from './directives/formule-fieldset.directive';
-import { CopyBtnDisableDirective } from './directives/copy-btn-disable.directive';
+import { RemoveAddFicheBtnDirective } from './shared/directives/remove-add-fiche-btn.directive';
+import { FormuleFieldsetDirective } from './shared/directives/formule-fieldset.directive';
+import { CopyBtnDisableDirective } from './shared/directives/copy-btn-disable.directive';
 @NgModule({
   declarations: [
     AppComponent,

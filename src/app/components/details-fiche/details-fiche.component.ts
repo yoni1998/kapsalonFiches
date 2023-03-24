@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FichesService } from '../.././services/fiches.service';
 import { map } from 'rxjs';
-import { Fiche, Formules } from '../../types';
+import { Fiche, Formules } from '../../shared/types';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Clipboard } from '@angular/cdk/clipboard';
