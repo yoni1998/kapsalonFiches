@@ -23,9 +23,9 @@ export class DetailsFicheComponent extends Form implements OnInit {
   formule: Formules | undefined;
   formulesList: Formules[] | undefined;
   aantalFormules: any;
-  actionsActive: boolean | undefined;
   isCopied: any | undefined;
   firstFormule: any;
+  formuleId: any;
   constructor(
     protected override ficheService: FichesService,
     protected override formulesService: FormulesService,
@@ -61,12 +61,8 @@ export class DetailsFicheComponent extends Form implements OnInit {
     this.toast.info('Nummer gekopieerd');
   }
 
-  showActions(): void {
-    if (this.actionsActive === true) {
-      this.actionsActive = false;
-    } else {
-      this.actionsActive = true;
-    }
+  showActionButtons(formule: Formules) {
+    this.formuleId = formule.id;
   }
 
   copyFormule(id: string | undefined): void {
@@ -84,21 +80,33 @@ export class DetailsFicheComponent extends Form implements OnInit {
 
   createDuplicateFormule(data: any): any {
     this.formule = {
-      formuleText: 'idem ' + data.formuleText,
+      formuleText: data.formuleText,
       prijs: data.prijs,
-      opmerking: data.opmerking ? 'idem ' + data.opmerking : 'idem NVT',
+      opmerking: data.opmerking,
       createdAt: new Date(),
       updatedAt: null,
       ficheId: data?.ficheId,
     };
 
-    // zorg ervoor dat ''idem'' niet elke keer opnieuw wordt geschreven bij kopieeren
+    if (this.formule.formuleText.includes('idem')) {
+      this.formule.formuleText = data.formuleText;
+      this.formule.opmerking = data.opmerking;
+    } else {
+      this.formule.formuleText = 'idem ' + data.formuleText;
+      if (data.opmerking === null) {
+        this.formule.opmerking = 'idem NVT';
+      } else {
+        this.formule.opmerking = 'idem ' + data.opmerking;
+      }
+    }
 
     if (
       new Date(data.createdAt?.seconds * 1000).toDateString() ===
       new Date().toDateString()
     ) {
-      this.toast.error('Er kan maar 1 formule per dag worden gekopieerd');
+      this.toast.error(
+        'Het is niet mogelijk om verschillende keren per dag een formule te dupliceren'
+      );
     } else {
       this.confirmationService.confirm({
         message: `Weet je zeker dat je de formule wil dupliceren?`,

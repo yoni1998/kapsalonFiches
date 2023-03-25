@@ -33,7 +33,7 @@
     <h2 class="formuleTitle" appAddOrHideFormuleTitle [routeId]="this.routeId" >Formule toevoegen</h2>
     <form class="form-group" [formGroup]="formGroupFormules">
         <span class="p-float-label">
-            <p-calendar formControlName="createdAt" class="p-inputtext-lg" ></p-calendar>
+            <p-calendar formControlName="createdAt" [dateFormat]="'dd/mm/yy'" class="p-inputtext-lg" ></p-calendar>
             <label for="float-input">Aangemaakt op</label>
         </span>
         <span class="p-float-label">

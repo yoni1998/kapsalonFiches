@@ -42,13 +42,11 @@
 </p-fieldset>
 
 <p-fieldset *ngIf="this.formulesList?.length" [toggleable]="true" [transitionOptions]="'500ms'">
-  <h4>Formules Bewerken</h4>
-  <p-inputSwitch (onChange)="showActions()"></p-inputSwitch>  
   <ng-template pTemplate="header">
-    <div appFormuleFieldset [aantalFormules]="aantalFormules"> </div>
+    <div appFormuleFieldset [aantalFormules]="aantalFormules"></div>
     </ng-template>
     <div *ngFor="let formule of formulesList">
-      <div class="grid-formules" [ngStyle]="{'grid-template-columns': this.actionsActive ? 'repeat(5, 1fr)' : 'repeat(4, 1fr)'}">
+      <div class="grid-formules" (click)="showActionButtons(formule)"  [ngStyle]="{'grid-template-columns': this.formuleId ? 'repeat(5, 1fr)' : 'repeat(4, 1fr)'}">
         <span class="p-float-label">
           <input id="float-input" [value]="formule.createdAt | customDate" [disabled]="true" type="text" class="p-inputtext-lg" pInputText> 
           <label for="float-input">Datum</label>
@@ -65,7 +63,7 @@
       <input id="float-input" [value]="formule.prijs | prijs" [disabled]="true" type="text" class="p-inputtext-lg" pInputText> 
       <label for="float-input">Prijs</label>
     </span>
-    <div class="actions" *ngIf="actionsActive">
+    <div class="actions" *ngIf="formule.id === this.formuleId">
       <button pButton pRipple type="button" [routerLink]="'../../../formule/edit/' + formule.id" [state]="{ficheId: this.ficheId}" icon="pi pi-pencil"  aria-label="Wijzig Formule" class="p-button-rounded p-button-outlined"></button>
       <button pButton pRipple type="button" *ngIf="formule === this.firstFormule" (click)="copyFormule(formule.id)" aria-label="Kopieer Formule" icon="pi pi-copy" class="p-button-rounded p-button-info p-button-outlined"></button>
       <button pButton pRipple type="button" (click)="removeFormules(formule)" aria-label="Verwijder Formule" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>

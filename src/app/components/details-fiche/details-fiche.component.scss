@@ -18,6 +18,7 @@ p-fieldset {
     align-items: baseline;
     justify-items: center; 
     gap: 2rem;
+    margin-top: 1rem;
 }
 
 .grid-formules  {
@@ -122,6 +123,8 @@ i {
         justify-items: stretch; 
         gap: 2rem;
         margin: 6rem 0 4rem 0;
+        border-bottom: 2px rgba(71, 71, 71, 0.584) solid;
+        padding-bottom: 1rem;
     }
     
     .p-float-label {
