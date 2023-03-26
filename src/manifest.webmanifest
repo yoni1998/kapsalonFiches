@@ -1,8 +1,8 @@
 {
   "name": "kapsalonFiches",
-  "short_name": "MartineKap",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "short_name": "Fiches-MM",
+  "theme_color": "#F5F5DC",
+  "background_color": "#F5F5DC",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
@@ -51,12 +51,6 @@
     },
     {
       "src": "assets/icons/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
