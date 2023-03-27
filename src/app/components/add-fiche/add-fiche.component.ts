@@ -1,3 +1,4 @@
+import { map, takeUntil } from 'rxjs';
 import { Form } from '../../shared/form';
 import { FichesService } from '../../services/fiches.service';
 import { Component, OnInit } from '@angular/core';
@@ -48,9 +49,33 @@ export class AddFicheComponent extends Form implements OnInit {
     );
   }
 
+  fichesNames!: string;
+  naam!: string;
+
   ngOnInit(): void {
     this.routeId = this.activeRoute.snapshot.paramMap.get('id');
+    this.ficheService
+      .getAllFiches()
+      .snapshotChanges()
+      .pipe(
+        map((changes) => changes.map((c) => c.payload.doc.data().naam)),
+        takeUntil(this.destroy$$)
+      )
+      .subscribe((data: any) => {
+        this.fichesNames = data;
+      });
     this.patchForm();
+  }
+
+  ficheNameControl(): void {
+    if (this.fichesNames.includes(this.toUppercase(this.naam))) {
+      this.toast.error(
+        'Het fiche met de gegeven naam bestaat al in de lijst van klantenfiches'
+      );
+      this.btndisableFiche = true;
+    } else {
+      this.btndisableFiche = false;
+    }
   }
 
   handleAddAndUpdate(): void {
