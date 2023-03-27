@@ -7,8 +7,10 @@ import { SwUpdate } from '@angular/service-worker';
 export class UpdateService {
   constructor(private readonly updates: SwUpdate) {
     this.updates.versionUpdates.subscribe((event) => {
-      this.showAppUpdateAlert();
-      this.doAppUpdate();
+      if (event.type === 'VERSION_DETECTED') {
+        this.showAppUpdateAlert();
+        this.doAppUpdate();
+      }
     });
   }
   showAppUpdateAlert() {

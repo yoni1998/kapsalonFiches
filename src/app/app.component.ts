@@ -10,9 +10,7 @@ export class AppComponent {
   constructor(
     private primengConfig: PrimeNGConfig,
     private update: UpdateService
-  ) {
-    this.update;
-  }
+  ) {}
 
   ngOnInit() {
     this.primengConfig.ripple = true;
