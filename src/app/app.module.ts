@@ -44,6 +44,7 @@ import { ErrorMessageComponent } from './ui/error-message/error-message.componen
 import { RemoveAddFicheBtnDirective } from './shared/directives/remove-add-fiche-btn.directive';
 import { FormuleFieldsetDirective } from './shared/directives/formule-fieldset.directive';
 import { CopyBtnDisableDirective } from './shared/directives/copy-btn-disable.directive';
+import { BiggerInputDirective } from './shared/directives/bigger-input.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +66,7 @@ import { CopyBtnDisableDirective } from './shared/directives/copy-btn-disable.di
     RemoveAddFicheBtnDirective,
     FormuleFieldsetDirective,
     CopyBtnDisableDirective,
+    BiggerInputDirective,
   ],
   imports: [
     BrowserModule,

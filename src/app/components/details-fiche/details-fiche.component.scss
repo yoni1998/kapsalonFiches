@@ -7,7 +7,7 @@
     }
 }
 p-fieldset {
-    padding: 1rem;
+    padding: 2rem 0 2rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,10 +67,10 @@ i {
 }
 
 .textAreaFormule {
-    max-width: 20rem;
-    max-height: 8rem; 
-    min-width: 15rem; 
-    min-height: 5rem;
+    max-width: 16rem;
+    max-height: 6rem; 
+    min-width: 16rem; 
+    min-height: 6rem;
 }
 
 .pi-copy {
@@ -156,9 +156,14 @@ i {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-left: 1rem;
     }
     :host ::ng-deep fieldset {
         width: 100%;
+        border: unset;
+        margin: unset;
+        padding: unset;
+        margin-right: 1rem;
     }
     .p-float-label {
         margin: unset;
@@ -169,9 +174,8 @@ i {
         margin-left: unset;
     }
 }
-
 .pi-copy {
-    line-height: 46px;
+    line-height: 44px;
 }
 
 }
