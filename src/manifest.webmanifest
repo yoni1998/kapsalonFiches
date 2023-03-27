@@ -2,7 +2,7 @@
   "name": "kapsalonFiches",
   "short_name": "MM-Fiches",
   "theme_color": "#FFFFFF",
-  "background_color": "#d7d7bf",
+  "background_color": "#FFFFFF",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

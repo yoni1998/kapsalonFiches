@@ -1,3 +1,4 @@
+import { UpdateService } from './services/update.service';
 import { MessageService } from 'primeng/api';
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -106,6 +107,7 @@ import { BiggerInputDirective } from './shared/directives/bigger-input.directive
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
     },
+    UpdateService,
     MessageService,
     ConfirmationService,
   ],
