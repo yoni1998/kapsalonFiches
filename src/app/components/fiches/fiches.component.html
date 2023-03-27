@@ -1,3 +1,4 @@
+<div class="container">
 <div *ngIf="!showSpinner">
     <h2>Klantenfiches</h2>
     <p-dataView  #dv [value]="fichesList" [paginator]="true" [rows]="10" filterBy="naam" layout="grid">
@@ -37,3 +38,4 @@
     </p-dataView>
 </div>
 <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+</div>

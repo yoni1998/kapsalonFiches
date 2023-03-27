@@ -20,6 +20,7 @@ export class AddFicheComponent extends Form implements OnInit {
   recentCreatedFicheId: any;
   formuleId: any;
   removeAddFichesBtn: boolean = false;
+  btndisable: boolean = false;
   errorTextPrijs: string =
     'Gelieve een geldige prijs in te voeren. De prijs kan niet hoger dan 500 euro zijn.';
   errorTextNumbers: string = 'Gelieve een geldig nummer in te voeren';
@@ -52,6 +53,7 @@ export class AddFicheComponent extends Form implements OnInit {
   }
 
   handleAddAndUpdate(): void {
+    this.btndisable = true;
     if (this.routeId) {
       this.updateFiche();
     } else {
@@ -64,6 +66,7 @@ export class AddFicheComponent extends Form implements OnInit {
   }
 
   handleAddAndUpdateFormules(): void {
+    this.btndisable = true;
     if (
       this.routeId &&
       this.activeRoute.snapshot.routeConfig?.path === 'formule/edit/:id'

@@ -40,6 +40,14 @@
   }
 
 
+  @media only screen and (max-width: 300px) {
+    .container  {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
   @media only screen and (max-width: 800px) {
     .product-list-item {
       grid-template-columns: repeat(2, 1fr);
