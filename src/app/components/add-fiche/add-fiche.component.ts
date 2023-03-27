@@ -50,7 +50,6 @@ export class AddFicheComponent extends Form implements OnInit {
   }
 
   fichesNames!: string;
-  naam!: string;
 
   ngOnInit(): void {
     this.routeId = this.activeRoute.snapshot.paramMap.get('id');
@@ -68,7 +67,11 @@ export class AddFicheComponent extends Form implements OnInit {
   }
 
   ficheNameControl(): void {
-    if (this.fichesNames.includes(this.toUppercase(this.naam))) {
+    if (
+      this.fichesNames.includes(
+        this.toUppercase(this.formGroupFiches.controls['naam'].value)
+      )
+    ) {
       this.toast.error(
         'Het fiche met de gegeven naam bestaat al in de lijst van klantenfiches'
       );

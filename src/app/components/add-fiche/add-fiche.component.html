@@ -1,23 +1,28 @@
 <div appHideFormIfPathStartWithFormule>
 <h2 class="addFicheTitle" aria-label="title fiches" appAddOrUpdate [routeId]="this.routeId"></h2>
 <form class="form-group" [formGroup]="formGroupFiches">
-    <span class="p-float-label">
-        <input pattern="[a-zA-Z_ ]*" (blur)="ficheNameControl()" [(ngModel)]="this.naam" formControlName="naam" type="text" class="p-inputtext-lg" pInputText> 
+    <span class="p-float-label p-input-icon-left">
+        <i class="pi pi-user"></i>
+        <input pattern="[a-zA-Z_ ]*" (blur)="ficheNameControl()" formControlName="naam" type="text" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Naam</label>
     </span>
-    <span class="p-float-label">
+    <span class="p-float-label p-input-icon-left">
+        <i class="pi pi-phone"></i>
         <input (click)="fillInMobileNumber()" (input)="mobileNumberValidation()" formControlName="mobielNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Mobiel nummer</label>
     </span>
-    <span class="p-float-label">
+    <span class="p-float-label p-input-icon-left">
+        <i class="pi pi-phone"></i>
         <input (click)="fillInPhoneNumber()"  (input)="phoneNumberValidation()"  formControlName="telefoonNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Telefoonnummer</label>
     </span>
-    <span class="p-float-label">
+    <span class="p-float-label p-input-icon-left">
+        <i class="pi pi-phone"></i>
         <input (click)="fillInZakelijkNumber()" (input)="zakelijkNumberValidation()" formControlName="zakelijkNummer" type="number" class="p-inputtext-lg" pInputText> 
         <label for="float-input">Zakelijk nummer</label>
     </span>
-    <span class="p-float-label">
+    <span class="p-float-label p-input-icon-left">
+        <i class="pi pi-home"></i>
         <textarea formControlName="adres" appBiggerInput type="text" class="textArea" pInputTextarea></textarea>
         <label for="float-input">Adres</label>
     </span>
@@ -36,7 +41,8 @@
             <p-calendar formControlName="createdAt" [dateFormat]="'dd/mm/yy'" class="p-inputtext-lg" ></p-calendar>
             <label for="float-input">Aangemaakt op</label>
         </span>
-        <span class="p-float-label">
+        <span class="p-float-label p-input-icon-left">
+            <i class="pi pi-money-bill"></i>
             <input formControlName="prijs" type="number" class="p-inputtext-lg" pInputText> 
             <label for="float-input">Prijs</label>
         </span>
