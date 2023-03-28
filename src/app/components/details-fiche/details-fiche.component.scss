@@ -145,6 +145,10 @@ i {
     :host ::ng-deep .p-toolbar {
         justify-content: center;
     }
+    :host ::ng-deep p-toolbar div:nth-child(3) {
+        margin-top: 2rem;
+    }
+
     .grid-formules  {
         grid-template-columns: 1fr !important;
         place-items: center;
@@ -172,6 +176,9 @@ i {
     :host ::ng-deep .p-toolbar {
     p-button {
         margin-left: unset;
+        button {
+            width: 17rem;
+        }
     }
 }
 .pi-copy {

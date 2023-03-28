@@ -8,8 +8,10 @@
     <div class="p-toolbar-group-center">
       <p-button label="Klantengegeven Wijzigen" (click)="this.router.navigate(['fiches/edit', this.ficheId])" icon="pi pi-pencil" pTooltip="Klantgegeven Wijzigen" tooltipPosition="bottom"></p-button>
       </div>
+      <div>
       <p-button label="Fiche Verwijderen" (click)="deleteFiche()" icon="pi pi-trash" pTooltip="Fiche van de klant verwijderen" tooltipPosition="bottom" styleClass="p-button-danger"></p-button>
-</p-toolbar>
+    </div>
+    </p-toolbar>
 
 <div class="information" *ngIf="!this.showSpinner">
 <p-fieldset [toggleable]="true" [transitionOptions]="'500ms'" class="klantenFieldset">

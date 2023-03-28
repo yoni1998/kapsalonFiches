@@ -39,11 +39,11 @@
     <form class="form-group" [formGroup]="formGroupFormules">
         <span class="p-float-label">
             <p-calendar formControlName="createdAt" [dateFormat]="'dd/mm/yy'" class="p-inputtext-lg" ></p-calendar>
-            <label for="float-input">Aangemaakt op</label>
+            <label for="float-input">Datum</label>
         </span>
         <span class="p-float-label p-input-icon-left">
             <i class="pi pi-money-bill"></i>
-            <input formControlName="prijs" type="number" class="p-inputtext-lg" pInputText> 
+            <input formControlName="prijs" type="number" style="width: 15rem" class="p-inputtext-lg" pInputText> 
             <label for="float-input">Prijs</label>
         </span>
         <span class="p-float-label">
