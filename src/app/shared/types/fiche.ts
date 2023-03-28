@@ -1,6 +1,7 @@
 import { Formules } from './formules';
 
 export interface Fiche {
+  id?: any;
   naam: string;
   telefoonNummer: number;
   mobielNummer: number;

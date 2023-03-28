@@ -2,7 +2,7 @@ import { ExportExcelService } from './../../services/export-excel.service';
 import { FichesService } from '../../services/fiches.service';
 import { Component, OnInit } from '@angular/core';
 import { Fiche, Formules } from '../../shared/types';
-import { map, takeUntil, tap } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { Form } from '../../shared/form';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
@@ -82,14 +82,6 @@ export class FichesComponent extends Form implements OnInit {
     this.exportExcelService.exportAsExcelFile(res, 'fichesList');
   }
 
-  exportFormulesToExcel(): void {
-    var res = alasql(
-      `SEARCH / AS @data \ RETURN(formuleText as Formule, id as Id, prijs as Prijs, opmerking as Opmerking, ficheId as FicheID, createdAt.seconds as CreatedAt) \ FROM ?`,
-      [this.formuleList]
-    );
-    this.exportExcelService.exportAsExcelFile(res, 'formuleList');
-  }
-
   filterField(): void {
     this.ficheService
       .getAllFiches(this.selectedFiche?.orderField)
@@ -110,8 +102,8 @@ export class FichesComponent extends Form implements OnInit {
   }
 
   // get all formules on ficheIds for export
-  getFormules(fiches: any): void {
-    for (let fiche of fiches) {
+  exportFormulesToExcel(): void {
+    for (let fiche of this.fichesList) {
       this.formulesService
         .getAllFormulesOnFicheId(fiche.id)
         .snapshotChanges()
@@ -126,6 +118,11 @@ export class FichesComponent extends Form implements OnInit {
         .subscribe((data) => {
           if (data.length !== 0) {
             this.formuleList.push(...data);
+            var res = alasql(
+              `SEARCH / AS @data \ RETURN(formuleText as Formule, id as Id, prijs as Prijs, opmerking as Opmerking, ficheId as FicheID, createdAt.seconds as CreatedAt) \ FROM ?`,
+              [this.formuleList]
+            );
+            this.exportExcelService.exportAsExcelFile(res, 'formuleList');
           }
         });
     }
@@ -148,7 +145,6 @@ export class FichesComponent extends Form implements OnInit {
       .subscribe((data) => {
         this.fichesList = data;
         this.showSpinner = false;
-        this.getFormules(data);
       });
   }
 }
