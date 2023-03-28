@@ -1,3 +1,5 @@
+import { FichesGuard } from './fiches.guard';
+import { AuthComponent } from './components/auth/auth.component';
 import { AddFicheComponent } from './components/add-fiche/add-fiche.component';
 import { ContainerComponent } from './components/container/container.component';
 import { DetailsFicheComponent } from './components/details-fiche/details-fiche.component';
@@ -8,31 +10,41 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/fiches',
+    redirectTo: '/login',
+  },
+  {
+    path: 'login',
+    component: AuthComponent,
   },
   {
     path: 'fiches',
     component: ContainerComponent,
+    canActivate: [FichesGuard],
   },
   {
     path: 'fiches/new',
     component: AddFicheComponent,
+    canActivate: [FichesGuard],
   },
   {
     path: 'fiches/edit/:id',
     component: AddFicheComponent,
+    canActivate: [FichesGuard],
   },
   {
     path: 'fiches/:id/info',
     component: DetailsFicheComponent,
+    canActivate: [FichesGuard],
   },
   {
     path: 'formule/edit/:id',
     component: AddFicheComponent,
+    canActivate: [FichesGuard],
   },
   {
     path: 'formule/new/:id',
     component: AddFicheComponent,
+    canActivate: [FichesGuard],
   },
 ];
 

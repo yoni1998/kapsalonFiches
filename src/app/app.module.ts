@@ -1,6 +1,7 @@
+import { FichesGuard } from './fiches.guard';
 import { UpdateService } from './services/update.service';
 import { MessageService } from 'primeng/api';
-import { NgModule, isDevMode, APP_INITIALIZER } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -46,6 +47,8 @@ import { RemoveAddFicheBtnDirective } from './shared/directives/remove-add-fiche
 import { FormuleFieldsetDirective } from './shared/directives/formule-fieldset.directive';
 import { CopyBtnDisableDirective } from './shared/directives/copy-btn-disable.directive';
 import { BiggerInputDirective } from './shared/directives/bigger-input.directive';
+import { AuthComponent } from './components/auth/auth.component';
+import { AuthService } from './services/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +71,7 @@ import { BiggerInputDirective } from './shared/directives/bigger-input.directive
     FormuleFieldsetDirective,
     CopyBtnDisableDirective,
     BiggerInputDirective,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,6 +111,8 @@ import { BiggerInputDirective } from './shared/directives/bigger-input.directive
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
     },
+    FichesGuard,
+    AuthService,
     UpdateService,
     MessageService,
     ConfirmationService,
