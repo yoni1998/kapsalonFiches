@@ -26,18 +26,4 @@ export class FichesGuard {
       return false;
     }
   }
-  canActivateChild(
-    childRoute: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    if (this.auth.isLoggedIn()) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 }
