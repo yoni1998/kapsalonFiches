@@ -34,7 +34,12 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    if (this.user) {
+    if (
+      this.user &&
+      this.user.displayName === 'Yoni Vindelinckx' &&
+      this.user.email === 'yoni.vindelinckx@hotmail.com' &&
+      this.user.uid === 'Sut2YnqaroRABlNjTbhJyyYxrfn1'
+    ) {
       return true;
     } else {
       return false;
