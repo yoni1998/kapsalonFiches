@@ -50,7 +50,7 @@ export class Form extends UnsubscribeBase {
   phoneNumberValidation(): void {
     if (
       this.formGroupFiches.controls['telefoonNummer'].value?.toString().length >
-        10 ||
+        11 ||
       this.formGroupFiches.controls['telefoonNummer'].value?.toString().length <
         9
     ) {
@@ -63,7 +63,7 @@ export class Form extends UnsubscribeBase {
   mobileNumberValidation(): void {
     if (
       this.formGroupFiches.controls['mobielNummer'].value?.toString().length >
-        10 ||
+        11 ||
       this.formGroupFiches.controls['mobielNummer'].value?.toString().length < 9
     ) {
       this.formGroupFiches.controls['mobielNummer'].setErrors({
@@ -75,7 +75,7 @@ export class Form extends UnsubscribeBase {
   zakelijkNumberValidation(): void {
     if (
       this.formGroupFiches.controls['zakelijkNummer'].value?.toString().length >
-        10 ||
+        11 ||
       this.formGroupFiches.controls['zakelijkNummer'].value?.toString().length <
         9
     ) {
