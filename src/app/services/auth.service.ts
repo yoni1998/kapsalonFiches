@@ -50,8 +50,8 @@ export class AuthService {
   AuthLogin(provider: any) {
     return this.afAuth
       .signInWithRedirect(provider)
-      .then((result) => {
-        console.log(result);
+      .then(() => {
+        console.log('success!');
       })
       .catch((error) => {
         console.log(error);
