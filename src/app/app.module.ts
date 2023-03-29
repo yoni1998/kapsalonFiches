@@ -49,6 +49,7 @@ import { CopyBtnDisableDirective } from './shared/directives/copy-btn-disable.di
 import { BiggerInputDirective } from './shared/directives/bigger-input.directive';
 import { AuthComponent } from './components/auth/auth.component';
 import { AuthService } from './services/auth.service';
+import { ExcelComponent } from './components/excel/excel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +73,7 @@ import { AuthService } from './services/auth.service';
     CopyBtnDisableDirective,
     BiggerInputDirective,
     AuthComponent,
+    ExcelComponent,
   ],
   imports: [
     BrowserModule,

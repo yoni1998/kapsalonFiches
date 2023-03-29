@@ -1,3 +1,4 @@
+import { ExcelComponent } from './components/excel/excel.component';
 import { FichesGuard } from './fiches.guard';
 import { AuthComponent } from './components/auth/auth.component';
 import { AddFicheComponent } from './components/add-fiche/add-fiche.component';
@@ -44,6 +45,11 @@ const routes: Routes = [
   {
     path: 'formule/new/:id',
     component: AddFicheComponent,
+    canActivate: [FichesGuard],
+  },
+  {
+    path: 'fiches/excel',
+    component: ExcelComponent,
     canActivate: [FichesGuard],
   },
 ];

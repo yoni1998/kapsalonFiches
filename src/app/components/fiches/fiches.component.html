@@ -10,7 +10,7 @@
                     <input type="search" pInputText #input placeholder="Zoeken op naam" (input)="dv.filter(input.value)">
                 </span>
                 <p-dropdown class="dropdown" (click)="filterField()" [options]="sortFields" [(ngModel)]="selectedFiche" optionLabel="value"></p-dropdown>               
-                <p-splitButton styleClass="p-button-raised p-button-secondary mr-2 mb-2"  tooltipPosition="top" pTooltip="Fiches En/Of Formules Exporteren" (onClick)="exportExcel()" label="Export To Excel" icon="pi pi-download" [model]="this.items"></p-splitButton>
+                <button pButton routerLink="excel" tooltipPosition="top" type="button"  pTooltip="Navigeer naar de Excel pagina" aria-label="Navigeer" icon="pi pi-arrow-right" label="Naar Excel Pagina"></button>
             </div>
         </ng-template>
         <ng-template let-fiche pTemplate="gridItem">

@@ -23,6 +23,7 @@ export class AddFicheComponent extends Form implements OnInit {
   removeAddFichesBtn: boolean = false;
   btndisableFormule: boolean = false;
   btndisableFiche: boolean = false;
+  fichesNames!: string;
   errorTextPrijs: string =
     'Gelieve een geldige prijs in te voeren. De prijs kan niet hoger dan 500 euro zijn.';
   errorTextNumbers: string = 'Gelieve een geldig nummer in te voeren';
@@ -48,8 +49,6 @@ export class AddFicheComponent extends Form implements OnInit {
       toast
     );
   }
-
-  fichesNames!: string;
 
   ngOnInit(): void {
     this.routeId = this.activeRoute.snapshot.paramMap.get('id');
