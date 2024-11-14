@@ -14,43 +14,32 @@ const routes: Routes = [
     redirectTo: '/fiches',
   },
   {
-    path: 'login',
-    component: AuthComponent,
-  },
-  {
     path: 'fiches',
     component: ContainerComponent,
-    canActivate: [FichesGuard],
   },
   {
     path: 'fiches/new',
     component: AddFicheComponent,
-    canActivate: [FichesGuard],
   },
   {
     path: 'fiches/edit/:id',
     component: AddFicheComponent,
-    canActivate: [FichesGuard],
   },
   {
     path: 'fiches/:id/info',
     component: DetailsFicheComponent,
-    canActivate: [FichesGuard],
   },
   {
     path: 'formule/edit/:id',
     component: AddFicheComponent,
-    canActivate: [FichesGuard],
   },
   {
     path: 'formule/new/:id',
     component: AddFicheComponent,
-    canActivate: [FichesGuard],
   },
   {
     path: 'fiches/excel',
     component: ExcelComponent,
-    canActivate: [FichesGuard],
   },
 ];
 
